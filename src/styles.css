@@ -771,7 +771,7 @@ button.heatmap-row:hover {
 
 .stock-row {
   display: grid;
-  grid-template-columns: 58px minmax(0, 1fr) 72px 92px;
+  grid-template-columns: 58px minmax(0, 1fr) 68px 72px 92px;
   gap: 8px;
   align-items: center;
   min-height: 42px;

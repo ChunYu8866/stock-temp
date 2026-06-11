@@ -327,12 +327,13 @@ function SectorDrawer({ sector, data, onClose }) {
         h('div', null, h('small', null, '5 日漲跌'), h('strong', { style: { color: sector.chg_5d >= 0 ? CATEGORY_META.green.color : CATEGORY_META.red.color } }, fmtPct(sector.chg_5d, 2)))
       ),
       h('div', { className: 'stock-table' },
-        h('div', { className: 'stock-row head' }, h('span', null, '代碼'), h('span', null, '名稱'), h('span', null, '漲跌'), h('span', null, '買超')),
+        h('div', { className: 'stock-row head' }, h('span', null, '代碼'), h('span', null, '名稱'), h('span', null, '股價'), h('span', null, '漲跌'), h('span', null, '買超')),
         sector.stocks.map((code) => {
           const item = stockData[code];
           return h('div', { className: 'stock-row', key: code },
             h('span', null, code),
             h('span', null, item?.name || STOCK_NAMES[code] || '—'),
+            h('span', null, item && item.price != null ? item.price : '—'),
             h('span', { style: { color: item ? (item.chg_1d >= 0 ? CATEGORY_META.green.color : CATEGORY_META.red.color) : undefined } }, item ? fmtPct(item.chg_1d, 2) : '—'),
             h('span', { style: { color: item ? flowColor(item.net_1d_yi) : undefined } }, item ? fmtYi(item.net_1d_yi, 2) : '—')
           );
