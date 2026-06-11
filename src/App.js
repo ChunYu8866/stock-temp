@@ -86,7 +86,7 @@ function Header({ data, loading, onRefresh }) {
       data ? h('span', { className: `pill ${data.marketChg1d >= 0 ? 'up' : 'down'}` }, `加權 ${fmtPct(data.marketChg1d, 2)}`) : null,
       h('button', { className: 'icon-btn', onClick: onRefresh, disabled: loading, title: '重新整理' }, loading ? '↻' : '⟳'),
       !pwa.isStandalone && h('button', { className: 'install-btn', onClick: pwa.install },
-        pwa.canInstall ? '加到主畫面' : (pwa.isIOS ? '🍎 加到主畫面' : 'PWA Ready')
+        pwa.isIOS ? '🍎 加到主畫面' : '加到主畫面'
       )
     )
   );
