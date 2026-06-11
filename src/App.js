@@ -8,7 +8,8 @@ const base = import.meta.env.BASE_URL || '/';
 const h = React.createElement;
 const cats = ['green', 'yellow', 'gray', 'red'];
 const fmtYi = (value, digits = 1) => `${value >= 0 ? '+' : ''}${Number(value || 0).toFixed(digits)} 億`;
-const fmtPct = (value, digits = 1) => `${value >= 0 ? '+' : ''}${Number(value || 0).toFixed(digits)}%`;
+const fmtPct = (value, digits = 1) => `${value > 0 ? '+' : ''}${Number(value || 0).toFixed(digits)}%`;
+const pctColor = (value) => value > 0 ? CATEGORY_META.green.color : value < 0 ? CATEGORY_META.red.color : CATEGORY_META.gray.color;
 
 function useSectorData() {
   const [state, setState] = useState({ data: null, loading: true, error: null });
@@ -311,7 +312,7 @@ function RankingPanel({ data, onSelect }) {
           h('span', { className: 'rank-num' }, index + 1),
           h('span', { className: 'rank-dot', style: { background: CATEGORY_META[cat].color } }),
           h('span', { className: 'rank-name' }, sector.name),
-          h('span', { className: 'rank-pct', style: { color: sector.chg_5d >= 0 ? CATEGORY_META.green.color : CATEGORY_META.red.color } }, fmtPct(mode === 'bottom' ? sector.chg_1d : sector.chg_5d, 1)),
+          h('span', { className: 'rank-pct', style: { color: pctColor(mode === 'bottom' ? sector.chg_1d : sector.chg_5d) } }, fmtPct(mode === 'bottom' ? sector.chg_1d : sector.chg_5d, 1)),
           h('span', { className: 'rank-flow', style: { color: flowColor(value) } }, fmtYi(value, 1)),
           h('span', { className: 'rank-bar' }, h('i', { style: { width: `${bar}%`, background: CATEGORY_META[cat].color } }))
         );
@@ -338,9 +339,9 @@ function SectorDrawer({ sector, data, onClose }) {
         h('div', null, h('small', null, '當日'), h('strong', { style: { color: flowColor(sector.net_1d_yi) } }, fmtYi(sector.net_1d_yi, 2))),
         h('div', null, h('small', null, '近 5 日'), h('strong', { style: { color: flowColor(sector.net_5d_yi) } }, fmtYi(sector.net_5d_yi, 2))),
         h('div', null, h('small', null, '近 20 日'), h('strong', { style: { color: flowColor(sector.net_20d_yi) } }, fmtYi(sector.net_20d_yi, 2))),
-        h('div', null, h('small', null, '加速度'), h('strong', { style: { color: flowColor(sector.accel) } }, `${sector.accel >= 0 ? '+' : ''}${sector.accel.toFixed(2)}`)),
-        h('div', null, h('small', null, '1 日漲跌'), h('strong', { style: { color: sector.chg_1d >= 0 ? CATEGORY_META.green.color : CATEGORY_META.red.color } }, fmtPct(sector.chg_1d, 2))),
-        h('div', null, h('small', null, '5 日漲跌'), h('strong', { style: { color: sector.chg_5d >= 0 ? CATEGORY_META.green.color : CATEGORY_META.red.color } }, fmtPct(sector.chg_5d, 2)))
+        h('div', null, h('small', null, '加速度'), h('strong', { style: { color: flowColor(sector.accel) } }, `${sector.accel > 0 ? '+' : ''}${sector.accel.toFixed(2)}`)),
+        h('div', null, h('small', null, '1 日漲跌'), h('strong', { style: { color: pctColor(sector.chg_1d) } }, fmtPct(sector.chg_1d, 2))),
+        h('div', null, h('small', null, '5 日漲跌'), h('strong', { style: { color: pctColor(sector.chg_5d) } }, fmtPct(sector.chg_5d, 2)))
       ),
       h('div', { className: 'stock-table' },
         h('div', { className: 'stock-row head' }, h('span', null, '代碼'), h('span', null, '名稱'), h('span', null, '股價'), h('span', null, '漲跌'), h('span', null, '買超')),
@@ -350,7 +351,7 @@ function SectorDrawer({ sector, data, onClose }) {
             h('span', null, code),
             h('span', null, item?.name || STOCK_NAMES[code] || '—'),
             h('span', null, item && item.price != null ? item.price : '—'),
-            h('span', { style: { color: item ? (item.chg_1d >= 0 ? CATEGORY_META.green.color : CATEGORY_META.red.color) : undefined } }, item ? fmtPct(item.chg_1d, 2) : '—'),
+            h('span', { style: { color: item ? pctColor(item.chg_1d) : undefined } }, item ? fmtPct(item.chg_1d, 2) : '—'),
             h('span', { style: { color: item ? flowColor(item.net_1d_yi) : undefined } }, item ? fmtYi(item.net_1d_yi, 2) : '—')
           );
         })
