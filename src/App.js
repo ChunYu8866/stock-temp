@@ -1,7 +1,9 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { createRoot } from 'react-dom/client';
-import { STOCK_NAMES, STOCK_TO_SECTORS } from './data/sectors.mjs?v=10';
-import { CATEGORY_META, classifySector, flowColor } from './lib/market-data.mjs?v=10';
+import { STOCK_NAMES, STOCK_TO_SECTORS } from './data/sectors.mjs';
+import { CATEGORY_META, classifySector, flowColor } from './lib/market-data.mjs';
+
+const base = import.meta.env.BASE_URL || '/';
 
 const h = React.createElement;
 const cats = ['green', 'yellow', 'gray', 'red'];
@@ -13,13 +15,13 @@ function useSectorData() {
   const load = async (refresh = false) => {
     setState((current) => ({ ...current, loading: true, error: null }));
     try {
-      const response = await fetch(`/api/sector-rotation?date=latest&refresh=${refresh ? 1 : 0}`);
+      const response = await fetch(`${base}api/sector-rotation?date=latest&refresh=${refresh ? 1 : 0}`);
       const payload = await response.json();
       if (!response.ok) throw new Error(payload.detail || payload.error || `HTTP ${response.status}`);
       setState({ data: payload, loading: false, error: null });
     } catch (error) {
       try {
-        const staticResponse = await fetch(`/data/latest.json?ts=${refresh ? Date.now() : ''}`, { cache: refresh ? 'reload' : 'default' });
+        const staticResponse = await fetch(`${base}data/latest.json?ts=${refresh ? Date.now() : ''}`, { cache: refresh ? 'reload' : 'default' });
         if (!staticResponse.ok) throw error;
         const payload = await staticResponse.json();
         setState({ data: { ...payload, cache: { hit: true, stale: false, static: true } }, loading: false, error: null });
@@ -361,7 +363,7 @@ function App() {
   };
 
   useEffect(() => {
-    if ('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js').catch(() => {});
+    if ('serviceWorker' in navigator) navigator.serviceWorker.register(`${base}sw.js`).catch(() => {});
   }, []);
 
   return h(React.Fragment, null,
