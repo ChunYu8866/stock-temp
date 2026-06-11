@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="96" fill="#f6f8fb"/>
+  <path d="M80 352c72-146 168-225 288-238" fill="none" stroke="#d94f35" stroke-width="44" stroke-linecap="round"/>
+  <path d="M96 360c94-16 178-5 252 34" fill="none" stroke="#1c9a72" stroke-width="42" stroke-linecap="round"/>
+  <circle cx="352" cy="118" r="54" fill="#c99a18"/>
+  <circle cx="160" cy="356" r="50" fill="#d94f35"/>
+  <circle cx="356" cy="394" r="46" fill="#1c9a72"/>
+  <text x="256" y="284" text-anchor="middle" font-family="Arial, sans-serif" font-size="112" font-weight="800" fill="#172033">SR</text>
+</svg>

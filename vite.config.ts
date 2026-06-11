@@ -1,0 +1,48 @@
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import { VitePWA } from 'vite-plugin-pwa';
+
+export default defineConfig({
+  plugins: [
+    react(),
+    VitePWA({
+      registerType: 'autoUpdate',
+      includeAssets: ['assets/icon.svg'],
+      manifest: {
+        name: '台股板塊溫度計',
+        short_name: '板塊溫度',
+        start_url: '/',
+        scope: '/',
+        display: 'standalone',
+        background_color: '#f6f8fb',
+        theme_color: '#f6f8fb',
+        icons: [
+          {
+            src: '/assets/icon.svg',
+            sizes: 'any',
+            type: 'image/svg+xml',
+            purpose: 'any maskable',
+          },
+        ],
+      },
+      workbox: {
+        runtimeCaching: [
+          {
+            urlPattern: ({ url }) => url.pathname.startsWith('/api/'),
+            handler: 'NetworkFirst',
+            options: {
+              cacheName: 'sector-api',
+              networkTimeoutSeconds: 8,
+              expiration: { maxEntries: 8, maxAgeSeconds: 60 * 60 * 24 },
+            },
+          },
+        ],
+      },
+    }),
+  ],
+  server: {
+    proxy: {
+      '/api': 'http://localhost:3000',
+    },
+  },
+});

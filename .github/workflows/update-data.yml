@@ -1,0 +1,31 @@
+name: Update sector data
+
+on:
+  workflow_dispatch:
+  schedule:
+    # 19:40 Asia/Taipei, Monday-Friday. Official institutional data may arrive later on some days.
+    - cron: "40 11 * * 1-5"
+
+permissions:
+  contents: write
+
+jobs:
+  update-data:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Generate latest official-data snapshot
+        run: node scripts/generate-latest.mjs
+
+      - name: Commit updated data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/data/latest.json
+          git diff --cached --quiet || git commit -m "Update sector data"
+          git push
