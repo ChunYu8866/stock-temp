@@ -11,7 +11,6 @@ export default defineConfig({
       manifest: {
         name: '台股板塊溫度計',
         short_name: '板塊溫度',
-        start_url: '.',
         display: 'standalone',
         background_color: '#f6f8fb',
         theme_color: '#f6f8fb',
