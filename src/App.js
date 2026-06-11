@@ -16,17 +16,17 @@ function useSectorData() {
     setState((current) => ({ ...current, loading: true, error: null }));
     try {
       const response = await fetch(`${base}api/sector-rotation?date=latest&refresh=${refresh ? 1 : 0}`);
+      if (!response.ok) throw new Error(`API HTTP ${response.status}`);
       const payload = await response.json();
-      if (!response.ok) throw new Error(payload.detail || payload.error || `HTTP ${response.status}`);
       setState({ data: payload, loading: false, error: null });
-    } catch (error) {
+    } catch (apiError) {
       try {
         const staticResponse = await fetch(`${base}data/latest.json?ts=${refresh ? Date.now() : ''}`, { cache: refresh ? 'reload' : 'default' });
-        if (!staticResponse.ok) throw error;
+        if (!staticResponse.ok) throw new Error(`Static fallback failed: HTTP ${staticResponse.status}`);
         const payload = await staticResponse.json();
         setState({ data: { ...payload, cache: { hit: true, stale: false, static: true } }, loading: false, error: null });
-      } catch {
-        setState((current) => ({ ...current, loading: false, error: error.message }));
+      } catch (fallbackError) {
+        setState((current) => ({ ...current, loading: false, error: fallbackError.message }));
       }
     }
   };
