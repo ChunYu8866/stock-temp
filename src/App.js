@@ -38,11 +38,6 @@ function useSectorData() {
 }
 
 function useInstallPrompt() {
-  const [prompt, setPrompt] = useState(null);
-  const [installed, setInstalled] = useState(window.matchMedia('(display-mode: standalone)').matches);
-  useEffect(() => {
-    const onPrompt = (event) => {
-      event.preventDefault();
   const [deferredPrompt, setDeferredPrompt] = useState(null);
   const [isIOS, setIsIOS] = useState(false);
   const [isStandalone, setIsStandalone] = useState(false);
@@ -68,7 +63,7 @@ function useInstallPrompt() {
         setDeferredPrompt(null);
       }
     } else if (isIOS) {
-      alert('在 iPhone/iPad 上安裝：\n請點擊瀏覽器底部的「分享」按示（正方形往上的箭頭），然後滑動選擇「加入主畫面」。');
+      alert('在 iPhone/iPad 上安裝：\n請點擊瀏覽器底部的「分享」按鈕（正方形往上的箭頭），然後滑動選擇「加入主畫面」。');
     } else {
       alert('您的瀏覽器目前無法自動觸發安裝提示。\n可能原因：\n1. 您已安裝過本 APP（請檢查桌面或應用程式清單）。\n2. 您正在使用無痕模式（無痕模式不支援安裝）。\n3. 網頁暫存未更新（請嘗試清除暫存後重整）。\n\n您可以嘗試從瀏覽器選單中手動尋找「安裝應用程式」或「加到主畫面」的選項。');
     }
