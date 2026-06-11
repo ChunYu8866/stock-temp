@@ -164,8 +164,20 @@ const heatmapMetrics = [
   { key: 'net_1d_yi', label: '1日買超', kind: 'flow', digits: 1 },
   { key: 'net_5d_yi', label: '5日買超', kind: 'flow', digits: 1 },
   { key: 'net_20d_yi', label: '20日買超', kind: 'flow', digits: 0 },
-  { key: 'accel', label: '加速度', kind: 'flow', digits: 1 },
+  { key: 'accel', label: '加熱', kind: 'flow', digits: 1 },
   { key: 'chg_5d', label: '5日漲跌', kind: 'pct', digits: 1 },
+];
+
+const sortOptions = [
+  { key: 'net_1d_yi', dir: 'desc', label: '1日買超' },
+  { key: 'net_1d_yi', dir: 'asc', label: '1日賣超' },
+  { key: 'net_5d_yi', dir: 'desc', label: '5日買超' },
+  { key: 'net_5d_yi', dir: 'asc', label: '5日賣超' },
+  { key: 'net_20d_yi', dir: 'desc', label: '20日買超' },
+  { key: 'net_20d_yi', dir: 'asc', label: '20日賣超' },
+  { key: 'accel', dir: 'desc', label: '加熱' },
+  { key: 'accel', dir: 'asc', label: '冷卻' },
+  { key: 'chg_5d', dir: 'desc', label: '5日漲跌' },
 ];
 
 function metricText(value, metric) {
@@ -184,12 +196,16 @@ function metricHeatStyle(value, maxAbs) {
 }
 
 function HeatmapPanel({ sectors, activeCats, onSelect }) {
-  const [sortKey, setSortKey] = useState('net_5d_yi');
+  const [sortParam, setSortParam] = useState({ key: 'net_5d_yi', dir: 'desc' });
   const visible = useMemo(() => {
     return sectors
       .filter((sector) => activeCats.has(classifySector(sector)))
-      .sort((a, b) => (b[sortKey] ?? 0) - (a[sortKey] ?? 0));
-  }, [activeCats, sectors, sortKey]);
+      .sort((a, b) => {
+        const valA = a[sortParam.key] ?? 0;
+        const valB = b[sortParam.key] ?? 0;
+        return sortParam.dir === 'desc' ? valB - valA : valA - valB;
+      });
+  }, [activeCats, sectors, sortParam]);
   const maxByMetric = useMemo(() => {
     const out = {};
     for (const metric of heatmapMetrics) {
@@ -226,11 +242,11 @@ function HeatmapPanel({ sectors, activeCats, onSelect }) {
     ),
     h('div', { className: 'heatmap-tools' },
       h('span', null, '排序'),
-      heatmapMetrics.map((metric) => h('button', {
-        key: metric.key,
-        className: sortKey === metric.key ? 'active' : '',
-        onClick: () => setSortKey(metric.key),
-      }, metric.label))
+      sortOptions.map((opt) => h('button', {
+        key: opt.label,
+        className: sortParam.key === opt.key && sortParam.dir === opt.dir ? 'active' : '',
+        onClick: () => setSortParam({ key: opt.key, dir: opt.dir }),
+      }, opt.label))
     ),
     h('div', { className: 'heatmap-grid', role: 'table' },
       h('div', { className: 'heatmap-row heatmap-header', role: 'row' },
