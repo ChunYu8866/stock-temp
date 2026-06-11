@@ -164,7 +164,7 @@ const heatmapMetrics = [
   { key: 'net_1d_yi', label: '1日買超', kind: 'flow', digits: 1 },
   { key: 'net_5d_yi', label: '5日買超', kind: 'flow', digits: 1 },
   { key: 'net_20d_yi', label: '20日買超', kind: 'flow', digits: 0 },
-  { key: 'accel', label: '加熱', kind: 'flow', digits: 1 },
+  { key: 'accel', label: '加熱/冷卻', kind: 'flow', digits: 1 },
   { key: 'chg_5d', label: '5日漲跌', kind: 'pct', digits: 1 },
 ];
 
