@@ -7,7 +7,7 @@ export default defineConfig({
     react(),
     VitePWA({
       registerType: 'autoUpdate',
-      includeAssets: ['assets/icon.svg', 'assets/icon.png'],
+      includeAssets: ['assets/icon.svg', 'assets/icon-192.png', 'assets/icon-512.png'],
       manifest: {
         name: '台股板塊溫度計',
         short_name: '板塊溫度',
@@ -22,8 +22,14 @@ export default defineConfig({
             purpose: 'any maskable',
           },
           {
-            src: 'assets/icon.png',
-            sizes: '192x192 512x512',
+            src: 'assets/icon-192.png',
+            sizes: '192x192',
+            type: 'image/png',
+            purpose: 'any maskable'
+          },
+          {
+            src: 'assets/icon-512.png',
+            sizes: '512x512',
             type: 'image/png',
             purpose: 'any maskable'
           },
