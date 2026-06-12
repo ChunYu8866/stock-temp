@@ -77,13 +77,26 @@ function isCommonStockCode(code) {
   return /^\d{4}$/.test(code);
 }
 
+function signedTwseDiff(signCell, diffCell) {
+  const diff = parseNumber(diffCell);
+  if (!Number.isFinite(diff)) return Number.NaN;
+  const sign = String(signCell ?? '').replace(/<[^>]*>/g, '').trim();
+  const raw = String(signCell ?? '').toLowerCase();
+  if (sign.includes('-') || raw.includes('green')) return -Math.abs(diff);
+  if (sign.includes('+') || raw.includes('red')) return Math.abs(diff);
+  return diff;
+}
+
 export function parseTwsePrice(json) {
   const out = new Map();
-  for (const row of json?.data ?? []) {
+  const table = (json?.tables ?? []).find((item) => String(item?.title ?? '').includes('每日收盤行情'));
+  const rows = table?.data ?? json?.data ?? [];
+  const isMiIndexTable = Boolean(table);
+  for (const row of rows) {
     const code = codeOf(row);
     if (!isCommonStockCode(code)) continue;
-    const close = parseNumber(row[7]);
-    const diff = parseNumber(row[8]);
+    const close = parseNumber(isMiIndexTable ? row[8] : row[7]);
+    const diff = isMiIndexTable ? signedTwseDiff(row[9], row[10]) : parseNumber(row[8]);
     if (!Number.isFinite(close) || !Number.isFinite(diff)) continue;
     const previous = close - diff;
     out.set(code, {
@@ -189,7 +202,7 @@ export async function fetchTradingDay(ymd, options = {}) {
   const twseDate = toTwseDate(ymd);
   const rocDate = encodeURIComponent(toRocDate(ymd));
   const urls = {
-    'twse-price': `https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY_ALL?response=json&date=${twseDate}`,
+    'twse-price': `https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?response=json&date=${twseDate}&type=ALLBUT0999`,
     'twse-chip': `https://www.twse.com.tw/rwd/zh/fund/T86?response=json&date=${twseDate}&selectType=ALL`,
     'tpex-price': `https://www.tpex.org.tw/www/zh-tw/afterTrading/dailyQuotes?date=${rocDate}&response=json`,
     'tpex-chip': `https://www.tpex.org.tw/www/zh-tw/insti/dailyTrade?date=${rocDate}&type=Daily&response=json`,
@@ -331,7 +344,7 @@ function summarizeStatuses(days, extra = []) {
   return [...sourceMap.values()];
 }
 
-export async function aggregateSectorRotation({ date = 'latest', fetchImpl = fetch, maxCalendarDays = 35 } = {}) {
+export async function aggregateSectorRotation({ date = 'latest', fetchImpl = fetch, maxCalendarDays = 35, requestDelayMs = 1500 } = {}) {
   const endDate = normalizeDate(date);
   const days = [];
   let marketChg1d = 0;
@@ -351,22 +364,37 @@ export async function aggregateSectorRotation({ date = 'latest', fetchImpl = fet
         }
       }
     }
-    // Add delay to prevent TWSE API rate limit
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    // Add delay to prevent exchange API rate limits during scheduled refreshes.
+    if (requestDelayMs > 0 && days.length < 20 && offset + 1 < maxCalendarDays) {
+      await new Promise((resolve) => setTimeout(resolve, requestDelayMs));
+    }
   }
   if (!days.length) throw new Error('No trading data available from TWSE/TPEX');
 
   const sectors = computeSectors(days, marketChg1d).sort((a, b) => b.net_5d_yi - a.net_5d_yi);
   const stockData = {};
-  for (const [code, item] of days[0].stocks) {
-    if (!STOCK_NAMES[code]) continue;
-    stockData[code] = {
-      name: item.name || STOCK_NAMES[code],
-      price: round(item.close, 2),
-      chg_1d: round(item.chg1d, 2),
-      net_1d_yi: round(item.net_1d_yi, 2),
-      market: item.market,
-    };
+  const sectorCodes = new Set(sectors.flatMap((sector) => sector.stocks));
+  for (const code of sectorCodes) {
+    const item = days[0].stocks.get(code);
+    if (item) {
+      stockData[code] = {
+        name: item.name || STOCK_NAMES[code] || code,
+        price: round(item.close, 2),
+        chg_1d: round(item.chg1d, 2),
+        net_1d_yi: round(item.net_1d_yi, 2),
+        market: item.market,
+        quoteStatus: 'ok',
+      };
+    } else {
+      stockData[code] = {
+        name: STOCK_NAMES[code] || code,
+        price: null,
+        chg_1d: null,
+        net_1d_yi: null,
+        market: null,
+        quoteStatus: 'missing',
+      };
+    }
   }
 
   return {

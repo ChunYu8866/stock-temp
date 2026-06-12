@@ -101,7 +101,11 @@ async function handleStatic(req, res, url) {
   try {
     const info = await stat(target);
     if (!info.isFile()) throw new Error('not a file');
-    const noCache = pathname === '/index.html' || pathname === '/public/sw.js' || pathname === '/public/manifest.webmanifest';
+    const noCache = pathname === '/index.html'
+      || pathname === '/public/sw.js'
+      || pathname === '/public/manifest.webmanifest'
+      || pathname === '/public/data/latest.json'
+      || pathname.startsWith('/src/');
     res.writeHead(200, {
       'content-type': MIME[extname(target)] || 'application/octet-stream',
       'cache-control': noCache ? 'no-cache' : 'public, max-age=3600',

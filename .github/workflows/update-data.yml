@@ -3,8 +3,10 @@ name: Update sector data
 on:
   workflow_dispatch:
   schedule:
-    # 19:40 Asia/Taipei, Monday-Friday. Official institutional data may arrive later on some days.
-    - cron: "40 11 * * 1-5"
+    # Every 30 minutes from 18:30 to 22:30 Asia/Taipei, Monday-Friday.
+    # GitHub Actions cron uses UTC.
+    - cron: "30 10-14 * * 1-5"
+    - cron: "0 11-14 * * 1-5"
 
 permissions:
   contents: write

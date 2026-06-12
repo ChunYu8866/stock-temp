@@ -46,6 +46,15 @@ export default defineConfig({
               expiration: { maxEntries: 8, maxAgeSeconds: 60 * 60 * 24 },
             },
           },
+          {
+            urlPattern: ({ url }) => url.pathname.endsWith('/data/latest.json'),
+            handler: 'NetworkFirst',
+            options: {
+              cacheName: 'sector-latest-data',
+              networkTimeoutSeconds: 8,
+              expiration: { maxEntries: 4, maxAgeSeconds: 60 * 60 * 6 },
+            },
+          },
         ],
       },
     }),

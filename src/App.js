@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client';
 import { STOCK_NAMES, STOCK_TO_SECTORS } from './data/sectors.mjs';
 import { CATEGORY_META, classifySector, flowColor } from './lib/market-data.mjs';
 
-const base = import.meta.env.BASE_URL || '/';
+const base = import.meta.env?.BASE_URL || '/';
 
 const h = React.createElement;
 const cats = ['green', 'yellow', 'gray', 'red'];
@@ -22,7 +22,7 @@ function useSectorData() {
       setState({ data: payload, loading: false, error: null });
     } catch (apiError) {
       try {
-        const staticResponse = await fetch(`${base}data/latest.json?ts=${refresh ? Date.now() : ''}`, { cache: refresh ? 'reload' : 'default' });
+        const staticResponse = await fetch(`${base}data/latest.json?ts=${Date.now()}`, { cache: 'no-store' });
         if (!staticResponse.ok) throw new Error(`Static fallback failed: HTTP ${staticResponse.status}`);
         const payload = await staticResponse.json();
         setState({ data: { ...payload, cache: { hit: true, stale: false, static: true } }, loading: false, error: null });
@@ -332,12 +332,14 @@ function SectorDrawer({ sector, data, onClose }) {
   const cat = classifySector(sector);
   const meta = CATEGORY_META[cat];
   const stockData = data.stockData || {};
+  const quotedCount = sector.stocks.filter((code) => stockData[code]?.quoteStatus === 'ok' || stockData[code]?.price != null).length;
   return h('div', { className: 'drawer-backdrop', onClick: onClose },
     h('aside', { className: 'drawer glass', onClick: (event) => event.stopPropagation() },
       h('div', { className: 'drawer-head' },
         h('div', null,
           h('span', { className: 'drawer-badge', style: { color: meta.color, borderColor: meta.color } }, meta.label),
-          h('h2', null, sector.name)
+          h('h2', null, sector.name),
+          h('p', { className: 'quote-coverage' }, `官方報價 ${quotedCount} / ${sector.stocks.length}`)
         ),
         h('button', { className: 'icon-btn', onClick: onClose, title: '關閉' }, '×')
       ),
@@ -353,12 +355,13 @@ function SectorDrawer({ sector, data, onClose }) {
         h('div', { className: 'stock-row head' }, h('span', null, '代碼'), h('span', null, '名稱'), h('span', null, '股價'), h('span', null, '漲跌'), h('span', null, '買超')),
         sector.stocks.map((code) => {
           const item = stockData[code];
+          const hasQuote = item?.quoteStatus === 'ok' || item?.price != null;
           return h('div', { className: 'stock-row', key: code },
             h('span', null, code),
             h('span', null, item?.name || STOCK_NAMES[code] || '—'),
-            h('span', null, item && item.price != null ? item.price : '—'),
-            h('span', { style: { color: item ? pctColor(item.chg_1d) : undefined } }, item ? fmtPct(item.chg_1d, 2) : '—'),
-            h('span', { style: { color: item ? flowColor(item.net_1d_yi) : undefined } }, item ? fmtYi(item.net_1d_yi, 2) : '—')
+            h('span', { className: hasQuote ? '' : 'quote-missing' }, hasQuote ? item.price : '無報價'),
+            h('span', { style: { color: hasQuote ? pctColor(item.chg_1d) : undefined } }, hasQuote ? fmtPct(item.chg_1d, 2) : '—'),
+            h('span', { style: { color: hasQuote ? flowColor(item.net_1d_yi) : undefined } }, hasQuote ? fmtYi(item.net_1d_yi, 2) : '—')
           );
         })
       )

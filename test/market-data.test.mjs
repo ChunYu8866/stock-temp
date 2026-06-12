@@ -23,7 +23,10 @@ test('date and numeric helpers normalize exchange formats', () => {
 
 test('TWSE parsers read close, change, and institutional net shares', () => {
   const price = parseTwsePrice({
-    data: [['2330', '台積電', '1,000', '1,000', '1000', '1010', '990', '1000', '+10', '1']],
+    tables: [{
+      title: '每日收盤行情(全部(不含權證、牛熊證、可展延牛熊證))',
+      data: [['2330', '台積電', '1,000', '1', '1,000,000', '990', '1010', '980', '1000', '<p style= color:red>+</p>', '10', '999', '1', '1000', '1', '20']],
+    }],
   });
   const chip = parseTwseChip({
     data: [['2330', '台積電', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1,500,000']],
@@ -82,17 +85,18 @@ test('aggregateSectorRotation returns the public API contract with mocked offici
   const fetchImpl = async (url) => ({
     ok: true,
     json: async () => {
-      if (url.includes('STOCK_DAY_ALL')) return twsePrice;
+      if (url.includes('MI_INDEX') && url.includes('ALLBUT0999')) return twsePrice;
       if (url.includes('fund/T86')) return twseChip;
       if (url.includes('dailyQuotes')) return tpexPrice;
       if (url.includes('dailyTrade')) return tpexChip;
-      if (url.includes('MI_INDEX')) return index;
+      if (url.includes('MI_INDEX') && url.includes('IND')) return index;
       throw new Error(url);
     },
   });
-  const payload = await aggregateSectorRotation({ date: '2026-06-11', fetchImpl, maxCalendarDays: 20 });
+  const payload = await aggregateSectorRotation({ date: '2026-06-11', fetchImpl, maxCalendarDays: 20, requestDelayMs: 0 });
   assert.equal(payload.date, '2026-06-11');
   assert.equal(payload.sectors.length > 0, true);
   assert.equal(payload.stockData['2317'].net_1d_yi, 2);
+  assert.equal(payload.stockData['6669'].quoteStatus, 'missing');
   assert.equal(payload.sourceStatus.some((item) => item.source === 'twse-index' && item.ok), true);
 });

@@ -728,6 +728,12 @@ button.heatmap-row:hover {
   font-size: 26px;
 }
 
+.quote-coverage {
+  margin-top: 6px;
+  color: var(--apple-muted);
+  font-size: 12px;
+}
+
 .drawer-badge {
   display: inline-flex;
   padding: 4px 9px;
@@ -799,9 +805,16 @@ button.heatmap-row:hover {
 }
 
 .stock-row span:nth-child(3),
-.stock-row span:nth-child(4) {
+.stock-row span:nth-child(4),
+.stock-row span:nth-child(5) {
   text-align: right;
   font-weight: 800;
+}
+
+.stock-row .quote-missing {
+  color: var(--apple-muted);
+  font-size: 11px;
+  font-weight: 700;
 }
 
 .disclaimer {
@@ -902,7 +915,8 @@ button.heatmap-row:hover {
   }
 
   .stock-row {
-    grid-template-columns: 48px minmax(0, 1fr) 62px 76px;
+    grid-template-columns: 44px minmax(66px, 1fr) 54px 56px 66px;
+    gap: 6px;
     font-size: 12px;
   }
 }
