@@ -393,10 +393,10 @@ function RankingPanel({ data, onSelect }) {
   const max = Math.max(...rows.map((row) => Math.abs(mode === 'bottom' ? row.bottom_score : row.net_5d_yi)), 1);
   return h('aside', { className: 'ranking glass' },
     h('div', { className: 'panel-headline' },
-      h('div', null, h('strong', null, '排行'), h('span', null, mode === 'cp' ? '價量背離' : '逆勢買超')),
+      h('div', null, h('strong', null, '排行'), h('span', null, mode === 'cp' ? '資金蓄熱' : '低檔回暖')),
       h('div', { className: 'segmented' },
-        h('button', { className: mode === 'cp' ? 'active' : '', onClick: () => setMode('cp') }, 'CP'),
-        h('button', { className: mode === 'bottom' ? 'active' : '', onClick: () => setMode('bottom') }, `逆勢 ${bottomCount || ''}`)
+        h('button', { className: mode === 'cp' ? 'active' : '', onClick: () => setMode('cp') }, '蓄熱'),
+        h('button', { className: mode === 'bottom' ? 'active' : '', onClick: () => setMode('bottom') }, `回暖 ${bottomCount || ''}`)
       )
     ),
     rows.length ? h('div', { className: 'ranking-list' },
@@ -413,7 +413,7 @@ function RankingPanel({ data, onSelect }) {
           h('span', { className: 'rank-bar' }, h('i', { style: { width: `${bar}%`, background: CATEGORY_META[cat].color } }))
         );
       })
-    ) : h('div', { className: 'empty-panel' }, mode === 'bottom' ? '目前沒有逆勢買超訊號' : '目前沒有升溫板塊')
+    ) : h('div', { className: 'empty-panel' }, mode === 'bottom' ? '目前沒有回暖訊號' : '目前沒有蓄熱板塊')
   );
 }
 
