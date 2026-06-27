@@ -688,6 +688,82 @@ button.heatmap-row:hover {
   color: #b42318;
 }
 
+.glossary-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 120;
+  display: grid;
+  place-items: center;
+  padding: 18px;
+  background: rgba(15, 23, 42, 0.26);
+}
+
+.glossary-modal {
+  width: min(760px, 100%);
+  max-height: min(720px, calc(100vh - 36px));
+  padding: 18px;
+  overflow: auto;
+  background: var(--apple-surface-strong);
+}
+
+.glossary-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+.glossary-kicker {
+  display: inline-flex;
+  margin-bottom: 8px;
+  color: var(--apple-blue);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.glossary-head h2 {
+  margin: 0;
+  font-size: 26px;
+  line-height: 1.15;
+}
+
+.glossary-head p {
+  max-width: 560px;
+}
+
+.glossary-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.glossary-item {
+  min-height: 96px;
+  padding: 12px;
+  border: 1px solid var(--apple-border);
+  border-radius: 8px;
+  background: rgba(245, 245, 247, 0.74);
+}
+
+.glossary-item strong {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--apple-text);
+  font-size: 15px;
+}
+
+.glossary-item p {
+  margin: 0;
+  line-height: 1.55;
+}
+
+.glossary-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 14px;
+}
+
 .drawer-backdrop {
   position: fixed;
   inset: 0;
@@ -900,6 +976,24 @@ button.heatmap-row:hover {
   .drawer {
     border-radius: 8px 8px 0 0;
     width: 100vw;
+  }
+
+  .glossary-backdrop {
+    align-items: end;
+    padding: 10px;
+  }
+
+  .glossary-modal {
+    width: 100%;
+    max-height: calc(100vh - 20px);
+  }
+
+  .glossary-head h2 {
+    font-size: 22px;
+  }
+
+  .glossary-grid {
+    grid-template-columns: 1fr;
   }
 
   .metric-grid {

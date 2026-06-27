@@ -19,6 +19,19 @@ const SOURCE_LABELS = {
   'tpex-chip': '上櫃法人熱流',
   'twse-index': '大盤溫度',
 };
+const GLOSSARY_STORAGE_KEY = 'sector-temperature-glossary-v1';
+const TERM_GLOSSARY = [
+  { term: '熱流', desc: '法人資金換算成億元後的溫度方向；正值代表加熱，負值代表冷卻。' },
+  { term: '加熱', desc: '熱流正在進入熱區，數值越大代表短線資金溫度越強。' },
+  { term: '冷卻', desc: '熱流正在離開熱區，負值越深代表資金降溫越明顯。' },
+  { term: '升溫', desc: '5 日熱流為正，且升溫速度為正，代表熱度正在加速。' },
+  { term: '恆溫', desc: '5 日熱流仍為正，但升溫速度放慢，代表熱度維持但沒有加速。' },
+  { term: '低溫', desc: '熱流接近中性，資金沒有明顯方向，適合先觀察。' },
+  { term: '降溫', desc: '5 日熱流轉負，代表資金持續外散，熱區溫度下降。' },
+  { term: '蓄熱', desc: '熱流累積靠前，但價格溫差尚未完全反映，像正在累積熱源。' },
+  { term: '回暖', desc: '大盤或熱區偏冷時，當日熱流重新轉強的早期回溫訊號。' },
+  { term: '股溫 / 溫差', desc: '股溫是最新股價；溫差是價格相對前一交易日或近 5 日的變化。' },
+];
 
 function useSectorData() {
   const [state, setState] = useState({ data: null, loading: true, error: null });
@@ -127,6 +140,27 @@ function realtimeFromStaticData(data) {
   };
 }
 
+function useGlossaryPrompt() {
+  const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    try {
+      if (window.localStorage.getItem(GLOSSARY_STORAGE_KEY) !== 'seen') setOpen(true);
+    } catch {
+      setOpen(true);
+    }
+  }, []);
+
+  const close = () => {
+    setOpen(false);
+    try {
+      window.localStorage.setItem(GLOSSARY_STORAGE_KEY, 'seen');
+    } catch {}
+  };
+
+  return { open, close, openAgain: () => setOpen(true) };
+}
+
 function useInstallPrompt() {
   const [deferredPrompt, setDeferredPrompt] = useState(null);
   const [isIOS, setIsIOS] = useState(false);
@@ -161,7 +195,7 @@ function useInstallPrompt() {
   return { canInstall: Boolean(deferredPrompt), isIOS, isStandalone, install: handleInstallClick };
 }
 
-function Header({ data, loading, onRefresh, realtime }) {
+function Header({ data, loading, onRefresh, realtime, onOpenGlossary }) {
   const pwa = useInstallPrompt();
   const liveOk = realtime?.status?.ok;
   const liveLabel = liveOk
@@ -181,6 +215,7 @@ function Header({ data, loading, onRefresh, realtime }) {
       data?.cache?.stale ? h('span', { className: 'pill warn' }, '暫存溫度') : null,
       data ? h('span', { className: `pill ${data.marketChg1d >= 0 ? 'up' : 'down'}` }, `大盤溫度 ${fmtPct(data.marketChg1d, 2)}`) : null,
       liveLabel ? h('span', { className: `pill ${liveOk ? 'live' : ''}` }, liveLabel) : null,
+      h('button', { className: 'icon-btn', onClick: onOpenGlossary, title: '名詞說明', 'aria-label': '名詞說明' }, '?'),
       h('button', { className: 'icon-btn', onClick: onRefresh, disabled: loading, title: '重新整理' }, loading ? '↻' : '⟳'),
       !pwa.isStandalone && h('button', { className: 'install-btn', onClick: pwa.install },
         pwa.isIOS ? '🍎 加到主畫面' : '加到主畫面'
@@ -264,6 +299,46 @@ function SearchBox({ sectors, onSelect }) {
         h('small', null, item.tag)
       ))
     ) : query.trim() ? h('div', { className: 'search-menu empty' }, '沒有符合的熱區') : null
+  );
+}
+
+function GlossaryModal({ open, onClose }) {
+  useEffect(() => {
+    if (!open) return undefined;
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') onClose();
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [open, onClose]);
+
+  if (!open) return null;
+  return h('div', { className: 'glossary-backdrop', onClick: onClose },
+    h('section', {
+      className: 'glossary-modal glass',
+      role: 'dialog',
+      'aria-modal': true,
+      'aria-labelledby': 'glossary-title',
+      onClick: (event) => event.stopPropagation(),
+    },
+      h('div', { className: 'glossary-head' },
+        h('div', null,
+          h('span', { className: 'glossary-kicker' }, '第一次看溫度'),
+          h('h2', { id: 'glossary-title' }, '溫度名詞說明'),
+          h('p', null, '這套介面把法人資金與股價變化轉成溫度語言，方便快速判讀熱區狀態。')
+        ),
+        h('button', { className: 'icon-btn', onClick: onClose, title: '關閉', 'aria-label': '關閉名詞說明' }, '×')
+      ),
+      h('div', { className: 'glossary-grid' },
+        TERM_GLOSSARY.map((item) => h('article', { key: item.term, className: 'glossary-item' },
+          h('strong', null, item.term),
+          h('p', null, item.desc)
+        ))
+      ),
+      h('div', { className: 'glossary-actions' },
+        h('button', { className: 'install-btn', onClick: onClose }, '開始看溫度')
+      )
+    )
   );
 }
 
@@ -483,6 +558,7 @@ function SourceStrip({ data, realtime }) {
 
 function App() {
   const { data, loading, error, refresh } = useSectorData();
+  const glossary = useGlossaryPrompt();
   const realtime = useRealtimeQuotes(data);
   const staticRealtime = useMemo(() => realtimeFromStaticData(data), [data]);
   const effectiveRealtime = realtime.status ? realtime : staticRealtime || realtime;
@@ -503,7 +579,7 @@ function App() {
 
   return h(React.Fragment, null,
     h('main', { className: 'app-shell' },
-      h(Header, { data: displayData, loading, onRefresh: refresh, realtime: effectiveRealtime }),
+      h(Header, { data: displayData, loading, onRefresh: refresh, realtime: effectiveRealtime, onOpenGlossary: glossary.openAgain }),
       error ? h('div', { className: 'error glass' }, error) : null,
       !displayData ? h('div', { className: 'loading glass' }, loading ? '正在載入官方溫度資料…' : '沒有溫度資料') : h(React.Fragment, null,
         h('section', { className: 'utility-row' },
@@ -518,6 +594,7 @@ function App() {
         h('footer', { className: 'disclaimer' }, '本網站僅彙整公開法人熱流資料，僅供參考，不構成任何投資建議；投資人應自行判斷並自負盈虧。')
       )
     ),
+    h(GlossaryModal, { open: glossary.open, onClose: glossary.close }),
     h(SectorDrawer, { sector: selected, data: displayData || {}, onClose: () => setSelected(null) })
   );
 }
