@@ -9,6 +9,7 @@ const h = React.createElement;
 const cats = ['green', 'yellow', 'gray', 'red'];
 const fmtYi = (value, digits = 1) => `${value >= 0 ? '+' : ''}${Number(value || 0).toFixed(digits)} 億`;
 const fmtPct = (value, digits = 1) => `${value > 0 ? '+' : ''}${Number(value || 0).toFixed(digits)}%`;
+const fmtPrice = (value) => Number(value).toLocaleString('zh-TW', { maximumFractionDigits: 2 });
 const pctColor = (value) => value > 0 ? CATEGORY_META.green.color : value < 0 ? CATEGORY_META.red.color : CATEGORY_META.gray.color;
 
 function useSectorData() {
@@ -35,6 +36,87 @@ function useSectorData() {
     load(false);
   }, []);
   return { ...state, refresh: () => load(true) };
+}
+
+function useRealtimeQuotes(data) {
+  const [state, setState] = useState({ quotes: {}, status: null, updatedAt: null, disabled: false, error: null });
+  useEffect(() => {
+    if (!data?.stockData) return undefined;
+    const codes = Object.keys(data.stockData);
+    if (!codes.length) return undefined;
+    let cancelled = false;
+    let timer = null;
+
+    const load = async () => {
+      try {
+        const response = await fetch(`${base}api/realtime-quotes?codes=${encodeURIComponent(codes.join(','))}`, { cache: 'no-store' });
+        if (!response.ok) throw new Error(`Realtime HTTP ${response.status}`);
+        const payload = await response.json();
+        if (cancelled) return;
+        setState({
+          quotes: payload.quotes || {},
+          status: payload.sourceStatus?.[0] || null,
+          updatedAt: payload.updatedAt || null,
+          disabled: false,
+          error: null,
+        });
+      } catch (error) {
+        if (cancelled) return;
+        setState((current) => ({ ...current, disabled: true, error: error.message }));
+        if (timer) clearInterval(timer);
+      }
+    };
+
+    load();
+    timer = setInterval(load, 30000);
+    return () => {
+      cancelled = true;
+      if (timer) clearInterval(timer);
+    };
+  }, [data?.date, data?.updatedAt]);
+  return state;
+}
+
+function mergeRealtimeData(data, realtime) {
+  const quoteEntries = Object.entries(realtime.quotes || {});
+  if (!data || !quoteEntries.length) return data;
+  const stockData = { ...(data.stockData || {}) };
+  for (const [code, quote] of quoteEntries) {
+    stockData[code] = {
+      ...(stockData[code] || {}),
+      name: quote.name || stockData[code]?.name || STOCK_NAMES[code] || code,
+      price: quote.price,
+      chg_1d: quote.chg_1d,
+      market: quote.market || stockData[code]?.market || null,
+      quoteStatus: 'realtime',
+      quoteSource: quote.source,
+      quoteDate: quote.date,
+      quoteTime: quote.time,
+      quoteUpdatedAt: realtime.updatedAt,
+      previousClose: quote.previousClose,
+      volume: quote.volume,
+    };
+  }
+  return {
+    ...data,
+    stockData,
+    realtime: {
+      updatedAt: realtime.updatedAt,
+      status: realtime.status,
+    },
+  };
+}
+
+function realtimeFromStaticData(data) {
+  const status = data?.realtimeStatus || data?.sourceStatus?.find((item) => item.source === 'twse-mis');
+  if (!status?.ok) return null;
+  return {
+    quotes: {},
+    status,
+    updatedAt: data.quoteUpdatedAt || data.updatedAt,
+    disabled: false,
+    static: true,
+  };
 }
 
 function useInstallPrompt() {
@@ -71,8 +153,12 @@ function useInstallPrompt() {
   return { canInstall: Boolean(deferredPrompt), isIOS, isStandalone, install: handleInstallClick };
 }
 
-function Header({ data, loading, onRefresh }) {
+function Header({ data, loading, onRefresh, realtime }) {
   const pwa = useInstallPrompt();
+  const liveOk = realtime?.status?.ok;
+  const liveLabel = liveOk
+    ? `即時 ${realtime.status.lastOkDate || ''}`
+    : realtime?.disabled ? '盤後股價' : null;
   return h('header', { className: 'top-shell glass' },
     h('div', { className: 'brand' },
       h('div', { className: 'brand-mark' }, 'SR'),
@@ -84,6 +170,7 @@ function Header({ data, loading, onRefresh }) {
     h('div', { className: 'header-actions' },
       data?.cache?.stale ? h('span', { className: 'pill warn' }, '快取資料') : null,
       data ? h('span', { className: `pill ${data.marketChg1d >= 0 ? 'up' : 'down'}` }, `加權 ${fmtPct(data.marketChg1d, 2)}`) : null,
+      liveLabel ? h('span', { className: `pill ${liveOk ? 'live' : ''}` }, liveLabel) : null,
       h('button', { className: 'icon-btn', onClick: onRefresh, disabled: loading, title: '重新整理' }, loading ? '↻' : '⟳'),
       !pwa.isStandalone && h('button', { className: 'install-btn', onClick: pwa.install },
         pwa.isIOS ? '🍎 加到主畫面' : '加到主畫面'
@@ -137,7 +224,7 @@ function SearchBox({ sectors, onSelect }) {
         const key = `${code}-${sectorName}`;
         if (!sector || seen.has(key)) continue;
         seen.add(key);
-        out.push({ key, label: `${code} ${name || ''}`.trim(), tag: sectorName, sector });
+        out.push({ key, label: `${code} ${name || ''}`.trim(), tag: `主分類 · ${sectorName}`, sector });
       }
     }
     return out.slice(0, 12);
@@ -154,8 +241,11 @@ function SearchBox({ sectors, onSelect }) {
     results.length ? h('div', { className: 'search-menu' },
       results.map((item) => h('button', {
         key: item.key,
+        type: 'button',
         onMouseDown: (event) => {
           event.preventDefault();
+        },
+        onClick: () => {
           setQuery('');
           onSelect(item.sector);
         },
@@ -332,14 +422,15 @@ function SectorDrawer({ sector, data, onClose }) {
   const cat = classifySector(sector);
   const meta = CATEGORY_META[cat];
   const stockData = data.stockData || {};
-  const quotedCount = sector.stocks.filter((code) => stockData[code]?.quoteStatus === 'ok' || stockData[code]?.price != null).length;
+  const quotedCount = sector.stocks.filter((code) => stockData[code]?.quoteStatus === 'realtime' || stockData[code]?.quoteStatus === 'ok' || stockData[code]?.price != null).length;
+  const realtimeCount = sector.stocks.filter((code) => stockData[code]?.quoteStatus === 'realtime').length;
   return h('div', { className: 'drawer-backdrop', onClick: onClose },
     h('aside', { className: 'drawer glass', onClick: (event) => event.stopPropagation() },
       h('div', { className: 'drawer-head' },
         h('div', null,
           h('span', { className: 'drawer-badge', style: { color: meta.color, borderColor: meta.color } }, meta.label),
           h('h2', null, sector.name),
-          h('p', { className: 'quote-coverage' }, `官方報價 ${quotedCount} / ${sector.stocks.length}`)
+          h('p', { className: 'quote-coverage' }, `${realtimeCount ? '即時報價' : '官方報價'} ${quotedCount} / ${sector.stocks.length}`)
         ),
         h('button', { className: 'icon-btn', onClick: onClose, title: '關閉' }, '×')
       ),
@@ -355,11 +446,14 @@ function SectorDrawer({ sector, data, onClose }) {
         h('div', { className: 'stock-row head' }, h('span', null, '代碼'), h('span', null, '名稱'), h('span', null, '股價'), h('span', null, '漲跌'), h('span', null, '買超')),
         sector.stocks.map((code) => {
           const item = stockData[code];
-          const hasQuote = item?.quoteStatus === 'ok' || item?.price != null;
+          const hasQuote = item?.quoteStatus === 'realtime' || item?.quoteStatus === 'ok' || item?.price != null;
+          const isRealtime = item?.quoteStatus === 'realtime';
           return h('div', { className: 'stock-row', key: code },
             h('span', null, code),
             h('span', null, item?.name || STOCK_NAMES[code] || '—'),
-            h('span', { className: hasQuote ? '' : 'quote-missing' }, hasQuote ? item.price : '無報價'),
+            h('span', { className: hasQuote ? (isRealtime ? 'live-price' : '') : 'quote-missing' },
+              hasQuote ? h(React.Fragment, null, fmtPrice(item.price), isRealtime ? h('small', { className: 'live-badge' }, '即') : null) : '無報價'
+            ),
             h('span', { style: { color: hasQuote ? pctColor(item.chg_1d) : undefined } }, hasQuote ? fmtPct(item.chg_1d, 2) : '—'),
             h('span', { style: { color: hasQuote ? flowColor(item.net_1d_yi) : undefined } }, hasQuote ? fmtYi(item.net_1d_yi, 2) : '—')
           );
@@ -369,9 +463,13 @@ function SectorDrawer({ sector, data, onClose }) {
   );
 }
 
-function SourceStrip({ data }) {
+function SourceStrip({ data, realtime }) {
+  const statuses = data.sourceStatus.filter((item) => !(realtime?.status && item.source === realtime.status.source));
   return h('div', { className: 'source-strip glass' },
-    data.sourceStatus.map((item) => h('span', { key: item.source, className: item.ok ? 'ok' : 'bad' },
+    realtime?.status ? h('span', { key: 'twse-mis', className: realtime.status.ok ? 'ok' : 'bad' },
+      `twse-mis ${realtime.status.ok ? `${realtime.status.rows} 檔` : 'failed'}`
+    ) : null,
+    statuses.map((item) => h('span', { key: item.source, className: item.ok ? 'ok' : 'bad' },
       `${item.source} ${item.ok ? item.lastOkDate || item.okCount : 'failed'}`
     ))
   );
@@ -379,9 +477,13 @@ function SourceStrip({ data }) {
 
 function App() {
   const { data, loading, error, refresh } = useSectorData();
+  const realtime = useRealtimeQuotes(data);
+  const staticRealtime = useMemo(() => realtimeFromStaticData(data), [data]);
+  const effectiveRealtime = realtime.status ? realtime : staticRealtime || realtime;
+  const displayData = useMemo(() => mergeRealtimeData(data, effectiveRealtime), [data, effectiveRealtime]);
   const [activeCats, setActiveCats] = useState(new Set(cats));
   const [selected, setSelected] = useState(null);
-  const sectors = data?.sectors || [];
+  const sectors = displayData?.sectors || [];
   const toggleCat = (cat) => {
     setActiveCats((current) => {
       if (current.size === 1 && current.has(cat)) return new Set(cats);
@@ -395,22 +497,22 @@ function App() {
 
   return h(React.Fragment, null,
     h('main', { className: 'app-shell' },
-      h(Header, { data, loading, onRefresh: refresh }),
+      h(Header, { data: displayData, loading, onRefresh: refresh, realtime: effectiveRealtime }),
       error ? h('div', { className: 'error glass' }, error) : null,
-      !data ? h('div', { className: 'loading glass' }, loading ? '正在載入官方資料…' : '沒有資料') : h(React.Fragment, null,
+      !displayData ? h('div', { className: 'loading glass' }, loading ? '正在載入官方資料…' : '沒有資料') : h(React.Fragment, null,
         h('section', { className: 'utility-row' },
           h(SearchBox, { sectors, onSelect: setSelected }),
-          h(SourceStrip, { data })
+          h(SourceStrip, { data: displayData, realtime: effectiveRealtime })
         ),
         h(StatusCards, { sectors, activeCats, onToggle: toggleCat }),
         h('section', { className: 'bento-layout' },
           h(HeatmapPanel, { sectors, activeCats, onSelect: setSelected }),
-          h(RankingPanel, { data, onSelect: setSelected })
+          h(RankingPanel, { data: displayData, onSelect: setSelected })
         ),
         h('footer', { className: 'disclaimer' }, '本網站僅彙整公開之三大法人買賣超資料，僅供參考，不構成任何投資建議；投資人應自行判斷並自負盈虧。')
       )
     ),
-    h(SectorDrawer, { sector: selected, data: data || {}, onClose: () => setSelected(null) })
+    h(SectorDrawer, { sector: selected, data: displayData || {}, onClose: () => setSelected(null) })
   );
 }
 

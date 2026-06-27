@@ -198,6 +198,167 @@ async function fetchJson(url, { fetchImpl = fetch, timeoutMs = 16000 } = {}) {
   }
 }
 
+const MIS_HOME_URL = 'https://mis.twse.com.tw/stock/index.jsp';
+const MIS_QUOTE_URL = 'https://mis.twse.com.tw/stock/api/getStockInfo.jsp';
+
+function parseYmdCompact(value) {
+  const raw = String(value ?? '').replace(/\D/g, '');
+  if (raw.length !== 8) return null;
+  return `${raw.slice(0, 4)}-${raw.slice(4, 6)}-${raw.slice(6, 8)}`;
+}
+
+function getHeader(headers, name) {
+  if (!headers) return null;
+  if (typeof headers.get === 'function') return headers.get(name);
+  return headers[name] ?? headers[name.toLowerCase()] ?? null;
+}
+
+function getSetCookies(headers) {
+  if (!headers) return [];
+  if (typeof headers.getSetCookie === 'function') return headers.getSetCookie();
+  const value = getHeader(headers, 'set-cookie');
+  return value ? [value] : [];
+}
+
+function cookieHeaderFromSetCookie(setCookies) {
+  return setCookies
+    .map((cookie) => String(cookie).split(';')[0].trim())
+    .filter((cookie) => cookie.includes('='))
+    .join('; ');
+}
+
+function marketPrefix(market) {
+  const value = String(market ?? '').toUpperCase();
+  if (value === 'TWSE' || value === 'TSE') return 'tse';
+  if (value === 'TPEX' || value === 'OTC') return 'otc';
+  return null;
+}
+
+function marketForCode(marketByCode, code) {
+  if (!marketByCode) return null;
+  return typeof marketByCode.get === 'function' ? marketByCode.get(code) : marketByCode[code];
+}
+
+function realtimeChannelsForCode(code, marketByCode) {
+  const prefix = marketPrefix(marketForCode(marketByCode, code));
+  if (prefix) return [`${prefix}_${code}.tw`];
+  return [`tse_${code}.tw`, `otc_${code}.tw`];
+}
+
+function chunk(values, size) {
+  const out = [];
+  for (let index = 0; index < values.length; index += size) {
+    out.push(values.slice(index, index + size));
+  }
+  return out;
+}
+
+export function parseRealtimeQuotes(json) {
+  const out = new Map();
+  for (const item of json?.msgArray ?? []) {
+    const code = String(item?.c ?? '').trim();
+    if (!isCommonStockCode(code)) continue;
+    const price = parseNumber(item.z);
+    const previousClose = parseNumber(item.y);
+    if (!Number.isFinite(price) || !Number.isFinite(previousClose)) continue;
+    const change = price - previousClose;
+    const market = item.ex === 'otc' ? 'TPEX' : item.ex === 'tse' ? 'TWSE' : null;
+    out.set(code, {
+      code,
+      name: String(item.n ?? STOCK_NAMES[code] ?? code).trim(),
+      price: round(price, 2),
+      previousClose: round(previousClose, 2),
+      change: round(change, 2),
+      chg_1d: previousClose > 0 ? round((change / previousClose) * 100, 2) : 0,
+      open: round(parseNumber(item.o), 2),
+      high: round(parseNumber(item.h), 2),
+      low: round(parseNumber(item.l), 2),
+      volume: parseNumber(item.v),
+      date: parseYmdCompact(item.d),
+      time: item.t || item.ot || item['%'] || null,
+      market,
+      quoteStatus: 'realtime',
+      source: 'twse-mis',
+    });
+  }
+  return out;
+}
+
+export async function fetchRealtimeQuotes(codes, {
+  fetchImpl = fetch,
+  marketByCode = null,
+  batchSize = 70,
+  timeoutMs = 9000,
+} = {}) {
+  const cleanCodes = [...new Set(codes.map((code) => String(code).trim()).filter(isCommonStockCode))];
+  const channels = cleanCodes.flatMap((code) => realtimeChannelsForCode(code, marketByCode));
+  const startedAt = new Date().toISOString();
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), timeoutMs);
+  const quotes = new Map();
+  let cookie = '';
+  let failCount = 0;
+  let lastError = null;
+
+  try {
+    const sessionResponse = await fetchImpl(MIS_HOME_URL, {
+      signal: controller.signal,
+      headers: {
+        accept: 'text/html,*/*',
+        'user-agent': 'sector-rotation-light/1.0',
+      },
+    });
+    cookie = cookieHeaderFromSetCookie(getSetCookies(sessionResponse.headers));
+
+    for (const part of chunk(channels, batchSize)) {
+      const params = new URLSearchParams({
+        ex_ch: part.join('|'),
+        json: '1',
+        delay: '0',
+        _: String(Date.now()),
+      });
+      try {
+        const response = await fetchImpl(`${MIS_QUOTE_URL}?${params}`, {
+          signal: controller.signal,
+          headers: {
+            accept: 'application/json,text/plain,*/*',
+            referer: MIS_HOME_URL,
+            'user-agent': 'sector-rotation-light/1.0',
+            ...(cookie ? { cookie } : {}),
+          },
+        });
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        const text = (await response.text()).trim();
+        if (!text) throw new Error('Empty realtime quote response');
+        const parsed = JSON.parse(text);
+        for (const [code, quote] of parseRealtimeQuotes(parsed)) {
+          quotes.set(code, quote);
+        }
+      } catch (error) {
+        failCount += 1;
+        lastError = error.message;
+      }
+    }
+  } finally {
+    clearTimeout(timer);
+  }
+
+  return {
+    updatedAt: startedAt,
+    source: 'twse-mis',
+    quotes,
+    sourceStatus: {
+      source: 'twse-mis',
+      ok: quotes.size > 0,
+      rows: quotes.size,
+      requested: cleanCodes.length,
+      failCount,
+      lastOkDate: [...quotes.values()][0]?.date ?? null,
+      lastError,
+    },
+  };
+}
+
 export async function fetchTradingDay(ymd, options = {}) {
   const twseDate = toTwseDate(ymd);
   const rocDate = encodeURIComponent(toRocDate(ymd));

@@ -5,6 +5,7 @@ import {
   classifySector,
   computeSectors,
   parseNumber,
+  parseRealtimeQuotes,
   parseTpexChip,
   parseTpexPrice,
   parseTwseChip,
@@ -13,6 +14,7 @@ import {
   toRocDate,
   toTwseDate,
 } from '../src/lib/market-data.mjs';
+import { PRIMARY_SECTOR_BY_STOCK, STOCK_TO_SECTORS } from '../src/data/sectors.mjs';
 
 test('date and numeric helpers normalize exchange formats', () => {
   assert.equal(toTwseDate('2026-06-11'), '20260611');
@@ -58,6 +60,33 @@ test('market index parser reads TAIEX percentage change', () => {
     }],
   });
   assert.equal(change, -0.18);
+});
+
+test('realtime parser reads MIS quote prices and changes', () => {
+  const quotes = parseRealtimeQuotes({
+    msgArray: [{
+      c: '2330',
+      n: '台積電',
+      ex: 'tse',
+      d: '20260626',
+      t: '13:30:00',
+      z: '2340.0000',
+      y: '2390.0000',
+      o: '2360.0000',
+      h: '2370.0000',
+      l: '2325.0000',
+      v: '39059',
+    }],
+  });
+  assert.equal(quotes.get('2330').price, 2340);
+  assert.equal(quotes.get('2330').chg_1d, -2.09);
+  assert.equal(quotes.get('2330').market, 'TWSE');
+  assert.equal(quotes.get('2330').date, '2026-06-26');
+});
+
+test('primary sector mapping assigns 2330 to foundry once', () => {
+  assert.equal(PRIMARY_SECTOR_BY_STOCK['2330'], '晶圓代工');
+  assert.deepEqual(STOCK_TO_SECTORS['2330'], ['晶圓代工']);
 });
 
 test('sector computation classifies flow and bottom-fishing signals', () => {

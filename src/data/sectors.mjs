@@ -723,7 +723,7 @@ export const STOCK_NAMES = {
   "9958": "世紀鋼"
 };
 
-export const SECTOR_STOCKS = {
+export const THEME_SECTOR_STOCKS = {
   "AI 伺服器組裝": [
     "2317",
     "6669",
@@ -1928,6 +1928,85 @@ export const SECTOR_STOCKS = {
     "2634"
   ]
 };
+
+export const PRIMARY_SECTOR_OVERRIDES = {
+  "2330": "晶圓代工"
+};
+
+export const PRIMARY_SECTOR_PRIORITY = [
+  "晶圓代工",
+  "封測代工",
+  "IC 測試服務",
+  "晶圓廠設備",
+  "矽晶圓",
+  "第三代半導體",
+  "顯示驅動 IC",
+  "類比與功率 IC",
+  "HPC 與網通 IC",
+  "客製 ASIC 矽智財",
+  "記憶體模組",
+  "NOR Flash 利基記憶體",
+  "PCB 載板",
+  "PCB 材料與設備",
+  "被動元件 MLCC",
+  "電容器",
+  "功率電感",
+  "電阻與被動保護",
+  "散熱模組",
+  "液冷散熱",
+  "高速光模組",
+  "矽光子與 CPO",
+  "光學鏡頭",
+  "光感測與元件",
+  "面板產業",
+  "MicroLED 顯示供應鏈",
+  "AI 伺服器組裝",
+  "AI 先進封裝",
+  "CPU 與 Agentic AI",
+  "Edge AI AIoT",
+  "AI PC 筆電與平板",
+  "EMS 電子代工",
+  "智慧型手機",
+  "銀行金融",
+  "IC 通路",
+  "國防軍工"
+];
+
+const priorityScore = new Map(PRIMARY_SECTOR_PRIORITY.map((sector, index) => [sector, index]));
+
+function pickPrimarySector(code, sectors) {
+  const override = PRIMARY_SECTOR_OVERRIDES[code];
+  if (override && sectors.includes(override)) return override;
+  return [...sectors].sort((a, b) => {
+    const scoreA = priorityScore.has(a) ? priorityScore.get(a) : 9999;
+    const scoreB = priorityScore.has(b) ? priorityScore.get(b) : 9999;
+    if (scoreA !== scoreB) return scoreA - scoreB;
+    return a.localeCompare(b, 'zh-Hant');
+  })[0];
+}
+
+export const THEME_STOCK_TO_SECTORS = Object.entries(THEME_SECTOR_STOCKS).reduce((acc, [sector, codes]) => {
+  for (const code of codes) {
+    if (!acc[code]) acc[code] = [];
+    if (!acc[code].includes(sector)) acc[code].push(sector);
+  }
+  return acc;
+}, {});
+
+export const PRIMARY_SECTOR_BY_STOCK = Object.entries(THEME_STOCK_TO_SECTORS).reduce((acc, [code, sectors]) => {
+  acc[code] = pickPrimarySector(code, sectors);
+  return acc;
+}, {});
+
+export const SECTOR_STOCKS = Object.entries(PRIMARY_SECTOR_BY_STOCK).reduce((acc, [code, sector]) => {
+  if (!acc[sector]) acc[sector] = [];
+  acc[sector].push(code);
+  return acc;
+}, {});
+
+for (const codes of Object.values(SECTOR_STOCKS)) {
+  codes.sort((a, b) => Number(a) - Number(b));
+}
 
 export const STOCK_TO_SECTORS = Object.entries(SECTOR_STOCKS).reduce((acc, [sector, codes]) => {
   for (const code of codes) {

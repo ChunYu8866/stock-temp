@@ -3,12 +3,13 @@ import { readFile, stat, mkdir, writeFile } from 'node:fs/promises';
 import { createReadStream } from 'node:fs';
 import { extname, join, normalize, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { aggregateSectorRotation, normalizeDate } from './src/lib/market-data.mjs';
+import { aggregateSectorRotation, fetchRealtimeQuotes, normalizeDate } from './src/lib/market-data.mjs';
 
 const __dirname = fileURLToPath(new URL('.', import.meta.url));
 const ROOT = resolve(__dirname);
 const CACHE_DIR = join(ROOT, '.cache');
 const PORT = Number(process.env.PORT || 3000);
+let realtimeCache = null;
 
 const MIME = {
   '.html': 'text/html; charset=utf-8',
@@ -54,6 +55,23 @@ function isFresh(payload, minutes = 25) {
   return Date.now() - Date.parse(payload.updatedAt) < minutes * 60 * 1000;
 }
 
+async function readLatestSnapshot() {
+  try {
+    const raw = await readFile(join(ROOT, 'public', 'data', 'latest.json'), 'utf8');
+    return JSON.parse(raw);
+  } catch {
+    return null;
+  }
+}
+
+function requestedCodes(url, snapshot) {
+  const explicit = url.searchParams.get('codes');
+  if (explicit) {
+    return explicit.split(',').map((code) => code.trim()).filter(Boolean);
+  }
+  return Object.keys(snapshot?.stockData || {});
+}
+
 async function handleApi(req, res, url) {
   const dateParam = url.searchParams.get('date') || 'latest';
   const refresh = url.searchParams.get('refresh') === '1';
@@ -79,6 +97,47 @@ async function handleApi(req, res, url) {
     }
     sendJson(res, 502, {
       error: 'Unable to load official market data',
+      detail: error.message,
+    });
+  }
+}
+
+async function handleRealtimeApi(req, res, url) {
+  const snapshot = await readLatestSnapshot();
+  const codes = requestedCodes(url, snapshot);
+  const codeKey = codes.slice().sort().join(',');
+
+  if (realtimeCache && realtimeCache.codeKey === codeKey && isFresh(realtimeCache.payload, 0.25)) {
+    sendJson(res, 200, { ...realtimeCache.payload, cache: { hit: true, stale: false } });
+    return;
+  }
+
+  const marketByCode = {};
+  for (const code of codes) {
+    const market = snapshot?.stockData?.[code]?.market;
+    if (market) marketByCode[code] = market;
+  }
+
+  try {
+    const result = await fetchRealtimeQuotes(codes, { marketByCode });
+    const payload = {
+      updatedAt: result.updatedAt,
+      source: result.source,
+      quotes: Object.fromEntries(result.quotes),
+      sourceStatus: [result.sourceStatus],
+    };
+    realtimeCache = { codeKey, payload };
+    sendJson(res, 200, { ...payload, cache: { hit: false, stale: false } });
+  } catch (error) {
+    if (realtimeCache?.payload) {
+      sendJson(res, 200, {
+        ...realtimeCache.payload,
+        cache: { hit: true, stale: true, error: error.message },
+      });
+      return;
+    }
+    sendJson(res, 502, {
+      error: 'Unable to load realtime quotes',
       detail: error.message,
     });
   }
@@ -122,6 +181,8 @@ const server = createServer(async (req, res) => {
   try {
     if (url.pathname === '/api/sector-rotation') {
       await handleApi(req, res, url);
+    } else if (url.pathname === '/api/realtime-quotes') {
+      await handleRealtimeApi(req, res, url);
     } else {
       await handleStatic(req, res, url);
     }

@@ -130,6 +130,11 @@ p {
   background: rgba(255, 159, 10, 0.1);
 }
 
+.pill.live {
+  color: var(--apple-blue);
+  background: rgba(0, 113, 227, 0.08);
+}
+
 .icon-btn,
 .install-btn,
 .segmented button,
@@ -815,6 +820,25 @@ button.heatmap-row:hover {
   color: var(--apple-muted);
   font-size: 11px;
   font-weight: 700;
+}
+
+.stock-row .live-price {
+  color: var(--apple-blue);
+}
+
+.live-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+  height: 18px;
+  margin-left: 5px;
+  border-radius: 999px;
+  color: #fff;
+  background: var(--apple-blue);
+  font-size: 10px;
+  font-weight: 900;
+  vertical-align: 1px;
 }
 
 .disclaimer {
