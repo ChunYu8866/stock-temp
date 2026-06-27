@@ -400,7 +400,6 @@ function RankingPanel({ data, onSelect }) {
       .sort((a, b) => b.cp - a.cp)
       .slice(0, 10);
   }, [mode, sectors]);
-  const max = Math.max(...rows.map((row) => Math.abs(mode === 'bottom' ? row.bottom_score : row.net_5d_yi)), 1);
   return h('aside', { className: 'ranking glass' },
     h('div', { className: 'panel-headline' },
       h('div', null, h('strong', null, '熱榜'), h('span', null, mode === 'cp' ? '資金蓄熱' : '低檔回暖')),
@@ -411,16 +410,12 @@ function RankingPanel({ data, onSelect }) {
     ),
     rows.length ? h('div', { className: 'ranking-list' },
       rows.map((sector, index) => {
-        const cat = classifySector(sector);
         const value = mode === 'bottom' ? sector.net_1d_yi : sector.net_5d_yi;
-        const bar = Math.min(100, Math.abs(mode === 'bottom' ? sector.bottom_score : sector.net_5d_yi) / max * 100);
         return h('button', { key: sector.name, className: 'ranking-row', onClick: () => onSelect(sector) },
           h('span', { className: 'rank-num' }, index + 1),
-          h('span', { className: 'rank-dot', style: { background: CATEGORY_META[cat].color } }),
           h('span', { className: 'rank-name' }, sector.name),
           h('span', { className: 'rank-pct', style: { color: pctColor(mode === 'bottom' ? sector.chg_1d : sector.chg_5d) } }, fmtPct(mode === 'bottom' ? sector.chg_1d : sector.chg_5d, 1)),
-          h('span', { className: 'rank-flow', style: { color: flowColor(value) } }, fmtYi(value, 1)),
-          h('span', { className: 'rank-bar' }, h('i', { style: { width: `${bar}%`, background: CATEGORY_META[cat].color } }))
+          h('span', { className: 'rank-flow', style: { color: flowColor(value) } }, fmtYi(value, 1))
         );
       })
     ) : h('div', { className: 'empty-panel' }, mode === 'bottom' ? '目前沒有回暖訊號' : '目前沒有蓄熱熱區')
