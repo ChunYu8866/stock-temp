@@ -169,7 +169,9 @@ function Header({ data, loading, onRefresh, realtime }) {
     : realtime?.disabled ? '盤後股溫' : null;
   return h('header', { className: 'top-shell glass' },
     h('div', { className: 'brand' },
-      h('div', { className: 'brand-mark' }, 'SR'),
+      h('div', { className: 'brand-mark' },
+        h('img', { src: `${base}assets/icon.svg`, alt: '', 'aria-hidden': true })
+      ),
       h('div', null,
         h('h1', null, '台股熱區溫度計'),
         h('p', null, data ? `溫度日期 ${data.date} · 校準 ${new Date(data.updatedAt).toLocaleString('zh-TW', { hour12: false })}` : '載入官方溫度資料')
