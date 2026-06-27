@@ -1,6 +1,6 @@
 {
-  "name": "台股板塊溫度計",
-  "short_name": "板塊溫度",
+  "name": "台股熱區溫度計",
+  "short_name": "熱區溫度",
   "description": "TWSE/TPEX official-data sector temperature dashboard.",
   "start_url": "/",
   "scope": "/",

@@ -1,10 +1,10 @@
 import { SECTOR_STOCKS, STOCK_NAMES } from '../data/sectors.mjs?v=10';
 
 export const CATEGORY_META = {
-  green: { label: '升溫', sub: '資金加速流入', color: '#ff3b30' },
-  yellow: { label: '恆溫', sub: '流入放緩但仍有買盤', color: '#ff9f0a' },
-  gray: { label: '低溫', sub: '資金沉寂觀察', color: '#8e8e93' },
-  red: { label: '降溫', sub: '資金流出', color: '#34c759' },
+  green: { label: '升溫', sub: '熱流加速灌入', color: '#ff3b30' },
+  yellow: { label: '恆溫', sub: '熱度放緩但仍保溫', color: '#ff9f0a' },
+  gray: { label: '低溫', sub: '熱度沉寂觀察', color: '#8e8e93' },
+  red: { label: '降溫', sub: '熱流持續外散', color: '#34c759' },
 };
 
 export function classifySector(sector) {

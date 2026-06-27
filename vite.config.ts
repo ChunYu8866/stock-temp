@@ -9,8 +9,8 @@ export default defineConfig({
       registerType: 'autoUpdate',
       includeAssets: ['assets/icon.svg', 'assets/icon-192.png', 'assets/icon-512.png'],
       manifest: {
-        name: '台股板塊溫度計',
-        short_name: '板塊溫度',
+        name: '台股熱區溫度計',
+        short_name: '熱區溫度',
         display: 'standalone',
         background_color: '#f6f8fb',
         theme_color: '#f6f8fb',
