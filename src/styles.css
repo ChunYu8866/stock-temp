@@ -383,6 +383,15 @@ button:disabled {
   gap: 14px;
 }
 
+.flow-map-card {
+  min-width: 0;
+  padding: 18px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
 .view-head {
   display: flex;
   align-items: center;
@@ -404,6 +413,36 @@ button:disabled {
 .view-head span {
   color: var(--apple-muted);
   font-size: 12px;
+}
+
+.flow-legend {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--apple-muted);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.flow-legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.flow-legend span::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+}
+
+.flow-legend .hot::before {
+  background: #ff3b30;
+}
+
+.flow-legend .cold::before {
+  background: #34c759;
 }
 
 .signal-strip {
@@ -474,6 +513,14 @@ button:disabled {
   background: rgba(255, 255, 255, 0.8);
 }
 
+.daily-flow-grid {
+  max-height: 520px;
+  overflow: auto;
+  border: 1px solid var(--apple-border);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.82);
+}
+
 .heatmap-row {
   width: 100%;
   min-width: 900px;
@@ -489,7 +536,26 @@ button:disabled {
   text-align: left;
 }
 
+.daily-flow-row {
+  width: 100%;
+  min-width: 760px;
+  min-height: 50px;
+  display: grid;
+  grid-template-columns: minmax(190px, 1.1fr) repeat(4, minmax(102px, 0.7fr)) 78px;
+  gap: 8px;
+  align-items: center;
+  padding: 8px 10px;
+  color: var(--apple-text);
+  background: transparent;
+  border-bottom: 1px solid rgba(210, 210, 215, 0.62);
+  text-align: left;
+}
+
 button.heatmap-row:nth-child(odd) {
+  background: rgba(245, 245, 247, 0.48);
+}
+
+button.daily-flow-row:nth-child(odd) {
   background: rgba(245, 245, 247, 0.48);
 }
 
@@ -497,7 +563,15 @@ button.heatmap-row {
   cursor: pointer;
 }
 
+button.daily-flow-row {
+  cursor: pointer;
+}
+
 button.heatmap-row:hover {
+  background: rgba(255, 255, 255, 0.94);
+}
+
+button.daily-flow-row:hover {
   background: rgba(255, 255, 255, 0.94);
 }
 
@@ -505,7 +579,23 @@ button.heatmap-row:hover {
   border-bottom: 0;
 }
 
+.daily-flow-row:last-child {
+  border-bottom: 0;
+}
+
 .heatmap-header {
+  position: sticky;
+  top: 0;
+  z-index: 4;
+  min-height: 40px;
+  color: var(--apple-muted);
+  font-size: 12px;
+  font-weight: 800;
+  background: rgba(245, 245, 247, 0.98);
+  backdrop-filter: blur(10px);
+}
+
+.daily-flow-header {
   position: sticky;
   top: 0;
   z-index: 4;
@@ -526,7 +616,21 @@ button.heatmap-row:hover {
   background: linear-gradient(90deg, rgba(255, 255, 255, 0.98) 82%, rgba(255, 255, 255, 0));
 }
 
+.daily-flow-row > span:first-child {
+  position: sticky;
+  left: 0;
+  z-index: 2;
+  height: 100%;
+  padding-right: 8px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.98) 82%, rgba(255, 255, 255, 0));
+}
+
 .heatmap-header > span:first-child {
+  z-index: 5;
+  background: linear-gradient(90deg, rgba(245, 245, 247, 1) 82%, rgba(245, 245, 247, 0));
+}
+
+.daily-flow-header > span:first-child {
   z-index: 5;
   background: linear-gradient(90deg, rgba(245, 245, 247, 1) 82%, rgba(245, 245, 247, 0));
 }
@@ -565,6 +669,21 @@ button.heatmap-row:hover {
   font-weight: 900;
   background: rgba(255, 255, 255, 0.92);
   border: 1px solid var(--apple-border);
+  overflow: hidden;
+}
+
+.daily-flow-cell {
+  position: relative;
+  min-height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 10px;
+  border-radius: 7px;
+  font-size: 13px;
+  font-weight: 900;
+  background: var(--heat-bg);
+  border: 1px solid color-mix(in srgb, var(--heat-bar), white 58%);
   overflow: hidden;
 }
 
@@ -977,6 +1096,15 @@ button.heatmap-row:hover {
   .heatmap-row {
     min-width: 850px;
     grid-template-columns: 190px repeat(5, 98px) 76px;
+  }
+
+  .daily-flow-row {
+    min-width: 720px;
+    grid-template-columns: 178px repeat(4, 94px) 76px;
+  }
+
+  .daily-flow-grid {
+    max-height: 460px;
   }
 
   .drawer {

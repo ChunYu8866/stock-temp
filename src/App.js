@@ -12,25 +12,25 @@ const fmtPct = (value, digits = 1) => `${value > 0 ? '+' : ''}${Number(value || 
 const fmtPrice = (value) => Number(value).toLocaleString('zh-TW', { maximumFractionDigits: 2 });
 const pctColor = (value) => value > 0 ? CATEGORY_META.green.color : value < 0 ? CATEGORY_META.red.color : CATEGORY_META.gray.color;
 const SOURCE_LABELS = {
-  'twse-mis': '即時股溫',
-  'twse-price': '上市收盤溫',
-  'twse-chip': '上市法人熱流',
-  'tpex-price': '上櫃收盤溫',
-  'tpex-chip': '上櫃法人熱流',
-  'twse-index': '大盤溫度',
+  'twse-mis': '即時股價',
+  'twse-price': '上市收盤價',
+  'twse-chip': '上市法人資金',
+  'tpex-price': '上櫃收盤價',
+  'tpex-chip': '上櫃法人資金',
+  'twse-index': '大盤漲跌',
 };
 const GLOSSARY_STORAGE_KEY = 'sector-temperature-glossary-v1';
 const TERM_GLOSSARY = [
-  { term: '熱流', desc: '法人資金換算成億元後的溫度方向；正值代表加熱，負值代表冷卻。' },
-  { term: '加熱', desc: '熱流正在進入熱區，數值越大代表短線資金溫度越強。' },
-  { term: '冷卻', desc: '熱流正在離開熱區，負值越深代表資金降溫越明顯。' },
-  { term: '升溫', desc: '5 日熱流為正，且升溫速度為正，代表熱度正在加速。' },
-  { term: '恆溫', desc: '5 日熱流仍為正，但升溫速度放慢，代表熱度維持但沒有加速。' },
-  { term: '低溫', desc: '熱流接近中性，資金沒有明顯方向，適合先觀察。' },
-  { term: '降溫', desc: '5 日熱流轉負，代表資金持續外散，熱區溫度下降。' },
-  { term: '蓄熱', desc: '熱流累積靠前，但價格溫差尚未完全反映，像正在累積熱源。' },
-  { term: '回暖', desc: '大盤或熱區偏冷時，當日熱流重新轉強的早期回溫訊號。' },
-  { term: '股溫 / 溫差', desc: '股溫是最新股價；溫差是價格相對前一交易日或近 5 日的變化。' },
+  { term: '熱區', desc: '法人資金明顯流入的族群，紅色越深代表買超金額越大。' },
+  { term: '冷區', desc: '法人資金明顯流出的族群，綠色越深代表賣超金額越大。' },
+  { term: '資金流向', desc: '把三大法人買超或賣超換算成億元，方便比較不同族群。' },
+  { term: '升溫', desc: '近 5 日資金流入，而且流入力道比 20 日平均更強。' },
+  { term: '恆溫', desc: '近 5 日仍是資金流入，但加速力道沒有變強。' },
+  { term: '低溫', desc: '資金接近中性，沒有明顯流入或流出。' },
+  { term: '降溫', desc: '近 5 日資金流出，代表族群轉弱或被法人調節。' },
+  { term: '資金加速度', desc: '近 5 日每日平均資金，減去近 20 日每日平均資金。' },
+  { term: '蓄勢', desc: '資金流入排名靠前，但股價漲幅還不算大。' },
+  { term: '逆勢轉強', desc: '大盤偏弱時，仍有法人資金流入的族群。' },
 ];
 
 function useSectorData() {
@@ -199,21 +199,21 @@ function Header({ data, loading, onRefresh, realtime, onOpenGlossary }) {
   const pwa = useInstallPrompt();
   const liveOk = realtime?.status?.ok;
   const liveLabel = liveOk
-    ? `即時 ${realtime.status.lastOkDate || ''}`
-    : realtime?.disabled ? '盤後股溫' : null;
+    ? `即時股價 ${realtime.status.lastOkDate || ''}`
+    : realtime?.disabled ? '盤後股價' : null;
   return h('header', { className: 'top-shell glass' },
     h('div', { className: 'brand' },
       h('div', { className: 'brand-mark' },
         h('img', { src: `${base}assets/icon.svg`, alt: '', 'aria-hidden': true })
       ),
       h('div', null,
-        h('h1', null, '台股熱區溫度計'),
-        h('p', null, data ? `溫度日期 ${data.date} · 校準 ${new Date(data.updatedAt).toLocaleString('zh-TW', { hour12: false })}` : '載入官方溫度資料')
+        h('h1', null, '台股資金溫度計'),
+        h('p', null, data ? `資料日期 ${data.date} · 更新 ${new Date(data.updatedAt).toLocaleString('zh-TW', { hour12: false })}` : '載入官方資料')
       )
     ),
     h('div', { className: 'header-actions' },
-      data?.cache?.stale ? h('span', { className: 'pill warn' }, '暫存溫度') : null,
-      data ? h('span', { className: `pill ${data.marketChg1d >= 0 ? 'up' : 'down'}` }, `大盤溫度 ${fmtPct(data.marketChg1d, 2)}`) : null,
+      data?.cache?.stale ? h('span', { className: 'pill warn' }, '暫存資料') : null,
+      data ? h('span', { className: `pill ${data.marketChg1d >= 0 ? 'up' : 'down'}` }, `大盤漲跌 ${fmtPct(data.marketChg1d, 2)}`) : null,
       liveLabel ? h('span', { className: `pill ${liveOk ? 'live' : ''}` }, liveLabel) : null,
       h('button', { className: 'icon-btn', onClick: onOpenGlossary, title: '名詞說明', 'aria-label': '名詞說明' }, '?'),
       h('button', { className: 'icon-btn', onClick: onRefresh, disabled: loading, title: '重新整理' }, loading ? '↻' : '⟳'),
@@ -259,7 +259,7 @@ function SearchBox({ sectors, onSelect }) {
     for (const sector of sectors) {
       if (sector.name.toLowerCase().includes(q)) {
         seen.add(sector.name);
-        out.push({ key: sector.name, label: sector.name, tag: '熱區', sector });
+        out.push({ key: sector.name, label: sector.name, tag: '族群', sector });
       }
     }
     for (const [code, name] of Object.entries(STOCK_NAMES)) {
@@ -269,7 +269,7 @@ function SearchBox({ sectors, onSelect }) {
         const key = `${code}-${sectorName}`;
         if (!sector || seen.has(key)) continue;
         seen.add(key);
-        out.push({ key, label: `${code} ${name || ''}`.trim(), tag: `主熱區 · ${sectorName}`, sector });
+        out.push({ key, label: `${code} ${name || ''}`.trim(), tag: `主族群 · ${sectorName}`, sector });
       }
     }
     return out.slice(0, 12);
@@ -280,7 +280,7 @@ function SearchBox({ sectors, onSelect }) {
     h('input', {
       value: query,
       onChange: (event) => setQuery(event.target.value),
-      placeholder: '搜尋股票或熱區',
+      placeholder: '搜尋股票或族群',
       autoComplete: 'off',
     }),
     results.length ? h('div', { className: 'search-menu' },
@@ -298,7 +298,7 @@ function SearchBox({ sectors, onSelect }) {
         h('span', null, item.label),
         h('small', null, item.tag)
       ))
-    ) : query.trim() ? h('div', { className: 'search-menu empty' }, '沒有符合的熱區') : null
+    ) : query.trim() ? h('div', { className: 'search-menu empty' }, '沒有符合的族群') : null
   );
 }
 
@@ -323,9 +323,9 @@ function GlossaryModal({ open, onClose }) {
     },
       h('div', { className: 'glossary-head' },
         h('div', null,
-          h('span', { className: 'glossary-kicker' }, '第一次看溫度'),
-          h('h2', { id: 'glossary-title' }, '溫度名詞說明'),
-          h('p', null, '這套介面把法人資金與股價變化轉成溫度語言，方便快速判讀熱區狀態。')
+          h('span', { className: 'glossary-kicker' }, '第一次使用'),
+          h('h2', { id: 'glossary-title' }, '名詞說明'),
+          h('p', null, '這套介面用資金流入、流出來判斷族群狀態；股價與漲跌維持一般股票用語。')
         ),
         h('button', { className: 'icon-btn', onClick: onClose, title: '關閉', 'aria-label': '關閉名詞說明' }, '×')
       ),
@@ -336,30 +336,37 @@ function GlossaryModal({ open, onClose }) {
         ))
       ),
       h('div', { className: 'glossary-actions' },
-        h('button', { className: 'install-btn', onClick: onClose }, '開始看溫度')
+        h('button', { className: 'install-btn', onClick: onClose }, '開始使用')
       )
     )
   );
 }
 
 const heatmapMetrics = [
-  { key: 'net_1d_yi', label: '1日熱流', kind: 'flow', digits: 1 },
-  { key: 'net_5d_yi', label: '5日熱流', kind: 'flow', digits: 1 },
-  { key: 'net_20d_yi', label: '20日熱流', kind: 'flow', digits: 0 },
-  { key: 'accel', label: '升溫速度', kind: 'flow', digits: 1 },
-  { key: 'chg_5d', label: '5日溫差', kind: 'pct', digits: 1 },
+  { key: 'net_1d_yi', label: '1日資金', kind: 'flow', digits: 1 },
+  { key: 'net_5d_yi', label: '5日資金', kind: 'flow', digits: 1 },
+  { key: 'net_20d_yi', label: '20日資金', kind: 'flow', digits: 0 },
+  { key: 'accel', label: '資金加速度', kind: 'flow', digits: 1 },
+  { key: 'chg_5d', label: '5日漲跌', kind: 'pct', digits: 1 },
 ];
 
 const sortOptions = [
-  { key: 'net_1d_yi', dir: 'desc', label: '1日加熱' },
-  { key: 'net_1d_yi', dir: 'asc', label: '1日冷卻' },
-  { key: 'net_5d_yi', dir: 'desc', label: '5日加熱' },
-  { key: 'net_5d_yi', dir: 'asc', label: '5日冷卻' },
-  { key: 'net_20d_yi', dir: 'desc', label: '20日加熱' },
-  { key: 'net_20d_yi', dir: 'asc', label: '20日冷卻' },
-  { key: 'accel', dir: 'desc', label: '升溫' },
-  { key: 'accel', dir: 'asc', label: '降溫' },
-  { key: 'chg_5d', dir: 'desc', label: '5日溫差' },
+  { key: 'net_1d_yi', dir: 'desc', label: '1日流入' },
+  { key: 'net_1d_yi', dir: 'asc', label: '1日流出' },
+  { key: 'net_5d_yi', dir: 'desc', label: '5日流入' },
+  { key: 'net_5d_yi', dir: 'asc', label: '5日流出' },
+  { key: 'net_20d_yi', dir: 'desc', label: '20日流入' },
+  { key: 'net_20d_yi', dir: 'asc', label: '20日流出' },
+  { key: 'accel', dir: 'desc', label: '加速' },
+  { key: 'accel', dir: 'asc', label: '降速' },
+  { key: 'chg_5d', dir: 'desc', label: '5日漲跌' },
+];
+
+const dailyFlowColumns = [
+  { key: 'net_1d_yi', label: '今日', getValue: (sector) => sector.net_1d_yi ?? 0, digits: 1 },
+  { key: 'avg_5d_yi', label: '5日均', getValue: (sector) => (sector.net_5d_yi ?? 0) / 5, digits: 1 },
+  { key: 'avg_20d_yi', label: '20日均', getValue: (sector) => (sector.net_20d_yi ?? 0) / 20, digits: 1 },
+  { key: 'accel', label: '加速度', getValue: (sector) => sector.accel ?? 0, digits: 1 },
 ];
 
 function metricText(value, metric) {
@@ -375,6 +382,60 @@ function metricHeatStyle(value, maxAbs) {
     '--heat-bar': `rgba(${rgb}, ${0.5 + intensity * 0.35})`,
     '--heat-width': `${Math.max(7, intensity * 100)}%`,
   };
+}
+
+function DailyFlowHeatmap({ sectors, activeCats, date, onSelect }) {
+  const visible = useMemo(() => {
+    return sectors
+      .filter((sector) => activeCats.has(classifySector(sector)))
+      .sort((a, b) => Math.abs(b.net_1d_yi ?? 0) - Math.abs(a.net_1d_yi ?? 0))
+      .slice(0, 18);
+  }, [activeCats, sectors]);
+  const maxAbs = useMemo(() => {
+    return Math.max(
+      ...sectors.flatMap((sector) => dailyFlowColumns.map((column) => Math.abs(column.getValue(sector)))),
+      1
+    );
+  }, [sectors]);
+
+  return h('section', { className: 'flow-map-card glass' },
+    h('div', { className: 'view-head' },
+      h('div', null,
+        h('strong', null, '每日資金流向熱力圖'),
+        h('span', null, `${date || 'latest'} · 紅色是資金流入熱區，綠色是資金流出冷區`)
+      ),
+      h('div', { className: 'flow-legend' },
+        h('span', { className: 'hot' }, '流入'),
+        h('span', { className: 'cold' }, '流出')
+      )
+    ),
+    h('div', { className: 'daily-flow-grid', role: 'table' },
+      h('div', { className: 'daily-flow-row daily-flow-header', role: 'row' },
+        h('span', null, '族群'),
+        dailyFlowColumns.map((column) => h('span', { key: column.key }, column.label)),
+        h('span', null, '狀態')
+      ),
+      visible.map((sector) => {
+        const cat = classifySector(sector);
+        return h('button', { key: sector.name, className: 'daily-flow-row', role: 'row', onClick: () => onSelect(sector) },
+          h('span', { className: 'heatmap-name' },
+            h('i', { style: { background: CATEGORY_META[cat].color } }),
+            h('strong', null, sector.name)
+          ),
+          dailyFlowColumns.map((column) => {
+            const value = column.getValue(sector);
+            return h('span', {
+              key: column.key,
+              className: 'daily-flow-cell',
+              style: metricHeatStyle(value, maxAbs),
+              title: `${column.label} ${fmtYi(value, column.digits)}`,
+            }, fmtYi(value, column.digits));
+          }),
+          h('span', { className: 'heat-status', style: { color: CATEGORY_META[cat].color, borderColor: CATEGORY_META[cat].color } }, CATEGORY_META[cat].label)
+        );
+      })
+    )
+  );
 }
 
 function HeatmapPanel({ sectors, activeCats, onSelect }) {
@@ -398,17 +459,17 @@ function HeatmapPanel({ sectors, activeCats, onSelect }) {
   const leaders = useMemo(() => {
     const by = (key, direction = 'desc') => [...sectors].sort((a, b) => direction === 'desc' ? b[key] - a[key] : a[key] - b[key])[0];
     return [
-      { label: '5日熱源最強', metric: heatmapMetrics[1], sector: by('net_5d_yi') },
-      { label: '升溫最快', metric: heatmapMetrics[3], sector: by('accel') },
-      { label: '冷卻最深', metric: heatmapMetrics[1], sector: by('net_5d_yi', 'asc') },
+      { label: '5日流入最多', metric: heatmapMetrics[1], sector: by('net_5d_yi') },
+      { label: '資金加速最快', metric: heatmapMetrics[3], sector: by('accel') },
+      { label: '5日流出最多', metric: heatmapMetrics[1], sector: by('net_5d_yi', 'asc') },
     ].filter((item) => item.sector);
   }, [sectors]);
 
   return h('section', { className: 'heatmap-card glass' },
     h('div', { className: 'view-head' },
       h('div', null,
-        h('strong', null, '熱區溫度圖'),
-        h('span', null, `${visible.length} / ${sectors.length} 熱區 · 點列可看成分股`)
+        h('strong', null, '族群資金總覽'),
+        h('span', null, `${visible.length} / ${sectors.length} 族群 · 點列可看成分股`)
       )
     ),
     h('div', { className: 'signal-strip' },
@@ -432,7 +493,7 @@ function HeatmapPanel({ sectors, activeCats, onSelect }) {
     ),
     h('div', { className: 'heatmap-grid', role: 'table' },
       h('div', { className: 'heatmap-row heatmap-header', role: 'row' },
-        h('span', null, '熱區'),
+        h('span', null, '族群'),
         heatmapMetrics.map((metric) => h('span', { key: metric.key }, metric.label)),
         h('span', null, '狀態')
       ),
@@ -477,10 +538,10 @@ function RankingPanel({ data, onSelect }) {
   }, [mode, sectors]);
   return h('aside', { className: 'ranking glass' },
     h('div', { className: 'panel-headline' },
-      h('div', null, h('strong', null, '熱榜'), h('span', null, mode === 'cp' ? '資金蓄熱' : '低檔回暖')),
+      h('div', null, h('strong', null, '資金排行'), h('span', null, mode === 'cp' ? '流入強勢' : '逆勢轉強')),
       h('div', { className: 'segmented' },
-        h('button', { className: mode === 'cp' ? 'active' : '', onClick: () => setMode('cp') }, '蓄熱'),
-        h('button', { className: mode === 'bottom' ? 'active' : '', onClick: () => setMode('bottom') }, `回暖 ${bottomCount || ''}`)
+        h('button', { className: mode === 'cp' ? 'active' : '', onClick: () => setMode('cp') }, '流入'),
+        h('button', { className: mode === 'bottom' ? 'active' : '', onClick: () => setMode('bottom') }, `逆勢 ${bottomCount || ''}`)
       )
     ),
     rows.length ? h('div', { className: 'ranking-list' },
@@ -493,7 +554,7 @@ function RankingPanel({ data, onSelect }) {
           h('span', { className: 'rank-flow', style: { color: flowColor(value) } }, fmtYi(value, 1))
         );
       })
-    ) : h('div', { className: 'empty-panel' }, mode === 'bottom' ? '目前沒有回暖訊號' : '目前沒有蓄熱熱區')
+    ) : h('div', { className: 'empty-panel' }, mode === 'bottom' ? '目前沒有逆勢轉強族群' : '目前沒有資金流入族群')
   );
 }
 
@@ -510,20 +571,20 @@ function SectorDrawer({ sector, data, onClose }) {
         h('div', null,
           h('span', { className: 'drawer-badge', style: { color: meta.color, borderColor: meta.color } }, meta.label),
           h('h2', null, sector.name),
-          h('p', { className: 'quote-coverage' }, `${realtimeCount ? '即時股溫' : '官方股溫'} ${quotedCount} / ${sector.stocks.length}`)
+          h('p', { className: 'quote-coverage' }, `${realtimeCount ? '即時股價' : '官方股價'} ${quotedCount} / ${sector.stocks.length}`)
         ),
         h('button', { className: 'icon-btn', onClick: onClose, title: '關閉' }, '×')
       ),
       h('div', { className: 'metric-grid' },
-        h('div', null, h('small', null, '當日熱流'), h('strong', { style: { color: flowColor(sector.net_1d_yi) } }, fmtYi(sector.net_1d_yi, 2))),
-        h('div', null, h('small', null, '5 日熱流'), h('strong', { style: { color: flowColor(sector.net_5d_yi) } }, fmtYi(sector.net_5d_yi, 2))),
-        h('div', null, h('small', null, '20 日熱流'), h('strong', { style: { color: flowColor(sector.net_20d_yi) } }, fmtYi(sector.net_20d_yi, 2))),
-        h('div', null, h('small', null, '升溫速度'), h('strong', { style: { color: flowColor(sector.accel) } }, `${sector.accel > 0 ? '+' : ''}${sector.accel.toFixed(2)}`)),
-        h('div', null, h('small', null, '1 日溫差'), h('strong', { style: { color: pctColor(sector.chg_1d) } }, fmtPct(sector.chg_1d, 2))),
-        h('div', null, h('small', null, '5 日溫差'), h('strong', { style: { color: pctColor(sector.chg_5d) } }, fmtPct(sector.chg_5d, 2)))
+        h('div', null, h('small', null, '當日資金'), h('strong', { style: { color: flowColor(sector.net_1d_yi) } }, fmtYi(sector.net_1d_yi, 2))),
+        h('div', null, h('small', null, '5 日資金'), h('strong', { style: { color: flowColor(sector.net_5d_yi) } }, fmtYi(sector.net_5d_yi, 2))),
+        h('div', null, h('small', null, '20 日資金'), h('strong', { style: { color: flowColor(sector.net_20d_yi) } }, fmtYi(sector.net_20d_yi, 2))),
+        h('div', null, h('small', null, '資金加速度'), h('strong', { style: { color: flowColor(sector.accel) } }, `${sector.accel > 0 ? '+' : ''}${sector.accel.toFixed(2)}`)),
+        h('div', null, h('small', null, '1 日漲跌'), h('strong', { style: { color: pctColor(sector.chg_1d) } }, fmtPct(sector.chg_1d, 2))),
+        h('div', null, h('small', null, '5 日漲跌'), h('strong', { style: { color: pctColor(sector.chg_5d) } }, fmtPct(sector.chg_5d, 2)))
       ),
       h('div', { className: 'stock-table' },
-        h('div', { className: 'stock-row head' }, h('span', null, '代碼'), h('span', null, '名稱'), h('span', null, '股溫'), h('span', null, '溫差'), h('span', null, '熱流')),
+        h('div', { className: 'stock-row head' }, h('span', null, '代碼'), h('span', null, '名稱'), h('span', null, '股價'), h('span', null, '漲跌'), h('span', null, '資金')),
         sector.stocks.map((code) => {
           const item = stockData[code];
           const hasQuote = item?.quoteStatus === 'realtime' || item?.quoteStatus === 'ok' || item?.price != null;
@@ -532,7 +593,7 @@ function SectorDrawer({ sector, data, onClose }) {
             h('span', null, code),
             h('span', null, item?.name || STOCK_NAMES[code] || '—'),
             h('span', { className: hasQuote ? (isRealtime ? 'live-price' : '') : 'quote-missing' },
-              hasQuote ? h(React.Fragment, null, fmtPrice(item.price), isRealtime ? h('small', { className: 'live-badge' }, '即') : null) : '無股溫'
+              hasQuote ? fmtPrice(item.price) : '無股價'
             ),
             h('span', { style: { color: hasQuote ? pctColor(item.chg_1d) : undefined } }, hasQuote ? fmtPct(item.chg_1d, 2) : '—'),
             h('span', { style: { color: hasQuote ? flowColor(item.net_1d_yi) : undefined } }, hasQuote ? fmtYi(item.net_1d_yi, 2) : '—')
@@ -581,17 +642,18 @@ function App() {
     h('main', { className: 'app-shell' },
       h(Header, { data: displayData, loading, onRefresh: refresh, realtime: effectiveRealtime, onOpenGlossary: glossary.openAgain }),
       error ? h('div', { className: 'error glass' }, error) : null,
-      !displayData ? h('div', { className: 'loading glass' }, loading ? '正在載入官方溫度資料…' : '沒有溫度資料') : h(React.Fragment, null,
+      !displayData ? h('div', { className: 'loading glass' }, loading ? '正在載入官方資料…' : '沒有資料') : h(React.Fragment, null,
         h('section', { className: 'utility-row' },
           h(SearchBox, { sectors, onSelect: setSelected }),
           h(SourceStrip, { data: displayData, realtime: effectiveRealtime })
         ),
         h(StatusCards, { sectors, activeCats, onToggle: toggleCat }),
+        h(DailyFlowHeatmap, { sectors, activeCats, date: displayData.date, onSelect: setSelected }),
         h('section', { className: 'bento-layout' },
           h(HeatmapPanel, { sectors, activeCats, onSelect: setSelected }),
           h(RankingPanel, { data: displayData, onSelect: setSelected })
         ),
-        h('footer', { className: 'disclaimer' }, '本網站僅彙整公開法人熱流資料，僅供參考，不構成任何投資建議；投資人應自行判斷並自負盈虧。')
+        h('footer', { className: 'disclaimer' }, '本網站僅彙整公開法人資金資料，僅供參考，不構成任何投資建議；投資人應自行判斷並自負盈虧。')
       )
     ),
     h(GlossaryModal, { open: glossary.open, onClose: glossary.close }),
