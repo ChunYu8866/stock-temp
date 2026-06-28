@@ -510,8 +510,6 @@ function DailyFlowHeatmap({ sectors, activeCats, date, onSelect }) {
           },
         },
           h('span', { className: 'flow-tile-name' }, sector.name),
-          h('span', { className: 'flow-tile-value' }, fmtYi(value, 1)),
-          h('span', { className: 'flow-tile-meta' }, fmtPct(sector.chg_1d, 1))
         );
       })
     ),
