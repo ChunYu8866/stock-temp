@@ -362,11 +362,10 @@ const sortOptions = [
   { key: 'chg_5d', dir: 'desc', label: '5日漲跌' },
 ];
 
-const dailyFlowColumns = [
-  { key: 'net_1d_yi', label: '今日', getValue: (sector) => sector.net_1d_yi ?? 0, digits: 1 },
-  { key: 'avg_5d_yi', label: '5日均', getValue: (sector) => (sector.net_5d_yi ?? 0) / 5, digits: 1 },
-  { key: 'avg_20d_yi', label: '20日均', getValue: (sector) => (sector.net_20d_yi ?? 0) / 20, digits: 1 },
-  { key: 'accel', label: '加速度', getValue: (sector) => sector.accel ?? 0, digits: 1 },
+const treemapMetricOptions = [
+  { key: 'net_1d_yi', label: '今日資金', getValue: (sector) => sector.net_1d_yi ?? 0 },
+  { key: 'net_5d_yi', label: '5日資金', getValue: (sector) => sector.net_5d_yi ?? 0 },
+  { key: 'net_20d_yi', label: '20日資金', getValue: (sector) => sector.net_20d_yi ?? 0 },
 ];
 
 function metricText(value, metric) {
@@ -384,56 +383,152 @@ function metricHeatStyle(value, maxAbs) {
   };
 }
 
+function blendRgb(base, strength) {
+  return base.map((channel) => Math.round(255 + (channel - 255) * strength));
+}
+
+function treemapTileStyle(value, maxAbs) {
+  const intensity = Math.min(1, Math.abs(value) / Math.max(maxAbs, 1));
+  const base = value >= 0 ? [255, 59, 48] : [45, 143, 72];
+  const strength = 0.24 + intensity * 0.62;
+  const [r, g, b] = blendRgb(base, strength);
+  const useLightText = intensity > 0.36;
+  return {
+    backgroundColor: `rgb(${r}, ${g}, ${b})`,
+    color: useLightText ? '#fff' : '#1d1d1f',
+    '--tile-text-shadow': useLightText ? '0 1px 12px rgba(0, 0, 0, 0.22)' : 'none',
+  };
+}
+
+function splitTreemap(items, x, y, width, height) {
+  if (!items.length || width <= 0 || height <= 0) return [];
+  if (items.length === 1) return [{ ...items[0], x, y, width, height }];
+
+  const total = items.reduce((sum, item) => sum + item.weight, 0);
+  let running = 0;
+  let splitIndex = 0;
+  let bestDiff = Number.POSITIVE_INFINITY;
+  for (let index = 0; index < items.length - 1; index += 1) {
+    running += items[index].weight;
+    const diff = Math.abs(total / 2 - running);
+    if (diff < bestDiff) {
+      bestDiff = diff;
+      splitIndex = index + 1;
+    }
+  }
+
+  const first = items.slice(0, splitIndex);
+  const second = items.slice(splitIndex);
+  const firstTotal = first.reduce((sum, item) => sum + item.weight, 0);
+  if (width >= height) {
+    const firstWidth = width * (firstTotal / total);
+    return [
+      ...splitTreemap(first, x, y, firstWidth, height),
+      ...splitTreemap(second, x + firstWidth, y, width - firstWidth, height),
+    ];
+  }
+  const firstHeight = height * (firstTotal / total);
+  return [
+    ...splitTreemap(first, x, y, width, firstHeight),
+    ...splitTreemap(second, x, y + firstHeight, width, height - firstHeight),
+  ];
+}
+
+function treemapSizeClass(width, height) {
+  const area = width * height;
+  const shortest = Math.min(width, height);
+  if (area >= 1450 && shortest >= 22) return 'xxl';
+  if (area >= 720 && shortest >= 14) return 'large';
+  if (area >= 300 && shortest >= 8) return 'medium';
+  if (area >= 130 && shortest >= 5) return 'small';
+  return 'micro';
+}
+
 function DailyFlowHeatmap({ sectors, activeCats, date, onSelect }) {
-  const visible = useMemo(() => {
+  const [metricKey, setMetricKey] = useState('net_1d_yi');
+  const metric = treemapMetricOptions.find((item) => item.key === metricKey) || treemapMetricOptions[0];
+  const tiles = useMemo(() => {
     return sectors
       .filter((sector) => activeCats.has(classifySector(sector)))
-      .sort((a, b) => Math.abs(b.net_1d_yi ?? 0) - Math.abs(a.net_1d_yi ?? 0))
-      .slice(0, 18);
-  }, [activeCats, sectors]);
-  const maxAbs = useMemo(() => {
-    return Math.max(
-      ...sectors.flatMap((sector) => dailyFlowColumns.map((column) => Math.abs(column.getValue(sector)))),
-      1
-    );
-  }, [sectors]);
+      .map((sector) => {
+        const value = metric.getValue(sector);
+        return {
+          sector,
+          value,
+          weight: Math.max(Math.abs(value), 0.1),
+        };
+      })
+      .filter((item) => Number.isFinite(item.value) && item.weight > 0)
+      .sort((a, b) => b.weight - a.weight)
+      .slice(0, 36);
+  }, [activeCats, metric, sectors]);
+  const maxAbs = useMemo(() => Math.max(...tiles.map((tile) => Math.abs(tile.value)), 1), [tiles]);
+  const layouts = useMemo(() => splitTreemap(tiles, 0, 0, 100, 100), [tiles]);
+  const flowIn = tiles.reduce((sum, tile) => sum + Math.max(tile.value, 0), 0);
+  const flowOut = tiles.reduce((sum, tile) => sum + Math.abs(Math.min(tile.value, 0)), 0);
 
   return h('section', { className: 'flow-map-card glass' },
     h('div', { className: 'view-head' },
       h('div', null,
         h('strong', null, '每日資金流向熱力圖'),
-        h('span', null, `${date || 'latest'} · 紅色是資金流入熱區，綠色是資金流出冷區`)
+        h('span', null, `${date || 'latest'} · 面積代表資金規模，紅色流入、綠色流出`)
       ),
       h('div', { className: 'flow-legend' },
         h('span', { className: 'hot' }, '流入'),
         h('span', { className: 'cold' }, '流出')
       )
     ),
-    h('div', { className: 'daily-flow-grid', role: 'table' },
-      h('div', { className: 'daily-flow-row daily-flow-header', role: 'row' },
-        h('span', null, '族群'),
-        dailyFlowColumns.map((column) => h('span', { key: column.key }, column.label)),
-        h('span', null, '狀態')
+    h('div', { className: 'flow-map-toolbar' },
+      h('div', { className: 'flow-map-condition' },
+        h('span', null, `面積：${metric.label}`),
+        h('span', null, `顏色：${metric.label}流向`)
       ),
-      visible.map((sector) => {
-        const cat = classifySector(sector);
-        return h('button', { key: sector.name, className: 'daily-flow-row', role: 'row', onClick: () => onSelect(sector) },
-          h('span', { className: 'heatmap-name' },
-            h('i', { style: { background: CATEGORY_META[cat].color } }),
-            h('strong', null, sector.name)
-          ),
-          dailyFlowColumns.map((column) => {
-            const value = column.getValue(sector);
-            return h('span', {
-              key: column.key,
-              className: 'daily-flow-cell',
-              style: metricHeatStyle(value, maxAbs),
-              title: `${column.label} ${fmtYi(value, column.digits)}`,
-            }, fmtYi(value, column.digits));
-          }),
-          h('span', { className: 'heat-status', style: { color: CATEGORY_META[cat].color, borderColor: CATEGORY_META[cat].color } }, CATEGORY_META[cat].label)
+      h('div', { className: 'heatmap-tools' },
+        treemapMetricOptions.map((option) => h('button', {
+          key: option.key,
+          className: metric.key === option.key ? 'active' : '',
+          onClick: () => setMetricKey(option.key),
+        }, option.label))
+      )
+    ),
+    h('div', { className: 'treemap-canvas', role: 'list', 'aria-label': '每日資金流向熱力圖' },
+      layouts.map((tile) => {
+        const { sector, value, x, y, width, height } = tile;
+        const sizeClass = treemapSizeClass(width, height);
+        return h('button', {
+          key: sector.name,
+          className: `flow-tile ${sizeClass}`,
+          role: 'listitem',
+          onClick: () => onSelect(sector),
+          title: `${sector.name} ${metric.label} ${fmtYi(value, 1)}，1日漲跌 ${fmtPct(sector.chg_1d, 1)}`,
+          style: {
+            left: `${x}%`,
+            top: `${y}%`,
+            width: `${width}%`,
+            height: `${height}%`,
+            ...treemapTileStyle(value, maxAbs),
+          },
+        },
+          h('span', { className: 'flow-tile-name' }, sector.name),
+          h('span', { className: 'flow-tile-value' }, fmtYi(value, 1)),
+          h('span', { className: 'flow-tile-meta' }, fmtPct(sector.chg_1d, 1))
         );
       })
+    ),
+    h('div', { className: 'treemap-footer' },
+      h('div', { className: 'treemap-scale', 'aria-hidden': true },
+        h('div', { className: 'treemap-gradient' }),
+        h('div', { className: 'treemap-scale-labels' },
+          h('span', null, '強流入'),
+          h('span', null, '中性'),
+          h('span', null, '強流出')
+        )
+      ),
+      h('div', { className: 'flow-summary' },
+        h('span', null, `流入 ${fmtYi(flowIn, 0)}`),
+        h('span', null, `流出 ${fmtYi(flowOut, 0)}`),
+        h('span', null, `${tiles.length} / ${sectors.length} 族群`)
+      )
     )
   );
 }
