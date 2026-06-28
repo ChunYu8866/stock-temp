@@ -38,7 +38,7 @@ for (const [code, quote] of result.quotes) {
     price: quote.price,
     chg_1d: quote.chg_1d,
     market: quote.market || stockData[code]?.market || null,
-    quoteStatus: 'realtime',
+    quoteStatus: quote.quoteStatus || 'realtime',
     quoteSource: quote.source,
     quoteDate: quote.date,
     quoteTime: quote.time,
@@ -53,7 +53,11 @@ payload.quoteUpdatedAt = result.updatedAt;
 payload.realtimeStatus = result.sourceStatus;
 payload.sourceStatus = [
   result.sourceStatus,
-  ...(payload.sourceStatus || []).filter((item) => item.source !== result.sourceStatus.source),
+  ...(result.sourceStatuses || []),
+  ...(payload.sourceStatus || []).filter((item) => !new Set([
+    result.sourceStatus.source,
+    ...(result.sourceStatuses || []).map((status) => status.source),
+  ]).has(item.source)),
 ];
 
 if (before === stablePayload(payload)) {

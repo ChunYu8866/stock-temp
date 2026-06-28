@@ -6,11 +6,14 @@ import {
   computeSectors,
   parseNumber,
   parseRealtimeQuotes,
+  parseTpexOpenApiQuotes,
   parseTpexChip,
   parseTpexPrice,
   parseTwseChip,
   parseTwseMarketChange,
+  parseTwseOpenApiQuotes,
   parseTwsePrice,
+  parseYahooChartQuote,
   toRocDate,
   toTwseDate,
 } from '../src/lib/market-data.mjs';
@@ -82,6 +85,74 @@ test('realtime parser reads MIS quote prices and changes', () => {
   assert.equal(quotes.get('2330').chg_1d, -2.09);
   assert.equal(quotes.get('2330').market, 'TWSE');
   assert.equal(quotes.get('2330').date, '2026-06-26');
+});
+
+test('Yahoo fallback parser reads chart quote prices and changes', () => {
+  const quote = parseYahooChartQuote({
+    chart: {
+      result: [{
+        meta: {
+          symbol: '2330.TW',
+          regularMarketPrice: 2340,
+          regularMarketTime: 1782451800,
+          gmtoffset: 28800,
+        },
+        timestamp: [1782090000, 1782176400, 1782262800],
+        indicators: {
+          quote: [{
+            close: [2510, 2390, 2340],
+            open: [2455, 2410, 2360],
+            high: [2510, 2420, 2370],
+            low: [2455, 2390, 2325],
+            volume: [39272494, 34424468, 39547254],
+          }],
+        },
+      }],
+    },
+  }, '2330', '2330.TW');
+  assert.equal(quote.price, 2340);
+  assert.equal(quote.previousClose, 2390);
+  assert.equal(quote.chg_1d, -2.09);
+  assert.equal(quote.market, 'TWSE');
+  assert.equal(quote.quoteStatus, 'fallback');
+});
+
+test('official OpenAPI fallback parsers read TWSE and TPEX daily quotes', () => {
+  const twse = parseTwseOpenApiQuotes([{
+    Date: '1150626',
+    Code: '2330',
+    Name: '台積電',
+    OpeningPrice: '2360.00',
+    HighestPrice: '2370.00',
+    LowestPrice: '2325.00',
+    ClosingPrice: '2340.00',
+    Change: '-50.0000',
+    TradeVolume: '39547254',
+  }]);
+  const tpex = parseTpexOpenApiQuotes([{
+    Date: '1150626',
+    SecuritiesCompanyCode: '3105',
+    CompanyName: '穩懋',
+    Close: '424.00',
+    Change: '-39.00 ',
+    Open: '455.00',
+    High: '456.00',
+    Low: '420.00',
+    TradingShares: '1200000',
+  }]);
+
+  assert.equal(twse.get('2330').price, 2340);
+  assert.equal(twse.get('2330').previousClose, 2390);
+  assert.equal(twse.get('2330').chg_1d, -2.09);
+  assert.equal(twse.get('2330').date, '2026-06-26');
+  assert.equal(twse.get('2330').market, 'TWSE');
+  assert.equal(twse.get('2330').source, 'twse-stock-day-all');
+  assert.equal(tpex.get('3105').price, 424);
+  assert.equal(tpex.get('3105').previousClose, 463);
+  assert.equal(tpex.get('3105').chg_1d, -8.42);
+  assert.equal(tpex.get('3105').date, '2026-06-26');
+  assert.equal(tpex.get('3105').market, 'TPEX');
+  assert.equal(tpex.get('3105').source, 'tpex-daily-close');
 });
 
 test('primary sector mapping assigns 2330 to foundry once', () => {

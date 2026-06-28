@@ -12,7 +12,10 @@ const fmtPct = (value, digits = 1) => `${value > 0 ? '+' : ''}${Number(value || 
 const fmtPrice = (value) => Number(value).toLocaleString('zh-TW', { maximumFractionDigits: 2 });
 const pctColor = (value) => value > 0 ? CATEGORY_META.green.color : value < 0 ? CATEGORY_META.red.color : CATEGORY_META.gray.color;
 const SOURCE_LABELS = {
+  'merged-quotes': '股價補齊',
   'twse-mis': '即時股價',
+  'official-daily-quotes': '官方補價',
+  'yahoo-chart': 'Yahoo補價',
   'twse-price': '上市收盤價',
   'twse-chip': '上市法人資金',
   'tpex-price': '上櫃收盤價',
@@ -109,7 +112,7 @@ function mergeRealtimeData(data, realtime) {
       price: quote.price,
       chg_1d: quote.chg_1d,
       market: quote.market || stockData[code]?.market || null,
-      quoteStatus: 'realtime',
+      quoteStatus: quote.quoteStatus || 'realtime',
       quoteSource: quote.source,
       quoteDate: quote.date,
       quoteTime: quote.time,
@@ -656,15 +659,23 @@ function SectorDrawer({ sector, data, onClose }) {
   const cat = classifySector(sector);
   const meta = CATEGORY_META[cat];
   const stockData = data.stockData || {};
-  const quotedCount = sector.stocks.filter((code) => stockData[code]?.quoteStatus === 'realtime' || stockData[code]?.quoteStatus === 'ok' || stockData[code]?.price != null).length;
-  const realtimeCount = sector.stocks.filter((code) => stockData[code]?.quoteStatus === 'realtime').length;
+  const hasPublicQuote = (code) => stockData[code]?.quoteStatus === 'realtime' || stockData[code]?.quoteStatus === 'ok' || stockData[code]?.price != null;
+  const displayStocks = sector.stocks.filter(hasPublicQuote);
+  const quotedCount = displayStocks.length;
+  const unavailableCount = sector.stocks.length - quotedCount;
+  const realtimeCount = displayStocks.filter((code) => stockData[code]?.quoteStatus === 'realtime').length;
+  const fallbackCount = displayStocks.filter((code) => stockData[code]?.quoteStatus === 'fallback').length;
+  const quoteLabel = realtimeCount ? '即時股價' : fallbackCount ? '補齊股價' : '官方股價';
   return h('div', { className: 'drawer-backdrop', onClick: onClose },
     h('aside', { className: 'drawer glass', onClick: (event) => event.stopPropagation() },
       h('div', { className: 'drawer-head' },
         h('div', null,
           h('span', { className: 'drawer-badge', style: { color: meta.color, borderColor: meta.color } }, meta.label),
           h('h2', null, sector.name),
-          h('p', { className: 'quote-coverage' }, `${realtimeCount ? '即時股價' : '官方股價'} ${quotedCount} / ${sector.stocks.length}`)
+          h('p', { className: 'quote-coverage' },
+            `${quoteLabel} ${quotedCount} / ${sector.stocks.length}`,
+            unavailableCount ? `，已排除 ${unavailableCount} 檔無公開報價` : ''
+          )
         ),
         h('button', { className: 'icon-btn', onClick: onClose, title: '關閉' }, '×')
       ),
@@ -678,7 +689,7 @@ function SectorDrawer({ sector, data, onClose }) {
       ),
       h('div', { className: 'stock-table' },
         h('div', { className: 'stock-row head' }, h('span', null, '代碼'), h('span', null, '名稱'), h('span', null, '股價'), h('span', null, '漲跌'), h('span', null, '資金')),
-        sector.stocks.map((code) => {
+        displayStocks.length ? displayStocks.map((code) => {
           const item = stockData[code];
           const hasQuote = item?.quoteStatus === 'realtime' || item?.quoteStatus === 'ok' || item?.price != null;
           const isRealtime = item?.quoteStatus === 'realtime';
@@ -686,12 +697,12 @@ function SectorDrawer({ sector, data, onClose }) {
             h('span', null, code),
             h('span', null, item?.name || STOCK_NAMES[code] || '—'),
             h('span', { className: hasQuote ? (isRealtime ? 'live-price' : '') : 'quote-missing' },
-              hasQuote ? fmtPrice(item.price) : '無股價'
+              hasQuote ? fmtPrice(item.price) : '無公開報價'
             ),
             h('span', { style: { color: hasQuote ? pctColor(item.chg_1d) : undefined } }, hasQuote ? fmtPct(item.chg_1d, 2) : '—'),
             h('span', { style: { color: hasQuote ? flowColor(item.net_1d_yi) : undefined } }, hasQuote ? fmtYi(item.net_1d_yi, 2) : '—')
           );
-        })
+        }) : h('div', { className: 'empty-panel' }, '此族群目前沒有可公開報價的成分股')
       )
     )
   );

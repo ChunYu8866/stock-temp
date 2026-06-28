@@ -124,7 +124,7 @@ async function handleRealtimeApi(req, res, url) {
       updatedAt: result.updatedAt,
       source: result.source,
       quotes: Object.fromEntries(result.quotes),
-      sourceStatus: [result.sourceStatus],
+      sourceStatus: [result.sourceStatus, ...(result.sourceStatuses || [])],
     };
     realtimeCache = { codeKey, payload };
     sendJson(res, 200, { ...payload, cache: { hit: false, stale: false } });

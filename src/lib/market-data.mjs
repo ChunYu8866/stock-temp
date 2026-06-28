@@ -200,9 +200,16 @@ async function fetchJson(url, { fetchImpl = fetch, timeoutMs = 16000 } = {}) {
 
 const MIS_HOME_URL = 'https://mis.twse.com.tw/stock/index.jsp';
 const MIS_QUOTE_URL = 'https://mis.twse.com.tw/stock/api/getStockInfo.jsp';
+const TWSE_STOCK_DAY_ALL_URL = 'https://openapi.twse.com.tw/v1/exchangeReport/STOCK_DAY_ALL';
+const TPEX_DAILY_CLOSE_URL = 'https://www.tpex.org.tw/openapi/v1/tpex_mainboard_daily_close_quotes';
+const YAHOO_CHART_URL = 'https://query1.finance.yahoo.com/v8/finance/chart';
 
 function parseYmdCompact(value) {
   const raw = String(value ?? '').replace(/\D/g, '');
+  if (raw.length === 7) {
+    const year = Number(raw.slice(0, 3)) + 1911;
+    return `${year}-${raw.slice(3, 5)}-${raw.slice(5, 7)}`;
+  }
   if (raw.length !== 8) return null;
   return `${raw.slice(0, 4)}-${raw.slice(4, 6)}-${raw.slice(6, 8)}`;
 }
@@ -245,6 +252,13 @@ function realtimeChannelsForCode(code, marketByCode) {
   return [`tse_${code}.tw`, `otc_${code}.tw`];
 }
 
+function yahooSymbolsForCode(code, marketByCode) {
+  const market = marketPrefix(marketForCode(marketByCode, code));
+  if (market === 'tse') return [`${code}.TW`];
+  if (market === 'otc') return [`${code}.TWO`];
+  return [`${code}.TW`, `${code}.TWO`];
+}
+
 function chunk(values, size) {
   const out = [];
   for (let index = 0; index < values.length; index += size) {
@@ -284,11 +298,234 @@ export function parseRealtimeQuotes(json) {
   return out;
 }
 
+export function parseYahooChartQuote(json, code, symbol) {
+  const result = json?.chart?.result?.[0];
+  if (!result) return null;
+  const meta = result.meta || {};
+  const quote = result.indicators?.quote?.[0] || {};
+  const closes = quote.close || [];
+  const opens = quote.open || [];
+  const highs = quote.high || [];
+  const lows = quote.low || [];
+  const volumes = quote.volume || [];
+  const timestamps = result.timestamp || [];
+  let lastIndex = closes.length - 1;
+  while (lastIndex >= 0 && !Number.isFinite(parseNumber(closes[lastIndex]))) lastIndex -= 1;
+  if (lastIndex < 0) return null;
+
+  const price = parseNumber(meta.regularMarketPrice ?? closes[lastIndex]);
+  const previousClose = parseNumber(closes.slice(0, lastIndex).reverse().find((value) => Number.isFinite(parseNumber(value))) ?? meta.chartPreviousClose);
+  if (!Number.isFinite(price) || !Number.isFinite(previousClose)) return null;
+  const change = price - previousClose;
+  const market = String(symbol || meta.symbol || '').endsWith('.TWO') ? 'TPEX' : 'TWSE';
+  const date = timestamps[lastIndex]
+    ? new Date((timestamps[lastIndex] + (meta.gmtoffset ?? 0)) * 1000).toISOString().slice(0, 10)
+    : null;
+
+  return {
+    code,
+    name: STOCK_NAMES[code] || String(meta.shortName || meta.longName || code).trim(),
+    price: round(price, 2),
+    previousClose: round(previousClose, 2),
+    change: round(change, 2),
+    chg_1d: previousClose > 0 ? round((change / previousClose) * 100, 2) : 0,
+    open: round(parseNumber(opens[lastIndex]), 2),
+    high: round(parseNumber(highs[lastIndex] ?? meta.regularMarketDayHigh), 2),
+    low: round(parseNumber(lows[lastIndex] ?? meta.regularMarketDayLow), 2),
+    volume: parseNumber(volumes[lastIndex] ?? meta.regularMarketVolume),
+    date,
+    time: meta.regularMarketTime ? new Date((meta.regularMarketTime + (meta.gmtoffset ?? 0)) * 1000).toISOString().slice(11, 19) : null,
+    market,
+    quoteStatus: 'fallback',
+    source: 'yahoo-chart',
+  };
+}
+
+function officialQuoteFromRow({ code, name, close, diff, open, high, low, volume, date, market, source }) {
+  const price = parseNumber(close);
+  const change = parseNumber(diff);
+  if (!isCommonStockCode(code) || !Number.isFinite(price) || !Number.isFinite(change)) return null;
+  const previousClose = price - change;
+  return {
+    code,
+    name: String(name || STOCK_NAMES[code] || code).trim(),
+    price: round(price, 2),
+    previousClose: round(previousClose, 2),
+    change: round(change, 2),
+    chg_1d: previousClose > 0 ? round((change / previousClose) * 100, 2) : 0,
+    open: round(parseNumber(open), 2),
+    high: round(parseNumber(high), 2),
+    low: round(parseNumber(low), 2),
+    volume: parseNumber(volume),
+    date: parseYmdCompact(date),
+    time: null,
+    market,
+    quoteStatus: 'fallback',
+    source,
+  };
+}
+
+export function parseTwseOpenApiQuotes(json) {
+  const out = new Map();
+  for (const row of json ?? []) {
+    const code = String(row?.Code ?? '').trim();
+    const quote = officialQuoteFromRow({
+      code,
+      name: row?.Name,
+      close: row?.ClosingPrice,
+      diff: row?.Change,
+      open: row?.OpeningPrice,
+      high: row?.HighestPrice,
+      low: row?.LowestPrice,
+      volume: row?.TradeVolume,
+      date: row?.Date,
+      market: 'TWSE',
+      source: 'twse-stock-day-all',
+    });
+    if (quote) out.set(code, quote);
+  }
+  return out;
+}
+
+export function parseTpexOpenApiQuotes(json) {
+  const out = new Map();
+  for (const row of json ?? []) {
+    const code = String(row?.SecuritiesCompanyCode ?? '').trim();
+    const quote = officialQuoteFromRow({
+      code,
+      name: row?.CompanyName,
+      close: row?.Close,
+      diff: row?.Change,
+      open: row?.Open,
+      high: row?.High,
+      low: row?.Low,
+      volume: row?.TradingShares,
+      date: row?.Date,
+      market: 'TPEX',
+      source: 'tpex-daily-close',
+    });
+    if (quote) out.set(code, quote);
+  }
+  return out;
+}
+
+export async function fetchOfficialFallbackQuotes(codes, {
+  fetchImpl = fetch,
+  marketByCode = null,
+} = {}) {
+  const cleanCodes = [...new Set(codes.map((code) => String(code).trim()).filter(isCommonStockCode))];
+  const wanted = new Set(cleanCodes);
+  const quotes = new Map();
+  const entries = await Promise.allSettled([
+    fetchJson(TWSE_STOCK_DAY_ALL_URL, { fetchImpl, timeoutMs: 12000 }),
+    fetchJson(TPEX_DAILY_CLOSE_URL, { fetchImpl, timeoutMs: 12000 }),
+  ]);
+  const twseQuotes = entries[0].status === 'fulfilled' ? parseTwseOpenApiQuotes(entries[0].value) : new Map();
+  const tpexQuotes = entries[1].status === 'fulfilled' ? parseTpexOpenApiQuotes(entries[1].value) : new Map();
+  for (const code of cleanCodes) {
+    const market = marketPrefix(marketForCode(marketByCode, code));
+    const quote = market === 'otc'
+      ? tpexQuotes.get(code)
+      : market === 'tse'
+        ? twseQuotes.get(code)
+        : twseQuotes.get(code) || tpexQuotes.get(code);
+    if (quote && wanted.has(code)) quotes.set(code, quote);
+  }
+  const failCount = entries.filter((entry) => entry.status === 'rejected').length;
+  const lastError = [...entries].reverse().find((entry) => entry.status === 'rejected')?.reason?.message ?? null;
+  return {
+    updatedAt: new Date().toISOString(),
+    source: 'official-daily-quotes',
+    quotes,
+    sourceStatus: {
+      source: 'official-daily-quotes',
+      ok: quotes.size > 0,
+      rows: quotes.size,
+      requested: cleanCodes.length,
+      failCount,
+      lastOkDate: [...quotes.values()][0]?.date ?? null,
+      lastError,
+    },
+  };
+}
+
+async function mapWithConcurrency(values, concurrency, mapper) {
+  const results = new Array(values.length);
+  let index = 0;
+  async function worker() {
+    while (index < values.length) {
+      const current = index;
+      index += 1;
+      results[current] = await mapper(values[current], current);
+    }
+  }
+  await Promise.all(Array.from({ length: Math.min(concurrency, values.length) }, worker));
+  return results;
+}
+
+export async function fetchYahooFallbackQuotes(codes, {
+  fetchImpl = fetch,
+  marketByCode = null,
+  concurrency = 8,
+  timeoutMs = 12000,
+} = {}) {
+  const cleanCodes = [...new Set(codes.map((code) => String(code).trim()).filter(isCommonStockCode))];
+  const quotes = new Map();
+  let failCount = 0;
+  let lastError = null;
+  const startedAt = new Date().toISOString();
+
+  await mapWithConcurrency(cleanCodes, concurrency, async (code) => {
+    for (const symbol of yahooSymbolsForCode(code, marketByCode)) {
+      const controller = new AbortController();
+      const timer = setTimeout(() => controller.abort(), timeoutMs);
+      try {
+        const response = await fetchImpl(`${YAHOO_CHART_URL}/${symbol}?range=5d&interval=1d`, {
+          signal: controller.signal,
+          headers: {
+            accept: 'application/json,text/plain,*/*',
+            'user-agent': 'sector-rotation-light/1.0',
+          },
+        });
+        if (!response.ok) throw new Error(`${symbol} HTTP ${response.status}`);
+        const parsed = await response.json();
+        const quote = parseYahooChartQuote(parsed, code, symbol);
+        if (quote) {
+          quotes.set(code, quote);
+          return;
+        }
+        throw new Error(`${symbol} empty quote`);
+      } catch (error) {
+        failCount += 1;
+        lastError = error.message;
+      } finally {
+        clearTimeout(timer);
+      }
+    }
+  });
+
+  return {
+    updatedAt: startedAt,
+    source: 'yahoo-chart',
+    quotes,
+    sourceStatus: {
+      source: 'yahoo-chart',
+      ok: quotes.size > 0,
+      rows: quotes.size,
+      requested: cleanCodes.length,
+      failCount,
+      lastOkDate: [...quotes.values()][0]?.date ?? null,
+      lastError,
+    },
+  };
+}
+
 export async function fetchRealtimeQuotes(codes, {
   fetchImpl = fetch,
   marketByCode = null,
   batchSize = 70,
   timeoutMs = 9000,
+  fallback = true,
 } = {}) {
   const cleanCodes = [...new Set(codes.map((code) => String(code).trim()).filter(isCommonStockCode))];
   const channels = cleanCodes.flatMap((code) => realtimeChannelsForCode(code, marketByCode));
@@ -339,23 +576,67 @@ export async function fetchRealtimeQuotes(codes, {
         lastError = error.message;
       }
     }
+  } catch (error) {
+    failCount += 1;
+    lastError = error.message;
   } finally {
     clearTimeout(timer);
   }
 
+  const misStatus = {
+    source: 'twse-mis',
+    ok: quotes.size > 0,
+    rows: quotes.size,
+    requested: cleanCodes.length,
+    failCount,
+    lastOkDate: [...quotes.values()][0]?.date ?? null,
+    lastError,
+  };
+  const sourceStatuses = [misStatus];
+  if (fallback) {
+    const officialMissingCodes = cleanCodes.filter((code) => !quotes.has(code));
+    if (officialMissingCodes.length) {
+      const official = await fetchOfficialFallbackQuotes(officialMissingCodes, {
+        fetchImpl,
+        marketByCode,
+      });
+      for (const [code, quote] of official.quotes) {
+        if (!quotes.has(code)) quotes.set(code, quote);
+      }
+      sourceStatuses.push(official.sourceStatus);
+    }
+
+    const yahooMissingCodes = cleanCodes.filter((code) => !quotes.has(code));
+    if (yahooMissingCodes.length) {
+      const yahoo = await fetchYahooFallbackQuotes(yahooMissingCodes, {
+        fetchImpl,
+        marketByCode,
+        timeoutMs,
+      });
+      for (const [code, quote] of yahoo.quotes) {
+        if (!quotes.has(code)) quotes.set(code, quote);
+      }
+      sourceStatuses.push(yahoo.sourceStatus);
+    }
+  }
+  const mergedLastOkDate = [...quotes.values()][0]?.date ?? null;
+  const totalFailCount = sourceStatuses.reduce((sum, item) => sum + (item.failCount || 0), 0);
+  const lastSourceError = [...sourceStatuses].reverse().find((item) => item.lastError)?.lastError ?? null;
+
   return {
     updatedAt: startedAt,
-    source: 'twse-mis',
+    source: fallback ? 'merged-quotes' : 'twse-mis',
     quotes,
     sourceStatus: {
-      source: 'twse-mis',
+      source: fallback ? 'merged-quotes' : 'twse-mis',
       ok: quotes.size > 0,
       rows: quotes.size,
       requested: cleanCodes.length,
-      failCount,
-      lastOkDate: [...quotes.values()][0]?.date ?? null,
-      lastError,
+      failCount: totalFailCount,
+      lastOkDate: mergedLastOkDate,
+      lastError: lastSourceError,
     },
+    sourceStatuses,
   };
 }
 
