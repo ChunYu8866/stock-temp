@@ -184,6 +184,7 @@ function Header({ dataState, activeTab, onTab }) {
         )
       ),
       el('div', { className: 'hero-actions' },
+        el('a', { className: 'ghost-link', href: `${base}fund-flow/` }, '原資金流向'),
         el(DataBadge, { source, loading, error })
       )
     ),

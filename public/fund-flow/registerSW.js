@@ -1,0 +1,1 @@
+if('serviceWorker' in navigator) {window.addEventListener('load', () => {navigator.serviceWorker.register('/sector-rotation/fund-flow/sw.js', { scope: '/sector-rotation/fund-flow/' })})}
