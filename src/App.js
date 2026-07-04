@@ -61,23 +61,43 @@ function normalizeData(payload) {
   };
 }
 
-async function fetchJson(path) {
-  const response = await fetch(`${base}api/market-resource?path=${encodeURIComponent(path)}`, { cache: 'no-store' });
+async function requestJson(url) {
+  const response = await fetch(url, { cache: 'no-store' });
   if (!response.ok) throw new Error(`HTTP ${response.status}`);
   return response.json();
+}
+
+function staticMarketPath(path) {
+  const clean = String(path || '').trim().replace(/^\/+/, '');
+  if (!/^data\/[a-z0-9_./-]+\.json$/i.test(clean)) return null;
+  return `${base}data/market/${clean.replace(/^data\//, '')}`;
+}
+
+async function fetchJson(path) {
+  try {
+    return await requestJson(`${base}api/market-resource?path=${encodeURIComponent(path)}`);
+  } catch (apiError) {
+    const staticPath = staticMarketPath(path);
+    if (!staticPath) throw apiError;
+    return requestJson(staticPath);
+  }
+}
+
+async function fetchPrimaryPayload() {
+  try {
+    return await requestJson(`${base}api/etf-data`);
+  } catch {
+    return requestJson(`${base}data/etf-data.json`).then((payload) => ({ ...payload, source: 'live' }));
+  }
 }
 
 function usePrimaryData() {
   const [state, setState] = useState({ data: DEMO_DATA, source: 'demo', loading: true, error: null });
   useEffect(() => {
     let cancelled = false;
-    fetch(`${base}api/etf-data`, { cache: 'no-store' })
-      .then((response) => {
-        if (!response.ok) throw new Error(`HTTP ${response.status}`);
-        return response.json();
-      })
+    fetchPrimaryPayload()
       .then((payload) => {
-        if (!cancelled) setState({ data: normalizeData(payload), source: payload?.source || 'live', loading: false, error: null });
+        if (!cancelled) setState({ data: normalizeData(payload), source: payload?.source || 'snapshot', loading: false, error: null });
       })
       .catch((error) => {
         if (!cancelled) setState({ data: DEMO_DATA, source: 'demo', loading: false, error: error.message });
@@ -151,7 +171,7 @@ function kpi(label, value, detail, toneName) {
 
 function DataBadge({ source, loading, error }) {
   const text = loading ? '資料載入中' : source === 'live' ? '資料已更新' : '備援資料';
-  return el('span', { className: cx('data-badge', source === 'live' ? 'live' : 'demo') },
+  return el('span', { className: cx('data-badge', source === 'demo' ? 'demo' : 'live') },
     text,
     error ? el('small', null, ` · 已切換備援`) : null
   );
