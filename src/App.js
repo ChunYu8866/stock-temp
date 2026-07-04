@@ -89,6 +89,38 @@ function usePrimaryData() {
   return state;
 }
 
+function useSectorData() {
+  const [state, setState] = useState({ data: null, source: 'loading', loading: true, error: null });
+  useEffect(() => {
+    let cancelled = false;
+    fetch(`${base}api/sector-rotation`, { cache: 'no-store' })
+      .then((response) => {
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        return response.json();
+      })
+      .then((payload) => {
+        if (!cancelled) setState({ data: payload, source: 'live', loading: false, error: null });
+      })
+      .catch((apiError) => {
+        fetch(`${base}data/latest.json`, { cache: 'no-store' })
+          .then((response) => {
+            if (!response.ok) throw new Error(`HTTP ${response.status}`);
+            return response.json();
+          })
+          .then((payload) => {
+            if (!cancelled) setState({ data: payload, source: 'snapshot', loading: false, error: null });
+          })
+          .catch((snapshotError) => {
+            if (!cancelled) setState({ data: null, source: 'demo', loading: false, error: `${apiError.message}; ${snapshotError.message}` });
+          });
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+  return state;
+}
+
 function useResource(path, enabled, fallback) {
   const [state, setState] = useState({ data: fallback, loading: false, source: 'demo', error: null });
   useEffect(() => {
@@ -201,6 +233,56 @@ function computeFlowBuckets(data) {
       leaders: bucket.leaders.sort((a, b) => Math.abs(b.money || 0) - Math.abs(a.money || 0)).slice(0, 3),
     }))
     .sort((a, b) => Math.abs(b.money) - Math.abs(a.money));
+}
+
+function sectorToneClass(sector) {
+  if (sector?.category === 'green' || Number(sector?.net_1d_yi) > 0) return 'flow-in';
+  if (sector?.category === 'red' || Number(sector?.net_1d_yi) < 0) return 'flow-out';
+  return 'neutral';
+}
+
+function MarketHeatPanel({ sectorState }) {
+  const sectors = sectorState.data?.sectors || [];
+  const topIn = [...sectors].sort((a, b) => Number(b.net_1d_yi || 0) - Number(a.net_1d_yi || 0)).slice(0, 5);
+  const topOut = [...sectors].sort((a, b) => Number(a.net_1d_yi || 0) - Number(b.net_1d_yi || 0)).slice(0, 5);
+  const bottomFishing = sectors.filter((sector) => sector.is_bottom_fishing).slice(0, 5);
+  const marketChg = sectorState.data?.marketChg1d;
+  const statusText = sectorState.loading ? '熱區載入中' : sectorState.source === 'live' ? '熱區已更新' : sectorState.data ? '使用本機快照' : '熱區待更新';
+
+  const sectorCard = (sector) => el('div', { key: sector.name, className: cx('sector-card', sectorToneClass(sector)) },
+    el('strong', null, sector.name),
+    el('b', null, `${fmtNum(sector.net_1d_yi, 2)} 億`),
+    el('small', null, `1 日 ${fmtPct(sector.chg_1d)} · 5 日 ${fmtNum(sector.net_5d_yi, 1)} 億`)
+  );
+
+  return el('section', { className: 'panel market-merge-panel' },
+    el('div', { className: 'panel-title' },
+      el('div', null,
+        el('h2', null, '台股熱區 × ETF 資金流'),
+        el('p', null, '把原本的市場族群資金與 ETF 持股流向放在同一個總覽頁。')
+      ),
+      el('span', { className: 'hint-pill' }, statusText)
+    ),
+    el('div', { className: 'merge-grid' },
+      el('div', { className: 'merge-summary' },
+        kpi('加權指數日變動', marketChg == null ? '—' : fmtPct(marketChg), sectorState.data?.date || '等待資料', tone(marketChg)),
+        kpi('熱區族群數', fmtNum(sectors.length), bottomFishing.length ? `${fmtNum(bottomFishing.length)} 組低接訊號` : '市場族群掃描'),
+        kpi('ETF 檢視模式', '同頁整合', '下方接續 ETF 資金總覽')
+      ),
+      el('div', { className: 'sector-column' },
+        el('h3', null, '族群流入'),
+        topIn.length ? topIn.map(sectorCard) : el('p', { className: 'empty' }, '尚無熱區資料')
+      ),
+      el('div', { className: 'sector-column' },
+        el('h3', null, '族群流出'),
+        topOut.length ? topOut.map(sectorCard) : el('p', { className: 'empty' }, '尚無熱區資料')
+      ),
+      el('div', { className: 'sector-column' },
+        el('h3', null, '低接訊號'),
+        bottomFishing.length ? bottomFishing.map(sectorCard) : el('p', { className: 'empty' }, '目前沒有明顯低接訊號')
+      )
+    )
+  );
 }
 
 function FlowOverview({ data, onEtf, onStock }) {
@@ -934,6 +1016,7 @@ function InteractiveLineChart({ series, height = 240, valueSuffix = '', baseline
 
 function App() {
   const dataState = usePrimaryData();
+  const sectorState = useSectorData();
   const data = dataState.data;
   const [tab, setTab] = useState('flow');
   const [selectedEtf, setSelectedEtf] = useState(null);
@@ -952,7 +1035,10 @@ function App() {
   return el(React.Fragment, null,
     el('main', { className: 'app-shell' },
       el(Header, { dataState, activeTab: tab, onTab: setTab }),
-      tab === 'flow' ? el(FlowOverview, { data, onEtf: openEtf, onStock: openStock }) : null,
+      tab === 'flow' ? el(React.Fragment, null,
+        el(MarketHeatPanel, { sectorState }),
+        el(FlowOverview, { data, onEtf: openEtf, onStock: openStock })
+      ) : null,
       tab === 'active' ? el(ActiveMoves, { data, onEtf: openEtf }) : null,
       tab === 'etf' ? el(EtfOverview, { data, onEtf: openEtf }) : null,
       tab === 'rank' ? el(RankView, { data, onStock: openStock }) : null,
