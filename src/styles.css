@@ -185,27 +185,6 @@ p {
   font-weight: 900;
 }
 
-.ghost-link {
-  min-height: 30px;
-  padding: 0 10px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 8px;
-  color: var(--text);
-  font-size: 12px;
-  font-weight: 800;
-  text-decoration: none;
-  white-space: nowrap;
-  background: #fff;
-  border: 1px solid var(--line);
-}
-
-.ghost-link:hover {
-  color: var(--blue);
-  border-color: rgba(37, 99, 235, 0.35);
-}
-
 .data-badge,
 .hint-pill {
   min-height: 30px;
@@ -331,6 +310,24 @@ p {
   display: flex;
   flex-direction: column;
   gap: 14px;
+}
+
+.embedded-heat-wrap {
+  min-width: 0;
+  min-height: 78vh;
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  box-shadow: 0 18px 45px var(--shadow);
+}
+
+.embedded-heat-frame {
+  width: 100%;
+  min-height: 1400px;
+  display: block;
+  border: 0;
+  background: #f5f5f7;
 }
 
 .grid-page {
@@ -1064,6 +1061,10 @@ footer {
 
   h1 {
     font-size: 23px;
+  }
+
+  .embedded-heat-frame {
+    min-height: 1550px;
   }
 
   .tabs,

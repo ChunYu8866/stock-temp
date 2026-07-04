@@ -190,7 +190,8 @@ function Header({ dataState, activeTab, onTab }) {
   const totalNet = data.etfs.reduce((sum, item) => sum + Number(item.net || 0), 0);
   const activeNet = data.etfs.filter(isActiveEtf).reduce((sum, item) => sum + Number(item.net || 0), 0);
   const tabs = [
-    ['flow', '資金總覽'],
+    ['heat', '台股熱區'],
+    ['flow', 'ETF 資金總覽'],
     ['active', '主動式 ETF 進出'],
     ['etf', 'ETF 總覽'],
     ['rank', '投信買賣超'],
@@ -211,7 +212,6 @@ function Header({ dataState, activeTab, onTab }) {
         )
       ),
       el('div', { className: 'hero-actions' },
-        el('a', { className: 'ghost-link', href: `${base}fund-flow/` }, '原資金流向'),
         el(DataBadge, { source, loading, error })
       )
     ),
@@ -1063,11 +1063,22 @@ function InteractiveLineChart({ series, height = 240, valueSuffix = '', baseline
   );
 }
 
+function SectorHeatEmbed() {
+  return el('section', { className: 'embedded-heat-wrap' },
+    el('iframe', {
+      className: 'embedded-heat-frame',
+      title: '台股資金溫度計',
+      src: `${base}sector-heat/`,
+      loading: 'eager',
+    })
+  );
+}
+
 function App() {
   const dataState = usePrimaryData();
   const sectorState = useSectorData();
   const data = dataState.data;
-  const [tab, setTab] = useState('flow');
+  const [tab, setTab] = useState('heat');
   const [selectedEtf, setSelectedEtf] = useState(null);
   const [stockCode, setStockCode] = useState('');
   const [perfCodes, setPerfCodes] = useState(['0050', '00878', '00919', '00981A']);
@@ -1084,6 +1095,7 @@ function App() {
   return el(React.Fragment, null,
     el('main', { className: 'app-shell' },
       el(Header, { dataState, activeTab: tab, onTab: setTab }),
+      tab === 'heat' ? el(SectorHeatEmbed) : null,
       tab === 'flow' ? el(React.Fragment, null,
         el(MarketHeatPanel, { sectorState }),
         el(FlowOverview, { data, onEtf: openEtf, onStock: openStock })
