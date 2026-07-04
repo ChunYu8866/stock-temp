@@ -56,7 +56,7 @@ a {
   gap: 14px;
 }
 
-.hero,
+.site-menu,
 .panel,
 .etf-card,
 .active-card {
@@ -66,15 +66,19 @@ a {
   box-shadow: 0 18px 45px var(--shadow);
 }
 
-.hero {
-  padding: 16px;
+.site-menu {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  padding: 12px 16px;
   display: grid;
-  gap: 14px;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 12px;
 }
 
-.hero-main,
-.brand-row,
-.hero-actions,
+.menu-brand,
+.menu-status,
 .panel-title,
 .toolbar,
 .meta-row,
@@ -86,14 +90,41 @@ a {
   gap: 12px;
 }
 
-.hero-main,
 .panel-title,
 .stock-head {
   justify-content: space-between;
 }
 
-.brand-row {
+.menu-brand {
   min-width: 0;
+}
+
+.menu-title {
+  min-width: 0;
+}
+
+.menu-title h1,
+.menu-title p {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.menu-title h1 {
+  font-size: 21px;
+}
+
+.menu-title p {
+  font-size: 12px;
+}
+
+.menu-tabs {
+  min-width: 0;
+  justify-content: center;
+}
+
+.menu-status {
+  justify-content: flex-end;
 }
 
 .brand-mark {
@@ -1017,6 +1048,19 @@ footer {
 }
 
 @media (max-width: 1100px) {
+  .site-menu {
+    grid-template-columns: 1fr;
+    align-items: stretch;
+  }
+
+  .menu-tabs {
+    justify-content: flex-start;
+  }
+
+  .menu-status {
+    justify-content: flex-start;
+  }
+
   .grid-page {
     grid-template-columns: 1fr;
   }
@@ -1049,8 +1093,23 @@ footer {
     padding: 10px;
   }
 
-  .hero-main,
-  .hero-actions,
+  .site-menu {
+    padding: 10px;
+    gap: 10px;
+  }
+
+  .menu-brand {
+    gap: 10px;
+  }
+
+  .menu-title h1 {
+    font-size: 19px;
+  }
+
+  .menu-title p {
+    font-size: 11px;
+  }
+
   .panel-title,
   .toolbar,
   .stock-head,
@@ -1080,7 +1139,6 @@ footer {
     flex: 0 0 auto;
   }
 
-  .hero-kpis,
   .kpi-grid,
   .drawer-kpis,
   .mini-kpis,

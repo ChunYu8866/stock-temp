@@ -187,8 +187,6 @@ function DataBadge({ source, loading, error }) {
 function Header({ dataState, activeTab, onTab }) {
   const { data, source, loading, error } = dataState;
   const meta = data.meta || {};
-  const totalNet = data.etfs.reduce((sum, item) => sum + Number(item.net || 0), 0);
-  const activeNet = data.etfs.filter(isActiveEtf).reduce((sum, item) => sum + Number(item.net || 0), 0);
   const tabs = [
     ['heat', '台股熱區'],
     ['flow', 'ETF 資金總覽'],
@@ -202,31 +200,23 @@ function Header({ dataState, activeTab, onTab }) {
     ['events', '事件'],
   ];
 
-  return el('header', { className: 'hero' },
-    el('div', { className: 'hero-main' },
-      el('div', { className: 'brand-row' },
-          el('div', { className: 'brand-mark' }, 'F'),
-          el('div', null,
-            el('h1', null, '資金流向 Super Dashboard'),
-          el('p', null, `ETF 持股、主動式換股、法人籌碼與市場事件整合 · 資料日 ${meta.latest_slash || ymdSlash(meta.latest)}`)
-        )
-      ),
-      el('div', { className: 'hero-actions' },
-        el(DataBadge, { source, loading, error })
+  return el('header', { className: 'site-menu' },
+    el('div', { className: 'menu-brand' },
+      el('div', { className: 'brand-mark' }, 'F'),
+      el('div', { className: 'menu-title' },
+        el('h1', null, '資金流向 Super Dashboard'),
+        el('p', null, `資料日 ${meta.latest_slash || ymdSlash(meta.latest)} · 台股熱區與 ETF 資金流整合`)
       )
     ),
-    el('div', { className: 'kpi-grid hero-kpis' },
-      kpi('ETF 檔數', fmtNum(meta.etf_total || data.etfs.length), `${fmtNum(meta.active_count || data.etfs.filter(isActiveEtf).length)} 檔主動式`),
-      kpi('全 ETF 持股淨買賣', fmtMoney(totalNet), '正值代表持股估值淨增加', tone(totalNet)),
-      kpi('主動式淨買賣', fmtMoney(activeNet), `${fmtNum(meta.active_updated || 0)} / ${fmtNum(meta.active_total || 0)} 檔已更新`, tone(activeNet)),
-      kpi('覆蓋檔數', fmtNum(meta.cover_latest || data.etfs.length), meta.incomplete ? '部分 ETF 資料落後' : '最新日已覆蓋')
-    ),
-    el('nav', { className: 'tabs', 'aria-label': '功能分頁' },
+    el('nav', { className: 'tabs menu-tabs', 'aria-label': '功能分頁' },
       tabs.map(([key, label]) => el('button', {
         key,
         className: activeTab === key ? 'on' : '',
         onClick: () => onTab(key),
       }, label))
+    ),
+    el('div', { className: 'menu-status' },
+      el(DataBadge, { source, loading, error })
     )
   );
 }
