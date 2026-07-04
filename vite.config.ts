@@ -9,11 +9,11 @@ export default defineConfig({
       registerType: 'autoUpdate',
       includeAssets: ['assets/icon.svg', 'assets/icon-192.png', 'assets/icon-512.png'],
       manifest: {
-        name: '台股熱區溫度計',
-        short_name: '熱區溫度',
+        name: '資金流向 Super Dashboard',
+        short_name: '資金流向',
         display: 'standalone',
-        background_color: '#f6f8fb',
-        theme_color: '#f6f8fb',
+        background_color: '#f4f6f8',
+        theme_color: '#f4f6f8',
         icons: [
           {
             src: 'assets/icon.svg',
@@ -25,13 +25,13 @@ export default defineConfig({
             src: 'assets/icon-192.png',
             sizes: '192x192',
             type: 'image/png',
-            purpose: 'any maskable'
+            purpose: 'any maskable',
           },
           {
             src: 'assets/icon-512.png',
             sizes: '512x512',
             type: 'image/png',
-            purpose: 'any maskable'
+            purpose: 'any maskable',
           },
         ],
       },
@@ -41,9 +41,9 @@ export default defineConfig({
             urlPattern: ({ url }) => url.pathname.startsWith('/api/'),
             handler: 'NetworkFirst',
             options: {
-              cacheName: 'sector-api',
+              cacheName: 'market-flow-api',
               networkTimeoutSeconds: 8,
-              expiration: { maxEntries: 8, maxAgeSeconds: 60 * 60 * 24 },
+              expiration: { maxEntries: 24, maxAgeSeconds: 60 * 60 * 2 },
             },
           },
           {

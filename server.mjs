@@ -10,6 +10,8 @@ const ROOT = resolve(__dirname);
 const CACHE_DIR = join(ROOT, '.cache');
 const PORT = Number(process.env.PORT || 3000);
 let realtimeCache = null;
+const MARKET_DATA_ORIGIN = String(process.env.MARKET_DATA_ORIGIN || '').replace(/\/+$/, '');
+const marketDataCache = new Map();
 
 const MIME = {
   '.html': 'text/html; charset=utf-8',
@@ -53,6 +55,63 @@ async function writeCache(cacheKey, payload) {
 function isFresh(payload, minutes = 25) {
   if (!payload?.updatedAt) return false;
   return Date.now() - Date.parse(payload.updatedAt) < minutes * 60 * 1000;
+}
+
+function safeMarketResourcePath(value) {
+  const path = String(value || 'data.js').trim().replace(/^\/+/, '');
+  if (path === 'data.js') return path;
+  if (path.includes('..') || path.includes('\\')) return null;
+  if (!/^data\/[a-z0-9_./-]+\.json$/i.test(path)) return null;
+  return path;
+}
+
+async function fetchMarketResource(path) {
+  const safePath = safeMarketResourcePath(path);
+  if (!safePath) {
+    const error = new Error('Unsupported market resource path');
+    error.statusCode = 400;
+    throw error;
+  }
+  if (!MARKET_DATA_ORIGIN) {
+    const error = new Error('Market data endpoint is not configured');
+    error.statusCode = 503;
+    throw error;
+  }
+
+  const cached = marketDataCache.get(safePath);
+  if (cached && Date.now() - cached.cachedAt < 10 * 60 * 1000) return cached.payload;
+
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), 16000);
+  try {
+    const response = await fetch(`${MARKET_DATA_ORIGIN}/${safePath}`, {
+      signal: controller.signal,
+      headers: {
+        accept: safePath === 'data.js' ? 'application/javascript,text/plain,*/*' : 'application/json,*/*',
+        'user-agent': 'sector-rotation-light/1.0',
+      },
+    });
+    if (!response.ok) {
+      const error = new Error(`Market data HTTP ${response.status}`);
+      error.statusCode = response.status;
+      throw error;
+    }
+
+    let payload;
+    if (safePath === 'data.js') {
+      const text = await response.text();
+      const jsonText = text.replace(/^\s*window\.DATA\s*=\s*/, '').replace(/;\s*$/, '');
+      payload = JSON.parse(jsonText);
+      payload.source = 'live';
+      payload.fetchedAt = new Date().toISOString();
+    } else {
+      payload = await response.json();
+    }
+    marketDataCache.set(safePath, { cachedAt: Date.now(), payload });
+    return payload;
+  } finally {
+    clearTimeout(timer);
+  }
 }
 
 async function readLatestSnapshot() {
@@ -143,6 +202,16 @@ async function handleRealtimeApi(req, res, url) {
   }
 }
 
+async function handleEtfData(req, res) {
+  const payload = await fetchMarketResource('data.js');
+  sendJson(res, 200, payload);
+}
+
+async function handleMarketResource(req, res, url) {
+  const payload = await fetchMarketResource(url.searchParams.get('path') || 'data.js');
+  sendJson(res, 200, payload);
+}
+
 async function handleStatic(req, res, url) {
   let pathname = url.pathname === '/' ? '/index.html' : url.pathname;
   if (pathname === '/manifest.webmanifest') pathname = '/public/manifest.webmanifest';
@@ -183,14 +252,21 @@ const server = createServer(async (req, res) => {
       await handleApi(req, res, url);
     } else if (url.pathname === '/api/realtime-quotes') {
       await handleRealtimeApi(req, res, url);
+    } else if (url.pathname === '/api/etf-data') {
+      await handleEtfData(req, res);
+    } else if (url.pathname === '/api/market-resource') {
+      await handleMarketResource(req, res, url);
     } else {
       await handleStatic(req, res, url);
     }
   } catch (error) {
-    sendJson(res, 500, { error: 'Internal server error', detail: error.message });
+    sendJson(res, error.statusCode || 500, {
+      error: error.statusCode ? 'Request failed' : 'Internal server error',
+      detail: error.message,
+    });
   }
 });
 
 server.listen(PORT, () => {
-  console.log(`Sector Rotation Light running at http://localhost:${PORT}`);
+  console.log(`Market Flow Super Dashboard running at http://localhost:${PORT}`);
 });
