@@ -24,6 +24,13 @@ function fmtMoney(value, digits = 2) {
   return `${sign}${fmtNum(value, digits)} 億`;
 }
 
+function fmtFlow(value, digits = 2) {
+  const num = Number(value);
+  if (!Number.isFinite(num)) return '—';
+  if (Math.abs(num) < 0.005) return '無異動';
+  return fmtMoney(num, digits);
+}
+
 function fmtPct(value, digits = 2) {
   if (value == null || Number.isNaN(Number(value))) return '—';
   const sign = Number(value) > 0 ? '+' : '';
@@ -270,6 +277,11 @@ function MarketHeatPanel({ sectorState }) {
   const marketChg = sectorState.data?.marketChg1d;
   const statusText = sectorState.loading ? '熱區載入中' : sectorState.source === 'live' ? '熱區已更新' : sectorState.data ? '使用本機快照' : '熱區待更新';
 
+  const heatTiles = [...sectors]
+    .sort((a, b) => Math.abs(Number(b.net_1d_yi || 0)) - Math.abs(Number(a.net_1d_yi || 0)))
+    .slice(0, 32);
+  const maxHeat = Math.max(...heatTiles.map((sector) => Math.abs(Number(sector.net_1d_yi || 0))), 1);
+
   const sectorCard = (sector) => el('div', { key: sector.name, className: cx('sector-card', sectorToneClass(sector)) },
     el('strong', null, sector.name),
     el('b', null, `${fmtNum(sector.net_1d_yi, 2)} 億`),
@@ -283,6 +295,22 @@ function MarketHeatPanel({ sectorState }) {
         el('p', null, '把原本的市場族群資金與 ETF 持股流向放在同一個總覽頁。')
       ),
       el('span', { className: 'hint-pill' }, statusText)
+    ),
+    el('div', { className: 'sector-heatmap', 'aria-label': '族群資金熱力圖' },
+      heatTiles.length ? heatTiles.map((sector) => {
+        const value = Number(sector.net_1d_yi || 0);
+        const strength = Math.max(0.16, Math.min(1, Math.abs(value) / maxHeat));
+        return el('div', {
+          key: sector.name,
+          className: cx('sector-heat-tile', sectorToneClass(sector), sector.is_bottom_fishing ? 'bottom-signal' : ''),
+          style: { '--strength': String(strength), '--alpha': String(0.12 + strength * 0.42) },
+          title: `${sector.name} ${fmtFlow(value)} · 1日 ${fmtPct(sector.chg_1d)}`,
+        },
+          el('strong', null, sector.name),
+          el('b', null, fmtFlow(value)),
+          el('small', null, `1日 ${fmtPct(sector.chg_1d)} · 5日 ${fmtNum(sector.net_5d_yi, 1)} 億`)
+        );
+      }) : el('p', { className: 'empty' }, '熱力圖資料載入中')
     ),
     el('div', { className: 'merge-grid' },
       el('div', { className: 'merge-summary' },
@@ -343,7 +371,7 @@ function FlowOverview({ data, onEtf, onStock }) {
         topEtfs.map((etf, index) => el('button', { key: etf.code, className: 'rank-row', onClick: () => onEtf(etf.code) },
           el('span', { className: 'rank-no' }, index + 1),
           el('span', null, el('b', null, etf.code), el('small', null, etf.name)),
-          el('em', { className: tone(etf.net) }, fmtMoney(etf.net))
+          el('em', { className: tone(etf.net) }, fmtFlow(etf.net))
         ))
       )
     ),
@@ -412,7 +440,7 @@ function ActiveMoves({ data, onEtf }) {
         rows: rows.map((row) => [
           el('button', { className: 'linklike', onClick: () => onEtf(row.etf.code) }, `${row.etf.code} ${row.etf.name}`),
           `${fmtNum(row.etf.scale, 1)} 億`,
-          el('span', { className: tone(row.etf.net) }, fmtMoney(row.etf.net)),
+          el('span', { className: tone(row.etf.net) }, fmtFlow(row.etf.net)),
           fmtMoney(row.etf.buy_amt),
           fmtMoney(row.etf.sell_amt),
           `${row.newCount} / ${row.clearCount}`,
@@ -433,7 +461,7 @@ function ActiveCard({ row, onEtf }) {
       el('button', { className: 'icon-action', onClick: () => onEtf(etf.code), title: 'ETF 明細' }, '↗')
     ),
     el('div', { className: 'mini-kpis' },
-      kpi('淨買賣', fmtMoney(etf.net), null, tone(etf.net)),
+      kpi('淨買賣', fmtFlow(etf.net), null, tone(etf.net)),
       kpi('新進', fmtNum(row.newCount), '檔'),
       kpi('出清', fmtNum(row.clearCount), '檔')
     ),
@@ -475,7 +503,7 @@ function EtfOverview({ data, onEtf }) {
           el('button', { className: 'linklike', onClick: () => onEtf(etf.code) }, `${etf.code} ${etf.name}`),
           isActiveEtf(etf) ? '主動式' : '被動',
           `${fmtNum(etf[scaleBasis === 'month' ? 'mscale' : 'scale'] ?? etf.scale, 1)} 億`,
-          el('span', { className: tone(etf.net) }, fmtMoney(etf.net)),
+          el('span', { className: tone(etf.net) }, fmtFlow(etf.net)),
           etf.yld == null ? '—' : fmtPct(etf.yld),
           etf.prem == null ? '—' : fmtPct(etf.prem),
           ymdSlash(etf.date),
@@ -490,7 +518,7 @@ function EtfCard({ etf, onEtf, scaleBasis }) {
   return el('button', { className: 'etf-card', onClick: () => onEtf(etf.code) },
     el('div', { className: 'card-head' },
       el('div', null, el('b', null, etf.code), el('h3', null, etf.name), el('p', null, `${isActiveEtf(etf) ? '主動式' : '被動'} · ${ymdSlash(etf.date)}`)),
-      el('em', { className: tone(etf.net) }, fmtMoney(etf.net))
+      el('em', { className: tone(etf.net) }, fmtFlow(etf.net))
     ),
     el('div', { className: 'meta-row' },
       el('span', null, `規模 ${fmtNum(scale, 1)} 億`),
@@ -930,7 +958,7 @@ function EtfDrawer({ code, data, onClose, onStock, addPerf }) {
       ),
       el('div', { className: 'kpi-grid drawer-kpis' },
         kpi('規模', `${fmtNum(etf.scale, 1)} 億`),
-        kpi('持股淨買賣', fmtMoney(etf.net), null, tone(etf.net)),
+        kpi('持股淨買賣', fmtFlow(etf.net), null, tone(etf.net)),
         kpi('殖利率', fmtPct(etf.yld)),
         kpi('年化報酬', fmtPct(etf.ret?.ann), etf.ret?.since ? `上市 ${ymdSlash(etf.ret.since)}` : null)
       ),
