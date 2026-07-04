@@ -1,768 +1,970 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { createRoot } from 'react-dom/client';
-import { STOCK_NAMES, STOCK_TO_SECTORS } from './data/sectors.mjs';
-import { CATEGORY_META, classifySector, flowColor } from './lib/market-data.mjs';
-
-const base = import.meta.env?.BASE_URL || '/';
+import { DEMO_DATA, DEMO_DTS, DEMO_EVENTS, DEMO_INST, DEMO_ZIJIE } from './data/demo-etf.mjs';
 
 const h = React.createElement;
-const cats = ['green', 'yellow', 'gray', 'red'];
-const fmtYi = (value, digits = 1) => `${value >= 0 ? '+' : ''}${Number(value || 0).toFixed(digits)} 億`;
-const fmtPct = (value, digits = 1) => `${value > 0 ? '+' : ''}${Number(value || 0).toFixed(digits)}%`;
-const fmtPrice = (value) => Number(value).toLocaleString('zh-TW', { maximumFractionDigits: 2 });
-const pctColor = (value) => value > 0 ? CATEGORY_META.green.color : value < 0 ? CATEGORY_META.red.color : CATEGORY_META.gray.color;
-const SOURCE_LABELS = {
-  'merged-quotes': '股價補齊',
-  'twse-mis': '即時股價',
-  'official-daily-quotes': '官方補價',
-  'yahoo-chart': 'Yahoo補價',
-  'twse-price': '上市收盤價',
-  'twse-chip': '上市法人資金',
-  'tpex-price': '上櫃收盤價',
-  'tpex-chip': '上櫃法人資金',
-  'twse-index': '大盤漲跌',
-};
-const GLOSSARY_STORAGE_KEY = 'sector-temperature-glossary-v1';
-const TERM_GLOSSARY = [
-  { term: '熱區', desc: '法人資金明顯流入的族群，紅色越深代表買超金額越大。' },
-  { term: '冷區', desc: '法人資金明顯流出的族群，綠色越深代表賣超金額越大。' },
-  { term: '資金流向', desc: '把三大法人買超或賣超換算成億元，方便比較不同族群。' },
-  { term: '升溫', desc: '近 5 日資金流入，而且流入力道比 20 日平均更強。' },
-  { term: '恆溫', desc: '近 5 日仍是資金流入，但加速力道沒有變強。' },
-  { term: '低溫', desc: '資金接近中性，沒有明顯流入或流出。' },
-  { term: '降溫', desc: '近 5 日資金流出，代表族群轉弱或被法人調節。' },
-  { term: '資金加速度', desc: '近 5 日每日平均資金，減去近 20 日每日平均資金。' },
-  { term: '蓄勢', desc: '資金流入排名靠前，但股價漲幅還不算大。' },
-  { term: '逆勢轉強', desc: '大盤偏弱時，仍有法人資金流入的族群。' },
-];
+const base = import.meta.env?.BASE_URL || '/';
 
-function useSectorData() {
-  const [state, setState] = useState({ data: null, loading: true, error: null });
-  const load = async (refresh = false) => {
-    setState((current) => ({ ...current, loading: true, error: null }));
-    try {
-      const response = await fetch(`${base}api/sector-rotation?date=latest&refresh=${refresh ? 1 : 0}`);
-      if (!response.ok) throw new Error(`API HTTP ${response.status}`);
-      const payload = await response.json();
-      setState({ data: payload, loading: false, error: null });
-    } catch (apiError) {
-      try {
-        const staticResponse = await fetch(`${base}data/latest.json?ts=${Date.now()}`, { cache: 'no-store' });
-        if (!staticResponse.ok) throw new Error(`Static fallback failed: HTTP ${staticResponse.status}`);
-        const payload = await staticResponse.json();
-        setState({ data: { ...payload, cache: { hit: true, stale: false, static: true } }, loading: false, error: null });
-      } catch (fallbackError) {
-        setState((current) => ({ ...current, loading: false, error: fallbackError.message }));
-      }
-    }
-  };
-  useEffect(() => {
-    load(false);
-  }, []);
-  return { ...state, refresh: () => load(true) };
+function el(type, props, ...children) {
+  return h(type, props || {}, ...children.flat(Infinity).filter((child) => child !== null && child !== undefined && child !== false));
 }
 
-function useRealtimeQuotes(data) {
-  const [state, setState] = useState({ quotes: {}, status: null, updatedAt: null, disabled: false, error: null });
+function cx(...parts) {
+  return parts.filter(Boolean).join(' ');
+}
+
+function fmtNum(value, digits = 0) {
+  if (value == null || Number.isNaN(Number(value))) return '—';
+  return Number(value).toLocaleString('zh-TW', { maximumFractionDigits: digits, minimumFractionDigits: digits });
+}
+
+function fmtMoney(value, digits = 2) {
+  if (value == null || Number.isNaN(Number(value))) return '—';
+  const sign = Number(value) > 0 ? '+' : '';
+  return `${sign}${fmtNum(value, digits)} 億`;
+}
+
+function fmtPct(value, digits = 2) {
+  if (value == null || Number.isNaN(Number(value))) return '—';
+  const sign = Number(value) > 0 ? '+' : '';
+  return `${sign}${fmtNum(value, digits)}%`;
+}
+
+function ymdSlash(value) {
+  const raw = String(value || '').replace(/\D/g, '');
+  if (raw.length !== 8) return value || '—';
+  return `${raw.slice(0, 4)}/${raw.slice(4, 6)}/${raw.slice(6, 8)}`;
+}
+
+function tone(value) {
+  if (Number(value) > 0) return 'up';
+  if (Number(value) < 0) return 'down';
+  return 'muted';
+}
+
+function absMoney(row) {
+  return Math.abs(Number(row?.money || 0));
+}
+
+function isActiveEtf(etf) {
+  return etf?.type === 'active' || /A$/i.test(String(etf?.code || ''));
+}
+
+function normalizeData(payload) {
+  if (!payload?.etfs?.length) return DEMO_DATA;
+  return {
+    ...payload,
+    meta: payload.meta || {},
+    etfs: payload.etfs || [],
+    stocks: payload.stocks || {},
+    rank: payload.rank || { active: {}, market: {} },
+  };
+}
+
+async function fetchJson(path) {
+  const response = await fetch(`${base}api/market-resource?path=${encodeURIComponent(path)}`, { cache: 'no-store' });
+  if (!response.ok) throw new Error(`HTTP ${response.status}`);
+  return response.json();
+}
+
+function usePrimaryData() {
+  const [state, setState] = useState({ data: DEMO_DATA, source: 'demo', loading: true, error: null });
   useEffect(() => {
-    if (!data?.stockData) return undefined;
-    const codes = Object.keys(data.stockData);
-    if (!codes.length) return undefined;
     let cancelled = false;
-    let timer = null;
-
-    const load = async () => {
-      try {
-        const response = await fetch(`${base}api/realtime-quotes?codes=${encodeURIComponent(codes.join(','))}`, { cache: 'no-store' });
-        if (!response.ok) throw new Error(`Realtime HTTP ${response.status}`);
-        const payload = await response.json();
-        if (cancelled) return;
-        setState({
-          quotes: payload.quotes || {},
-          status: payload.sourceStatus?.[0] || null,
-          updatedAt: payload.updatedAt || null,
-          disabled: false,
-          error: null,
-        });
-      } catch (error) {
-        if (cancelled) return;
-        setState((current) => ({ ...current, disabled: true, error: error.message }));
-        if (timer) clearInterval(timer);
-      }
-    };
-
-    load();
-    timer = setInterval(load, 30000);
+    fetch(`${base}api/etf-data`, { cache: 'no-store' })
+      .then((response) => {
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        return response.json();
+      })
+      .then((payload) => {
+        if (!cancelled) setState({ data: normalizeData(payload), source: payload?.source || 'live', loading: false, error: null });
+      })
+      .catch((error) => {
+        if (!cancelled) setState({ data: DEMO_DATA, source: 'demo', loading: false, error: error.message });
+      });
     return () => {
       cancelled = true;
-      if (timer) clearInterval(timer);
     };
-  }, [data?.date, data?.updatedAt]);
+  }, []);
   return state;
 }
 
-function mergeRealtimeData(data, realtime) {
-  const quoteEntries = Object.entries(realtime.quotes || {});
-  if (!data || !quoteEntries.length) return data;
-  const stockData = { ...(data.stockData || {}) };
-  for (const [code, quote] of quoteEntries) {
-    stockData[code] = {
-      ...(stockData[code] || {}),
-      name: quote.name || stockData[code]?.name || STOCK_NAMES[code] || code,
-      price: quote.price,
-      chg_1d: quote.chg_1d,
-      market: quote.market || stockData[code]?.market || null,
-      quoteStatus: quote.quoteStatus || 'realtime',
-      quoteSource: quote.source,
-      quoteDate: quote.date,
-      quoteTime: quote.time,
-      quoteUpdatedAt: realtime.updatedAt,
-      previousClose: quote.previousClose,
-      volume: quote.volume,
-    };
-  }
-  return {
-    ...data,
-    stockData,
-    realtime: {
-      updatedAt: realtime.updatedAt,
-      status: realtime.status,
-    },
-  };
-}
-
-function realtimeFromStaticData(data) {
-  const status = data?.realtimeStatus || data?.sourceStatus?.find((item) => item.source === 'twse-mis');
-  if (!status?.ok) return null;
-  return {
-    quotes: {},
-    status,
-    updatedAt: data.quoteUpdatedAt || data.updatedAt,
-    disabled: false,
-    static: true,
-  };
-}
-
-function useGlossaryPrompt() {
-  const [open, setOpen] = useState(false);
-
+function useResource(path, enabled, fallback) {
+  const [state, setState] = useState({ data: fallback, loading: false, source: 'demo', error: null });
   useEffect(() => {
-    try {
-      if (window.localStorage.getItem(GLOSSARY_STORAGE_KEY) !== 'seen') setOpen(true);
-    } catch {
-      setOpen(true);
-    }
-  }, []);
-
-  const close = () => {
-    setOpen(false);
-    try {
-      window.localStorage.setItem(GLOSSARY_STORAGE_KEY, 'seen');
-    } catch {}
-  };
-
-  return { open, close, openAgain: () => setOpen(true) };
-}
-
-function useInstallPrompt() {
-  const [deferredPrompt, setDeferredPrompt] = useState(null);
-  const [isIOS, setIsIOS] = useState(false);
-  const [isStandalone, setIsStandalone] = useState(false);
-
-  useEffect(() => {
-    const ua = window.navigator.userAgent.toLowerCase();
-    setIsIOS(/iphone|ipad|ipod/.test(ua));
-    setIsStandalone(window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true);
-
-    const handleBeforeInstallPrompt = (e) => {
-      e.preventDefault();
-      setDeferredPrompt(e);
+    if (!enabled) return undefined;
+    let cancelled = false;
+    setState((current) => ({ ...current, loading: true, error: null }));
+    fetchJson(path)
+      .then((data) => {
+        if (!cancelled) setState({ data, loading: false, source: 'live', error: null });
+      })
+      .catch((error) => {
+        if (!cancelled) setState({ data: fallback, loading: false, source: 'demo', error: error.message });
+      });
+    return () => {
+      cancelled = true;
     };
-    window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
-    return () => window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
-  }, []);
-
-  const handleInstallClick = async () => {
-    if (deferredPrompt) {
-      deferredPrompt.prompt();
-      const { outcome } = await deferredPrompt.userChoice;
-      if (outcome === 'accepted') {
-        setDeferredPrompt(null);
-      }
-    } else if (isIOS) {
-      alert('在 iPhone/iPad 上安裝：\n請點擊瀏覽器底部的「分享」按鈕（正方形往上的箭頭），然後滑動選擇「加入主畫面」。');
-    } else {
-      alert('您的瀏覽器目前無法自動觸發安裝提示。\n可能原因：\n1. 您已安裝過本 APP（請檢查桌面或應用程式清單）。\n2. 您正在使用無痕模式（無痕模式不支援安裝）。\n3. 網頁暫存未更新（請嘗試清除暫存後重整）。\n\n您可以嘗試從瀏覽器選單中手動尋找「安裝應用程式」或「加到主畫面」的選項。');
-    }
-  };
-  return { canInstall: Boolean(deferredPrompt), isIOS, isStandalone, install: handleInstallClick };
+  }, [path, enabled]);
+  return state;
 }
 
-function Header({ data, loading, onRefresh, realtime, onOpenGlossary }) {
-  const pwa = useInstallPrompt();
-  const liveOk = realtime?.status?.ok;
-  const liveLabel = liveOk
-    ? `即時股價 ${realtime.status.lastOkDate || ''}`
-    : realtime?.disabled ? '盤後股價' : null;
-  return h('header', { className: 'top-shell glass' },
-    h('div', { className: 'brand' },
-      h('div', { className: 'brand-mark' },
-        h('img', { src: `${base}assets/icon.svg`, alt: '', 'aria-hidden': true })
+function kpi(label, value, detail, toneName) {
+  return el('div', { className: 'kpi' },
+    el('span', null, label),
+    el('b', { className: toneName ? toneName : undefined }, value),
+    detail ? el('small', null, detail) : null
+  );
+}
+
+function DataBadge({ source, loading, error }) {
+  const text = loading ? '資料載入中' : source === 'live' ? '資料已更新' : '備援資料';
+  return el('span', { className: cx('data-badge', source === 'live' ? 'live' : 'demo') },
+    text,
+    error ? el('small', null, ` · 已切換備援`) : null
+  );
+}
+
+function Header({ dataState, activeTab, onTab }) {
+  const { data, source, loading, error } = dataState;
+  const meta = data.meta || {};
+  const totalNet = data.etfs.reduce((sum, item) => sum + Number(item.net || 0), 0);
+  const activeNet = data.etfs.filter(isActiveEtf).reduce((sum, item) => sum + Number(item.net || 0), 0);
+  const tabs = [
+    ['flow', '資金總覽'],
+    ['active', '主動式 ETF 進出'],
+    ['etf', 'ETF 總覽'],
+    ['rank', '投信買賣超'],
+    ['inst', '三大法人'],
+    ['stock', '用股票查 ETF'],
+    ['perf', '績效圖'],
+    ['focus', '每日焦點'],
+    ['events', '事件'],
+  ];
+
+  return el('header', { className: 'hero' },
+    el('div', { className: 'hero-main' },
+      el('div', { className: 'brand-row' },
+          el('div', { className: 'brand-mark' }, 'F'),
+          el('div', null,
+            el('h1', null, '資金流向 Super Dashboard'),
+          el('p', null, `ETF 持股、主動式換股、法人籌碼與市場事件整合 · 資料日 ${meta.latest_slash || ymdSlash(meta.latest)}`)
+        )
       ),
-      h('div', null,
-        h('h1', null, '台股資金溫度計'),
-        h('p', null, data ? `資料日期 ${data.date} · 更新 ${new Date(data.updatedAt).toLocaleString('zh-TW', { hour12: false })}` : '載入官方資料')
+      el('div', { className: 'hero-actions' },
+        el(DataBadge, { source, loading, error })
       )
     ),
-    h('div', { className: 'header-actions' },
-      data?.cache?.stale ? h('span', { className: 'pill warn' }, '暫存資料') : null,
-      data ? h('span', { className: `pill ${data.marketChg1d >= 0 ? 'up' : 'down'}` }, `大盤漲跌 ${fmtPct(data.marketChg1d, 2)}`) : null,
-      liveLabel ? h('span', { className: `pill ${liveOk ? 'live' : ''}` }, liveLabel) : null,
-      h('button', { className: 'icon-btn', onClick: onOpenGlossary, title: '名詞說明', 'aria-label': '名詞說明' }, '?'),
-      h('button', { className: 'icon-btn', onClick: onRefresh, disabled: loading, title: '重新整理' }, loading ? '↻' : '⟳'),
-      !pwa.isStandalone && h('button', { className: 'install-btn', onClick: pwa.install },
-        pwa.isIOS ? '🍎 加到主畫面' : '加到主畫面'
+    el('div', { className: 'kpi-grid hero-kpis' },
+      kpi('ETF 檔數', fmtNum(meta.etf_total || data.etfs.length), `${fmtNum(meta.active_count || data.etfs.filter(isActiveEtf).length)} 檔主動式`),
+      kpi('全 ETF 持股淨買賣', fmtMoney(totalNet), '正值代表持股估值淨增加', tone(totalNet)),
+      kpi('主動式淨買賣', fmtMoney(activeNet), `${fmtNum(meta.active_updated || 0)} / ${fmtNum(meta.active_total || 0)} 檔已更新`, tone(activeNet)),
+      kpi('覆蓋檔數', fmtNum(meta.cover_latest || data.etfs.length), meta.incomplete ? '部分 ETF 資料落後' : '最新日已覆蓋')
+    ),
+    el('nav', { className: 'tabs', 'aria-label': '功能分頁' },
+      tabs.map(([key, label]) => el('button', {
+        key,
+        className: activeTab === key ? 'on' : '',
+        onClick: () => onTab(key),
+      }, label))
+    )
+  );
+}
+
+function stockBucket(code, name) {
+  const text = `${code} ${name || ''}`;
+  if (/2330|2454|2303|2344|聯電|台積|華邦|發科/.test(text)) return '半導體';
+  if (/2317|3231|2382|6669|緯|鴻海|伺服器/.test(text)) return 'AI 伺服器';
+  if (/288|289|金融|金/.test(text)) return '金融';
+  if (/260|長榮|航|高鐵/.test(text)) return '運輸';
+  if (/1216|3045|電信|食品|高息/.test(text)) return '防禦高息';
+  return '其他';
+}
+
+function computeFlowBuckets(data) {
+  const buckets = new Map();
+  for (const etf of data.etfs || []) {
+    for (const holding of etf.holdings || []) {
+      const bucket = stockBucket(holding.code, holding.name);
+      const current = buckets.get(bucket) || { name: bucket, money: 0, buys: 0, sells: 0, count: 0, leaders: [] };
+      current.money += Number(holding.money || 0);
+      current.buys += Math.max(Number(holding.money || 0), 0);
+      current.sells += Math.min(Number(holding.money || 0), 0);
+      current.count += 1;
+      current.leaders.push({ ...holding, etf: etf.code });
+      buckets.set(bucket, current);
+    }
+  }
+  return [...buckets.values()]
+    .map((bucket) => ({
+      ...bucket,
+      leaders: bucket.leaders.sort((a, b) => Math.abs(b.money || 0) - Math.abs(a.money || 0)).slice(0, 3),
+    }))
+    .sort((a, b) => Math.abs(b.money) - Math.abs(a.money));
+}
+
+function FlowOverview({ data, onEtf, onStock }) {
+  const buckets = useMemo(() => computeFlowBuckets(data), [data]);
+  const topEtfs = [...data.etfs].sort((a, b) => Math.abs(b.net || 0) - Math.abs(a.net || 0)).slice(0, 8);
+  const crowded = Object.entries(data.stocks || {})
+    .map(([code, stock]) => ({ code, ...stock, etfCount: (stock.holders || []).filter((hld) => hld.lots > 0).length }))
+    .filter((stock) => stock.etfCount)
+    .sort((a, b) => b.etfCount - a.etfCount)
+    .slice(0, 8);
+
+  return el('section', { className: 'grid-page flow-page' },
+    el('div', { className: 'panel wide' },
+      el('div', { className: 'panel-title' },
+        el('div', null, el('h2', null, '資金流向熱區'), el('p', null, '以 ETF 持股增減估算主題資金，紅色為流入、綠色為流出。')),
+        el('span', { className: 'hint-pill' }, 'ETF 持股淨買賣')
+      ),
+      el('div', { className: 'flow-tiles' },
+        buckets.map((bucket) => {
+          const magnitude = Math.min(1, Math.abs(bucket.money) / Math.max(...buckets.map((item) => Math.abs(item.money)), 1));
+          return el('button', {
+            key: bucket.name,
+            className: cx('flow-tile', bucket.money >= 0 ? 'flow-in' : 'flow-out'),
+            style: { '--strength': String(0.16 + magnitude * 0.68) },
+          },
+            el('strong', null, bucket.name),
+            el('b', null, fmtMoney(bucket.money)),
+            el('span', null, `${fmtNum(bucket.count)} 筆持股異動`),
+            el('small', null, bucket.leaders.map((item) => `${item.name} ${fmtMoney(item.money, 1)}`).join(' · '))
+          );
+        })
+      )
+    ),
+    el('aside', { className: 'panel' },
+      el('div', { className: 'panel-title' }, el('h2', null, 'ETF 流量雷達')),
+      el('div', { className: 'rank-list' },
+        topEtfs.map((etf, index) => el('button', { key: etf.code, className: 'rank-row', onClick: () => onEtf(etf.code) },
+          el('span', { className: 'rank-no' }, index + 1),
+          el('span', null, el('b', null, etf.code), el('small', null, etf.name)),
+          el('em', { className: tone(etf.net) }, fmtMoney(etf.net))
+        ))
+      )
+    ),
+    el('aside', { className: 'panel' },
+      el('div', { className: 'panel-title' }, el('h2', null, '被最多 ETF 持有')),
+      el('div', { className: 'chip-list' },
+        crowded.map((stock) => el('button', { key: stock.code, className: 'stock-chip', onClick: () => onStock(stock.code) },
+          el('b', null, stock.name),
+          el('span', null, `${stock.code} · ${stock.etfCount} 檔`)
+        ))
       )
     )
   );
 }
 
-function StatusCards({ sectors, activeCats, onToggle }) {
-  const counts = useMemo(() => {
-    const out = Object.fromEntries(cats.map((cat) => [cat, 0]));
-    for (const sector of sectors) out[classifySector(sector)] += 1;
-    return out;
-  }, [sectors]);
-  return h('section', { className: 'status-grid' },
-    cats.map((cat) => {
-      const meta = CATEGORY_META[cat];
-      const active = activeCats.has(cat);
-      return h('button', {
-        key: cat,
-        className: `status-card glass ${active ? 'active' : 'muted'}`,
-        style: { '--accent': meta.color },
-        onClick: () => onToggle(cat),
-      },
-        h('span', { className: 'status-dot' }),
-        h('span', { className: 'status-label' }, meta.label),
-        h('strong', null, counts[cat]),
-        h('small', null, meta.sub)
-      );
+function ActiveMoves({ data, onEtf }) {
+  const [sortKey, setSortKey] = useState('action');
+  const [mode, setMode] = useState('cards');
+  const [query, setQuery] = useState('');
+  const active = data.etfs.filter(isActiveEtf);
+  const rows = useMemo(() => active.map((etf) => {
+    const holdings = etf.holdings || [];
+    const buys = holdings.filter((hld) => Number(hld.d1 || 0) > 0).sort((a, b) => absMoney(b) - absMoney(a));
+    const sells = holdings.filter((hld) => Number(hld.d1 || 0) < 0).sort((a, b) => absMoney(b) - absMoney(a));
+    return {
+      etf,
+      action: Math.abs(etf.buy_amt || 0) + Math.abs(etf.sell_amt || 0),
+      changes: holdings.filter((hld) => hld.new || hld.clear || hld.d1).length,
+      buys,
+      sells,
+      newCount: holdings.filter((hld) => hld.new).length,
+      clearCount: holdings.filter((hld) => hld.clear).length,
+    };
+  })
+    .filter((row) => !query.trim() || `${row.etf.code} ${row.etf.name}`.toLowerCase().includes(query.trim().toLowerCase()))
+    .sort((a, b) => {
+      if (sortKey === 'scale') return (b.etf.scale || 0) - (a.etf.scale || 0);
+      if (sortKey === 'net') return (b.etf.net || 0) - (a.etf.net || 0);
+      if (sortKey === 'changes') return b.changes - a.changes;
+      return b.action - a.action;
+    }), [active, query, sortKey]);
+
+  const totalBuy = active.reduce((sum, etf) => sum + Math.max(etf.buy_amt || 0, 0), 0);
+  const totalSell = active.reduce((sum, etf) => sum + Math.abs(Math.min(etf.sell_amt || 0, 0)), 0);
+
+  return el('section', { className: 'stack' },
+    el('div', { className: 'kpi-grid' },
+      kpi('主動式檔數', fmtNum(active.length), '只統計代號 A 或 type=active'),
+      kpi('今日加碼', fmtMoney(totalBuy), '持股增加估值', 'up'),
+      kpi('今日減碼', fmtMoney(-totalSell), '持股減少估值', 'down'),
+      kpi('淨操作', fmtMoney(totalBuy - totalSell), '加碼扣減碼', tone(totalBuy - totalSell))
+    ),
+    el('div', { className: 'toolbar panel' },
+      el('input', { value: query, onChange: (event) => setQuery(event.target.value), placeholder: '搜尋主動式 ETF 代號或名稱' }),
+      el('div', { className: 'segmented' },
+        [['action', '操作強度'], ['net', '淨買賣'], ['scale', '規模'], ['changes', '異動數']].map(([key, label]) => el('button', { key, className: sortKey === key ? 'on' : '', onClick: () => setSortKey(key) }, label))
+      ),
+      el('div', { className: 'segmented' },
+        [['cards', '卡片'], ['list', '列表']].map(([key, label]) => el('button', { key, className: mode === key ? 'on' : '', onClick: () => setMode(key) }, label))
+      )
+    ),
+    mode === 'cards'
+      ? el('div', { className: 'active-grid' }, rows.map((row) => el(ActiveCard, { key: row.etf.code, row, onEtf })))
+      : el('div', { className: 'panel table-wrap' }, el(SimpleTable, {
+        columns: ['ETF', '規模', '淨買賣', '加碼', '減碼', '新進/出清'],
+        rows: rows.map((row) => [
+          el('button', { className: 'linklike', onClick: () => onEtf(row.etf.code) }, `${row.etf.code} ${row.etf.name}`),
+          `${fmtNum(row.etf.scale, 1)} 億`,
+          el('span', { className: tone(row.etf.net) }, fmtMoney(row.etf.net)),
+          fmtMoney(row.etf.buy_amt),
+          fmtMoney(row.etf.sell_amt),
+          `${row.newCount} / ${row.clearCount}`,
+        ]),
+      }))
+  );
+}
+
+function ActiveCard({ row, onEtf }) {
+  const { etf, buys, sells } = row;
+  const list = (items) => items.slice(0, 5).map((item) => el('div', { key: `${item.code}-${item.d1}`, className: 'move-line' },
+    el('span', null, el('b', null, item.name), el('small', null, item.code)),
+    el('em', { className: tone(item.d1) }, `${Number(item.d1) > 0 ? '+' : ''}${fmtNum(item.d1)} 張`, el('small', null, fmtMoney(item.money)))
+  ));
+  return el('article', { className: 'active-card' },
+    el('div', { className: 'card-head' },
+      el('div', null, el('b', null, etf.code), el('h3', null, etf.name), el('p', null, `${etf.info?.co || '投信'} · 規模 ${fmtNum(etf.scale, 1)} 億`)),
+      el('button', { className: 'icon-action', onClick: () => onEtf(etf.code), title: 'ETF 明細' }, '↗')
+    ),
+    el('div', { className: 'mini-kpis' },
+      kpi('淨買賣', fmtMoney(etf.net), null, tone(etf.net)),
+      kpi('新進', fmtNum(row.newCount), '檔'),
+      kpi('出清', fmtNum(row.clearCount), '檔')
+    ),
+    el('div', { className: 'move-cols' },
+      el('div', null, el('h4', null, '加碼'), list(buys)),
+      el('div', null, el('h4', null, '減碼'), list(sells))
+    )
+  );
+}
+
+function EtfOverview({ data, onEtf }) {
+  const [kind, setKind] = useState('all');
+  const [view, setView] = useState('card');
+  const [scaleBasis, setScaleBasis] = useState('daily');
+  const [query, setQuery] = useState('');
+  const rows = useMemo(() => data.etfs
+    .filter((etf) => kind === 'all' || (kind === 'active' ? isActiveEtf(etf) : !isActiveEtf(etf)))
+    .filter((etf) => !query.trim() || `${etf.code} ${etf.name}`.toLowerCase().includes(query.trim().toLowerCase()))
+    .sort((a, b) => (b.scale || 0) - (a.scale || 0)), [data, kind, query]);
+
+  return el('section', { className: 'stack' },
+    el('div', { className: 'toolbar panel' },
+      el('input', { value: query, onChange: (event) => setQuery(event.target.value), placeholder: '搜尋 ETF 代號或名稱' }),
+      el('div', { className: 'segmented' },
+        [['all', '全部'], ['active', '主動式'], ['passive', '被動']].map(([key, label]) => el('button', { key, className: kind === key ? 'on' : '', onClick: () => setKind(key) }, label))
+      ),
+      el('div', { className: 'segmented' },
+        [['card', '卡片'], ['list', '列表']].map(([key, label]) => el('button', { key, className: view === key ? 'on' : '', onClick: () => setView(key) }, label))
+      ),
+      el('div', { className: 'segmented' },
+        [['daily', '日更新規模'], ['month', '上月底規模']].map(([key, label]) => el('button', { key, className: scaleBasis === key ? 'on' : '', onClick: () => setScaleBasis(key) }, label))
+      )
+    ),
+    view === 'card'
+      ? el('div', { className: 'etf-grid' }, rows.map((etf) => el(EtfCard, { key: etf.code, etf, onEtf, scaleBasis })))
+      : el('div', { className: 'panel table-wrap' }, el(SimpleTable, {
+        columns: ['ETF', '類型', '規模', '持股淨買賣', '殖利率', '折溢價', '更新日'],
+        rows: rows.map((etf) => [
+          el('button', { className: 'linklike', onClick: () => onEtf(etf.code) }, `${etf.code} ${etf.name}`),
+          isActiveEtf(etf) ? '主動式' : '被動',
+          `${fmtNum(etf[scaleBasis === 'month' ? 'mscale' : 'scale'] ?? etf.scale, 1)} 億`,
+          el('span', { className: tone(etf.net) }, fmtMoney(etf.net)),
+          etf.yld == null ? '—' : fmtPct(etf.yld),
+          etf.prem == null ? '—' : fmtPct(etf.prem),
+          ymdSlash(etf.date),
+        ]),
+      }))
+  );
+}
+
+function EtfCard({ etf, onEtf, scaleBasis }) {
+  const top = [...(etf.holdings || [])].filter((item) => item.lots > 0).sort((a, b) => (b.value || 0) - (a.value || 0)).slice(0, 3);
+  const scale = etf[scaleBasis === 'month' ? 'mscale' : 'scale'] ?? etf.scale;
+  return el('button', { className: 'etf-card', onClick: () => onEtf(etf.code) },
+    el('div', { className: 'card-head' },
+      el('div', null, el('b', null, etf.code), el('h3', null, etf.name), el('p', null, `${isActiveEtf(etf) ? '主動式' : '被動'} · ${ymdSlash(etf.date)}`)),
+      el('em', { className: tone(etf.net) }, fmtMoney(etf.net))
+    ),
+    el('div', { className: 'meta-row' },
+      el('span', null, `規模 ${fmtNum(scale, 1)} 億`),
+      el('span', null, etf.yld == null ? '殖利率 —' : `殖利率 ${fmtPct(etf.yld)}`),
+      el('span', null, etf.prem == null ? '折溢價 —' : `折溢價 ${fmtPct(etf.prem)}`)
+    ),
+    el('div', { className: 'top-holdings' },
+      top.map((holding) => el('div', { key: holding.code },
+        el('span', null, holding.name),
+        el('b', null, fmtPct(holding.weight))
+      ))
+    )
+  );
+}
+
+function RankView({ data, onStock }) {
+  const [scope, setScope] = useState('active');
+  const [dir, setDir] = useState('buy');
+  const [win, setWin] = useState('d1');
+  const [query, setQuery] = useState('');
+  const pack = data.rank?.[scope]?.[win] || {};
+  const rows = (pack[dir] || [])
+    .filter((row) => !query.trim() || `${row.code} ${row.name}`.toLowerCase().includes(query.trim().toLowerCase()))
+    .slice(0, 80);
+  const meta = data.meta || {};
+  const range = win === 'd1' ? (meta.latest_slash || ymdSlash(meta.latest)) : `${meta.win_bases?.[win] || '—'} → ${meta.latest_slash || ymdSlash(meta.latest)}`;
+
+  return el('section', { className: 'stack' },
+    el('div', { className: 'toolbar panel' },
+      el('input', { value: query, onChange: (event) => setQuery(event.target.value), placeholder: '搜尋股票代號或名稱' }),
+      el('div', { className: 'segmented buy-sell' },
+        [['buy', '買超'], ['sell', '賣超']].map(([key, label]) => el('button', { key, className: dir === key ? 'on' : '', onClick: () => setDir(key) }, label))
+      ),
+      el('div', { className: 'segmented' },
+        [['active', '台股主動式'], ['market', '全市場已更新']].map(([key, label]) => el('button', { key, className: scope === key ? 'on' : '', onClick: () => setScope(key) }, label))
+      ),
+      el('div', { className: 'segmented' },
+        [['d1', '當日'], ['d5', '5日'], ['d10', '10日'], ['d20', '20日'], ['d60', '60日']].map(([key, label]) => el('button', { key, className: win === key ? 'on' : '', onClick: () => setWin(key) }, label))
+      )
+    ),
+    el('div', { className: 'panel table-wrap' },
+      el('div', { className: 'panel-title' }, el('h2', null, `${scope === 'active' ? '主動式 ETF' : '全市場 ETF'} · ${dir === 'buy' ? '買超' : '賣超'}排行`), el('p', null, `統計區間：${range} · 金額以收盤價估算`)),
+      el(SimpleTable, {
+        columns: ['#', '股票', '價格/漲跌', '張數', '估值', 'ETF 檔數', '主要來源'],
+        rows: rows.map((row, index) => [
+          index + 1,
+          el('button', { className: 'linklike', onClick: () => onStock(row.code) }, `${row.name} (${row.code})`),
+          el('span', null, fmtNum(row.price, 2), el('small', { className: tone(row.chg) }, fmtPct(row.chg))),
+          fmtNum(row.lots),
+          el('span', { className: dir === 'buy' ? 'up' : 'down' }, fmtMoney(dir === 'buy' ? row.money : -row.money)),
+          fmtNum(row.etf_count),
+          (row.etfs || []).slice(0, 4).map((item) => `${item.etf} ${Number(item.d1) > 0 ? '+' : ''}${fmtNum(item.d1)}`).join(' · '),
+        ]),
+      })
+    )
+  );
+}
+
+function StockLookup({ data, initialCode, onEtf }) {
+  const [query, setQuery] = useState(initialCode || '');
+  const [selected, setSelected] = useState(initialCode || '');
+  const detail = useResource(selected ? `data/stock/${selected}.json` : '', Boolean(selected), null);
+  useEffect(() => {
+    if (initialCode) {
+      setQuery(initialCode);
+      setSelected(initialCode);
+    }
+  }, [initialCode]);
+  const stocks = data.stocks || {};
+  const topHeld = Object.entries(stocks).map(([code, stock]) => ({ code, ...stock, count: (stock.holders || []).filter((hld) => hld.lots > 0).length }))
+    .filter((stock) => stock.count)
+    .sort((a, b) => b.count - a.count)
+    .slice(0, 10);
+
+  const resolve = (value) => {
+    const q = value.trim().toLowerCase();
+    if (!q) return '';
+    if (stocks[q]) return q;
+    const found = Object.entries(stocks).find(([code, stock]) => code.includes(q) || String(stock.name || '').toLowerCase().includes(q));
+    return found?.[0] || '';
+  };
+  const code = selected && stocks[selected] ? selected : resolve(query);
+  const stock = stocks[code];
+  const rows = stock ? [...(stock.holders || [])].sort((a, b) => (b.lots || 0) - (a.lots || 0)) : [];
+
+  return el('section', { className: 'stack' },
+    el('div', { className: 'toolbar panel' },
+      el('input', {
+        value: query,
+        onChange: (event) => {
+          setQuery(event.target.value);
+          const next = resolve(event.target.value);
+          if (next) setSelected(next);
+        },
+        placeholder: '輸入股票代號或名稱，例如 2330、台積電',
+      }),
+      el('button', { className: 'primary-btn', onClick: () => setSelected(resolve(query)) }, '查詢')
+    ),
+    stock ? el('div', { className: 'panel' },
+      el('div', { className: 'stock-head' },
+        el('div', null, el('h2', null, `${stock.name} (${code})`), el('p', null, `目前被 ${rows.filter((row) => row.lots > 0).length} 檔 ETF 持有 · 估計股價 ${fmtNum(stock.price, 2)}`)),
+        el('span', { className: 'hint-pill' }, detail.source === 'live' ? '含歷史快照' : '目前持有')
+      ),
+      el(StockHistory, { detail: detail.data, stock }),
+      el(SimpleTable, {
+        columns: ['ETF', '權重', '庫存張數', '今日增減', '連買賣'],
+        rows: rows.map((row) => [
+          el('button', { className: 'linklike', onClick: () => onEtf(row.etf) }, `${row.etf} ${row.etfname}`),
+          fmtPct(row.weight),
+          fmtNum(row.lots),
+          el('span', { className: tone(row.d1) }, `${Number(row.d1) > 0 ? '+' : ''}${fmtNum(row.d1)} 張`),
+          row.streak ? el('span', { className: tone(row.streak) }, `${row.streak > 0 ? '+' : ''}${row.streak}`) : '無',
+        ]),
+      })
+    ) : el('div', { className: 'panel' },
+      el('div', { className: 'panel-title' }, el('h2', null, '被最多 ETF 持有')),
+      el('div', { className: 'chip-list' }, topHeld.map((item) => el('button', { key: item.code, className: 'stock-chip', onClick: () => { setQuery(item.code); setSelected(item.code); } },
+        el('b', null, item.name),
+        el('span', null, `${item.code} · ${item.count} 檔 ETF`)
+      )))
+    )
+  );
+}
+
+function StockHistory({ detail, stock }) {
+  const series = useMemo(() => {
+    if (!detail?.snap_dates?.length || !detail?.snaps) return null;
+    return detail.snap_dates.slice().reverse().map((date) => {
+      const total = (detail.snaps[date] || []).reduce((sum, item) => sum + Number(item[1] || 0), 0);
+      return { date, value: total };
+    });
+  }, [detail]);
+  if (!series?.length) return el('div', { className: 'soft-note' }, '尚未載入歷史持有快照，先顯示目前各 ETF 持有狀況。');
+  return el('div', { className: 'history-box' },
+    el('h3', null, 'ETF 合計持有張數趨勢'),
+    el(InteractiveLineChart, { series: [{ name: stock.name, points: series, color: '#f59e0b' }], height: 140, valueSuffix: ' 張' })
+  );
+}
+
+function PerformanceView({ data, perfCodes, setPerfCodes }) {
+  const [mode, setMode] = useState('chart');
+  const [addText, setAddText] = useState('');
+  const [win, setWin] = useState('all');
+  const [pair, setPair] = useState(['0050', '00981A']);
+  const etfMap = new Map(data.etfs.map((etf) => [etf.code, etf]));
+  const validCodes = perfCodes.filter((code) => etfMap.has(code)).slice(0, 8);
+  const addCode = () => {
+    const q = addText.trim().toLowerCase();
+    const found = data.etfs.find((etf) => etf.code.toLowerCase() === q || etf.name.toLowerCase().includes(q));
+    if (found && !perfCodes.includes(found.code)) setPerfCodes([...perfCodes, found.code].slice(0, 8));
+    setAddText('');
+  };
+
+  return el('section', { className: 'stack' },
+    el('div', { className: 'toolbar panel' },
+      el('div', { className: 'segmented' },
+        [['chart', '績效比較'], ['sim', 'ETF 相似度']].map(([key, label]) => el('button', { key, className: mode === key ? 'on' : '', onClick: () => setMode(key) }, label))
+      ),
+      mode === 'chart' ? el(React.Fragment, null,
+        el('input', { value: addText, onChange: (event) => setAddText(event.target.value), placeholder: '輸入 ETF 代號或名稱加入比較' }),
+        el('button', { className: 'primary-btn', onClick: addCode }, '加入'),
+        el('div', { className: 'segmented' },
+          [['m1', '1月'], ['m3', '3月'], ['m6', '6月'], ['y1', '1年'], ['y3', '3年'], ['all', '全部']].map(([key, label]) => el('button', { key, className: win === key ? 'on' : '', onClick: () => setWin(key) }, label))
+        )
+      ) : null
+    ),
+    mode === 'chart'
+      ? el(PerfChartPanel, { codes: validCodes, etfMap, setPerfCodes, win })
+      : el(SimilarityPanel, { data, pair, setPair })
+  );
+}
+
+function PerfChartPanel({ codes, etfMap, setPerfCodes, win }) {
+  const [seriesMap, setSeriesMap] = useState({});
+  useEffect(() => {
+    let cancelled = false;
+    Promise.all(codes.map((code) => fetchJson(`data/perf/${code}.json`).then((data) => [code, data]).catch(() => [code, null])))
+      .then((entries) => {
+        if (!cancelled) setSeriesMap(Object.fromEntries(entries));
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [codes.join(',')]);
+
+  const chartSeries = codes.map((code, index) => {
+    const raw = seriesMap[code];
+    const points = raw?.d?.map((date, idx) => ({ date, value: raw.c[idx] })).filter((item) => Number.isFinite(item.value));
+    return { name: code, points: windowedPoints(points, win), color: CHART_COLORS[index % CHART_COLORS.length] };
+  }).filter((item) => item.points?.length > 1);
+
+  return el('div', { className: 'panel' },
+    el('div', { className: 'panel-title' },
+      el('div', null, el('h2', null, '績效比較'), el('p', null, '報酬率以外部資料的含息還原序列繪製；無序列時仍顯示 ETF 績效表。'))
+    ),
+    el('div', { className: 'selected-chips' },
+      codes.map((code) => el('button', { key: code, onClick: () => setPerfCodes(codes.filter((item) => item !== code)) }, `${code} ×`))
+    ),
+    chartSeries.length ? el(InteractiveLineChart, { series: normalizeSeries(chartSeries), height: 280, valueSuffix: '%', baseline: 100 }) : el('div', { className: 'soft-note' }, '尚未載入績效序列，請確認資料服務是否啟動。'),
+    el(SimpleTable, {
+      columns: ['ETF', '1月', '3月', '6月', '1年', '3年', '年化', '上市'],
+      rows: codes.map((code) => {
+        const etf = etfMap.get(code);
+        return [
+          `${code} ${etf?.name || ''}`,
+          fmtPct(etf?.ret?.m1),
+          fmtPct(etf?.ret?.m3),
+          fmtPct(etf?.ret?.m6),
+          fmtPct(etf?.ret?.y1),
+          fmtPct(etf?.ret?.y3),
+          fmtPct(etf?.ret?.ann),
+          ymdSlash(etf?.ret?.since || etf?.info?.listed),
+        ];
+      }),
     })
   );
 }
 
-function SearchBox({ sectors, onSelect }) {
-  const [query, setQuery] = useState('');
-  const results = useMemo(() => {
-    const q = query.trim().toLowerCase();
-    if (!q) return [];
-    const seen = new Set();
-    const out = [];
-    for (const sector of sectors) {
-      if (sector.name.toLowerCase().includes(q)) {
-        seen.add(sector.name);
-        out.push({ key: sector.name, label: sector.name, tag: '族群', sector });
-      }
-    }
-    for (const [code, name] of Object.entries(STOCK_NAMES)) {
-      if (!code.includes(q) && !String(name).toLowerCase().includes(q) && !String(name).includes(query.trim())) continue;
-      for (const sectorName of STOCK_TO_SECTORS[code] || []) {
-        const sector = sectors.find((item) => item.name === sectorName);
-        const key = `${code}-${sectorName}`;
-        if (!sector || seen.has(key)) continue;
-        seen.add(key);
-        out.push({ key, label: `${code} ${name || ''}`.trim(), tag: `主族群 · ${sectorName}`, sector });
-      }
-    }
-    return out.slice(0, 12);
-  }, [query, sectors]);
+const CHART_COLORS = ['#2563eb', '#dc2626', '#16a34a', '#f59e0b', '#7c3aed', '#0891b2', '#db2777', '#475569'];
 
-  return h('div', { className: 'search glass' },
-    h('span', { className: 'search-icon' }, '⌕'),
-    h('input', {
-      value: query,
-      onChange: (event) => setQuery(event.target.value),
-      placeholder: '搜尋股票或族群',
-      autoComplete: 'off',
-    }),
-    results.length ? h('div', { className: 'search-menu' },
-      results.map((item) => h('button', {
-        key: item.key,
-        type: 'button',
-        onMouseDown: (event) => {
-          event.preventDefault();
-        },
-        onClick: () => {
-          setQuery('');
-          onSelect(item.sector);
-        },
-      },
-        h('span', null, item.label),
-        h('small', null, item.tag)
-      ))
-    ) : query.trim() ? h('div', { className: 'search-menu empty' }, '沒有符合的族群') : null
+function windowedPoints(points, win) {
+  if (!points?.length || win === 'all') return points || [];
+  const count = { m1: 5, m3: 14, m6: 27, y1: 54, y3: 160 }[win] || points.length;
+  return points.slice(-count);
+}
+
+function normalizeSeries(series) {
+  return series.map((item) => {
+    const first = item.points[0]?.value || 1;
+    return { ...item, points: item.points.map((point) => ({ ...point, value: (point.value / first) * 100 })) };
+  });
+}
+
+function SimilarityPanel({ data, pair, setPair }) {
+  const etfs = data.etfs;
+  const a = etfs.find((etf) => etf.code === pair[0]) || etfs[0];
+  const b = etfs.find((etf) => etf.code === pair[1]) || etfs[1] || etfs[0];
+  const rows = similarityRows(a, b);
+  const score = rows.reduce((sum, row) => sum + row.overlap, 0);
+  const select = (idx) => el('select', { value: pair[idx], onChange: (event) => setPair(idx === 0 ? [event.target.value, pair[1]] : [pair[0], event.target.value]) },
+    etfs.map((etf) => el('option', { key: etf.code, value: etf.code }, `${etf.code} ${etf.name}`))
+  );
+  return el('div', { className: 'panel' },
+    el('div', { className: 'compare-row' }, select(0), el('span', null, 'vs'), select(1), el('b', { className: score > 45 ? 'up' : score > 20 ? 'warn' : 'muted' }, `相似度 ${fmtPct(score)}`)),
+    el(SimpleTable, {
+      columns: ['股票', `${a?.code} 權重`, `${b?.code} 權重`, '重疊權重'],
+      rows: rows.slice(0, 20).map((row) => [row.name, fmtPct(row.aw), fmtPct(row.bw), fmtPct(row.overlap)]),
+    })
   );
 }
 
-function GlossaryModal({ open, onClose }) {
-  useEffect(() => {
-    if (!open) return undefined;
-    const handleKeyDown = (event) => {
-      if (event.key === 'Escape') onClose();
+function similarityRows(a, b) {
+  const aw = new Map((a?.holdings || []).map((item) => [item.code, item]));
+  const bw = new Map((b?.holdings || []).map((item) => [item.code, item]));
+  const codes = [...new Set([...aw.keys(), ...bw.keys()])];
+  return codes.map((code) => {
+    const x = aw.get(code);
+    const y = bw.get(code);
+    return {
+      code,
+      name: x?.name || y?.name || code,
+      aw: x?.weight || 0,
+      bw: y?.weight || 0,
+      overlap: Math.min(x?.weight || 0, y?.weight || 0),
     };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [open, onClose]);
+  }).filter((row) => row.overlap > 0).sort((x, y) => y.overlap - x.overlap);
+}
 
-  if (!open) return null;
-  return h('div', { className: 'glossary-backdrop', onClick: onClose },
-    h('section', {
-      className: 'glossary-modal glass',
-      role: 'dialog',
-      'aria-modal': true,
-      'aria-labelledby': 'glossary-title',
-      onClick: (event) => event.stopPropagation(),
-    },
-      h('div', { className: 'glossary-head' },
-        h('div', null,
-          h('span', { className: 'glossary-kicker' }, '第一次使用'),
-          h('h2', { id: 'glossary-title' }, '名詞說明'),
-          h('p', null, '這套介面用資金流入、流出來判斷族群狀態；股價與漲跌維持一般股票用語。')
-        ),
-        h('button', { className: 'icon-btn', onClick: onClose, title: '關閉', 'aria-label': '關閉名詞說明' }, '×')
-      ),
-      h('div', { className: 'glossary-grid' },
-        TERM_GLOSSARY.map((item) => h('article', { key: item.term, className: 'glossary-item' },
-          h('strong', null, item.term),
-          h('p', null, item.desc)
-        ))
-      ),
-      h('div', { className: 'glossary-actions' },
-        h('button', { className: 'install-btn', onClick: onClose }, '開始使用')
-      )
+function FocusView({ data, onStock, onEtf }) {
+  const moves = [];
+  data.etfs.forEach((etf) => (etf.holdings || []).forEach((holding) => moves.push({ etf, holding })));
+  const news = moves.filter((item) => item.holding.new).sort((a, b) => absMoney(b.holding) - absMoney(a.holding)).slice(0, 10);
+  const clears = moves.filter((item) => item.holding.clear).sort((a, b) => absMoney(b.holding) - absMoney(a.holding)).slice(0, 10);
+  const rebalances = data.etfs.map((etf) => ({ etf, n: (etf.holdings || []).filter((hld) => hld.new || hld.clear || Math.abs(hld.d1 || 0) > 0).length }))
+    .filter((item) => item.n >= 4)
+    .sort((a, b) => b.n - a.n)
+    .slice(0, 8);
+  const sync = Object.entries(data.stocks || {}).map(([code, stock]) => ({
+    code,
+    stock,
+    n: (stock.holders || []).filter((hld) => hld.d1 > 0).length,
+  })).filter((item) => item.n >= 2).sort((a, b) => b.n - a.n).slice(0, 8);
+
+  return el('section', { className: 'focus-grid' },
+    el(FocusPanel, { title: '今日新進', rows: news.map((item) => ({
+      key: `${item.etf.code}-${item.holding.code}`,
+      left: `${item.holding.name} (${item.holding.code})`,
+      sub: item.etf.name,
+      right: fmtMoney(item.holding.money),
+      tone: 'up',
+      onClick: () => onStock(item.holding.code),
+    })) }),
+    el(FocusPanel, { title: '今日出清', rows: clears.map((item) => ({
+      key: `${item.etf.code}-${item.holding.code}`,
+      left: `${item.holding.name} (${item.holding.code})`,
+      sub: item.etf.name,
+      right: fmtMoney(item.holding.money),
+      tone: 'down',
+      onClick: () => onStock(item.holding.code),
+    })) }),
+    el(FocusPanel, { title: '換股雷達', rows: rebalances.map((item) => ({
+      key: item.etf.code,
+      left: `${item.etf.code} ${item.etf.name}`,
+      sub: '同日大量進出，可能正在調整持股結構',
+      right: `${item.n} 筆`,
+      onClick: () => onEtf(item.etf.code),
+    })) }),
+    el(FocusPanel, { title: '同步加碼', rows: sync.map((item) => ({
+      key: item.code,
+      left: `${item.stock.name} (${item.code})`,
+      sub: '多檔 ETF 同日加碼',
+      right: `${item.n} 檔`,
+      tone: 'up',
+      onClick: () => onStock(item.code),
+    })) })
+  );
+}
+
+function FocusPanel({ title, rows }) {
+  return el('div', { className: 'panel' },
+    el('div', { className: 'panel-title' }, el('h2', null, title)),
+    rows.length ? el('div', { className: 'focus-list' }, rows.map((row) => el('button', { key: row.key, onClick: row.onClick },
+      el('span', null, el('b', null, row.left), el('small', null, row.sub)),
+      el('em', { className: row.tone }, row.right)
+    ))) : el('div', { className: 'empty' }, '目前沒有符合條件的資料')
+  );
+}
+
+function InstView({ active }) {
+  const inst = useResource('data/inst.json', active, DEMO_INST);
+  const [dir, setDir] = useState('buy');
+  const [who, setWho] = useState('t');
+  const [win, setWin] = useState('d1');
+  const [scope, setScope] = useState('stock');
+  const [query, setQuery] = useState('');
+  const data = inst.data || DEMO_INST;
+  const idx = { f: 4, t: 5, dl: 6, s: 7 }[who] ?? 5;
+  const rows = (data.wins?.[win] || [])
+    .map((row) => ({ code: row[0], name: row[1], price: row[2], chg: row[3], f: row[4], t: row[5], dl: row[6], s: row[7], amt: row[8], value: row[idx] }))
+    .filter((row) => scope !== 'stock' || (/^\d{4}$/.test(row.code) && !row.code.startsWith('00')))
+    .filter((row) => !query.trim() || `${row.code} ${row.name}`.toLowerCase().includes(query.trim().toLowerCase()))
+    .filter((row) => dir === 'buy' ? row.value > 0 : row.value < 0)
+    .sort((a, b) => dir === 'buy' ? b.value - a.value : a.value - b.value)
+    .slice(0, 100);
+
+  return el('section', { className: 'stack' },
+    el('div', { className: 'kpi-grid' },
+      (data.summary || []).map((item) => kpi(`${item.k}買賣超`, fmtMoney(item.v), data.slash, tone(item.v))),
+      kpi('期貨外資未平倉', fmtNum(data.report?.fx), `日變動 ${fmtNum(data.report?.fx_chg)}`, tone(data.report?.fx_chg))
+    ),
+    el('div', { className: 'toolbar panel' },
+      el('input', { value: query, onChange: (event) => setQuery(event.target.value), placeholder: '搜尋法人買賣超股票' }),
+      el('div', { className: 'segmented buy-sell' }, [['buy', '買超'], ['sell', '賣超']].map(([key, label]) => el('button', { key, className: dir === key ? 'on' : '', onClick: () => setDir(key) }, label))),
+      el('div', { className: 'segmented' }, [['t', '投信'], ['f', '外資'], ['dl', '自營避險'], ['s', '自營商']].map(([key, label]) => el('button', { key, className: who === key ? 'on' : '', onClick: () => setWho(key) }, label))),
+      el('div', { className: 'segmented' }, [['d1', '當日'], ['d5', '5日'], ['d20', '20日'], ['d60', '60日']].map(([key, label]) => el('button', { key, className: win === key ? 'on' : '', onClick: () => setWin(key) }, label))),
+      el('div', { className: 'segmented' }, [['stock', '只看個股'], ['all', '含 ETF']].map(([key, label]) => el('button', { key, className: scope === key ? 'on' : '', onClick: () => setScope(key) }, label)))
+    ),
+    el('div', { className: 'panel table-wrap' },
+      el('div', { className: 'panel-title' }, el('h2', null, '三大法人買賣超'), el('p', null, `資料日 ${data.slash || '—'} · 單位：張`)),
+      el(SimpleTable, {
+        columns: ['#', '股票', '價格/漲跌', '外資', '投信', '自營避險', '自營商', '估值'],
+        rows: rows.map((row, index) => [
+          index + 1,
+          `${row.name} (${row.code})`,
+          el('span', null, fmtNum(row.price, 2), el('small', { className: tone(row.chg) }, fmtPct(row.chg))),
+          el('span', { className: tone(row.f) }, fmtNum(row.f)),
+          el('span', { className: tone(row.t) }, fmtNum(row.t)),
+          el('span', { className: tone(row.dl) }, fmtNum(row.dl)),
+          el('span', { className: tone(row.s) }, fmtNum(row.s)),
+          row.amt == null ? '—' : fmtMoney(row.amt),
+        ]),
+      })
     )
   );
 }
 
-const heatmapMetrics = [
-  { key: 'net_1d_yi', label: '1日資金', kind: 'flow', digits: 1 },
-  { key: 'net_5d_yi', label: '5日資金', kind: 'flow', digits: 1 },
-  { key: 'net_20d_yi', label: '20日資金', kind: 'flow', digits: 0 },
-  { key: 'accel', label: '資金加速度', kind: 'flow', digits: 1 },
-  { key: 'chg_5d', label: '5日漲跌', kind: 'pct', digits: 1 },
-];
-
-const sortOptions = [
-  { key: 'net_1d_yi', dir: 'desc', label: '1日流入' },
-  { key: 'net_1d_yi', dir: 'asc', label: '1日流出' },
-  { key: 'net_5d_yi', dir: 'desc', label: '5日流入' },
-  { key: 'net_5d_yi', dir: 'asc', label: '5日流出' },
-  { key: 'net_20d_yi', dir: 'desc', label: '20日流入' },
-  { key: 'net_20d_yi', dir: 'asc', label: '20日流出' },
-  { key: 'accel', dir: 'desc', label: '加速' },
-  { key: 'accel', dir: 'asc', label: '降速' },
-  { key: 'chg_5d', dir: 'desc', label: '5日漲跌' },
-];
-
-const treemapMetricOptions = [
-  { key: 'net_1d_yi', label: '今日資金', getValue: (sector) => sector.net_1d_yi ?? 0 },
-  { key: 'net_5d_yi', label: '5日資金', getValue: (sector) => sector.net_5d_yi ?? 0 },
-  { key: 'net_20d_yi', label: '20日資金', getValue: (sector) => sector.net_20d_yi ?? 0 },
-];
-
-function metricText(value, metric) {
-  return metric.kind === 'pct' ? fmtPct(value, metric.digits) : fmtYi(value, metric.digits);
-}
-
-function metricHeatStyle(value, maxAbs) {
-  const intensity = Math.min(1, Math.abs(value) / Math.max(maxAbs, 1));
-  const rgb = value >= 0 ? '255, 59, 48' : '52, 199, 89';
-  return {
-    color: value >= 0 ? CATEGORY_META.green.color : CATEGORY_META.red.color,
-    '--heat-bg': `rgba(${rgb}, ${0.05 + intensity * 0.18})`,
-    '--heat-bar': `rgba(${rgb}, ${0.5 + intensity * 0.35})`,
-    '--heat-width': `${Math.max(7, intensity * 100)}%`,
-  };
-}
-
-function blendRgb(base, strength) {
-  return base.map((channel) => Math.round(255 + (channel - 255) * strength));
-}
-
-function treemapTileStyle(value, maxAbs) {
-  const intensity = Math.min(1, Math.abs(value) / Math.max(maxAbs, 1));
-  const base = value >= 0 ? [255, 59, 48] : [45, 143, 72];
-  const strength = 0.24 + intensity * 0.62;
-  const [r, g, b] = blendRgb(base, strength);
-  const useLightText = intensity > 0.36;
-  return {
-    backgroundColor: `rgb(${r}, ${g}, ${b})`,
-    color: useLightText ? '#fff' : '#1d1d1f',
-    '--tile-text-shadow': useLightText ? '0 1px 12px rgba(0, 0, 0, 0.22)' : 'none',
-  };
-}
-
-function splitTreemap(items, x, y, width, height) {
-  if (!items.length || width <= 0 || height <= 0) return [];
-  if (items.length === 1) return [{ ...items[0], x, y, width, height }];
-
-  const total = items.reduce((sum, item) => sum + item.weight, 0);
-  let running = 0;
-  let splitIndex = 0;
-  let bestDiff = Number.POSITIVE_INFINITY;
-  for (let index = 0; index < items.length - 1; index += 1) {
-    running += items[index].weight;
-    const diff = Math.abs(total / 2 - running);
-    if (diff < bestDiff) {
-      bestDiff = diff;
-      splitIndex = index + 1;
-    }
-  }
-
-  const first = items.slice(0, splitIndex);
-  const second = items.slice(splitIndex);
-  const firstTotal = first.reduce((sum, item) => sum + item.weight, 0);
-  if (width >= height) {
-    const firstWidth = width * (firstTotal / total);
-    return [
-      ...splitTreemap(first, x, y, firstWidth, height),
-      ...splitTreemap(second, x + firstWidth, y, width - firstWidth, height),
-    ];
-  }
-  const firstHeight = height * (firstTotal / total);
-  return [
-    ...splitTreemap(first, x, y, width, firstHeight),
-    ...splitTreemap(second, x, y + firstHeight, width, height - firstHeight),
+function EventsView({ active }) {
+  const dts = useResource('data/dts.json', active, DEMO_DTS);
+  const events = useResource('data/events.json', active, DEMO_EVENTS);
+  const zijie = useResource('data/zijie.json', active, DEMO_ZIJIE);
+  const [tab, setTab] = useState('dts');
+  const [query, setQuery] = useState('');
+  const ev = events.data || DEMO_EVENTS;
+  const tabs = [
+    ['dts', '券差', dts.data?.rows?.length],
+    ['bb', '庫藏股', ev.buyback?.length],
+    ['dp', '處置股', ev.dispose?.length],
+    ['tr', '申報轉讓', ev.transfer?.length],
+    ['acq', '43-1取得', ev.acquire?.length],
+    ['zj', '自結', zijie.data?.rows?.length],
+    ['xd', '除權息', ev.xd?.length],
   ];
-}
-
-function treemapSizeClass(width, height) {
-  const area = width * height;
-  const shortest = Math.min(width, height);
-  if (area >= 1450 && shortest >= 22) return 'xxl';
-  if (area >= 720 && shortest >= 14) return 'large';
-  if (area >= 300 && shortest >= 8) return 'medium';
-  if (area >= 130 && shortest >= 5) return 'small';
-  return 'micro';
-}
-
-function DailyFlowHeatmap({ sectors, activeCats, date, onSelect }) {
-  const [metricKey, setMetricKey] = useState('net_1d_yi');
-  const metric = treemapMetricOptions.find((item) => item.key === metricKey) || treemapMetricOptions[0];
-  const tiles = useMemo(() => {
-    return sectors
-      .filter((sector) => activeCats.has(classifySector(sector)))
-      .map((sector) => {
-        const value = metric.getValue(sector);
-        return {
-          sector,
-          value,
-          weight: Math.max(Math.abs(value), 0.1),
-        };
-      })
-      .filter((item) => Number.isFinite(item.value) && item.weight > 0)
-      .sort((a, b) => b.weight - a.weight)
-      .slice(0, 36);
-  }, [activeCats, metric, sectors]);
-  const maxAbs = useMemo(() => Math.max(...tiles.map((tile) => Math.abs(tile.value)), 1), [tiles]);
-  const layouts = useMemo(() => splitTreemap(tiles, 0, 0, 100, 100), [tiles]);
-  const flowIn = tiles.reduce((sum, tile) => sum + Math.max(tile.value, 0), 0);
-  const flowOut = tiles.reduce((sum, tile) => sum + Math.abs(Math.min(tile.value, 0)), 0);
-
-  return h('section', { className: 'flow-map-card glass' },
-    h('div', { className: 'view-head' },
-      h('div', null,
-        h('strong', null, '每日資金流向熱力圖'),
-        h('span', null, `${date || 'latest'} · 面積代表資金規模，紅色流入、綠色流出`)
-      ),
-      h('div', { className: 'flow-legend' },
-        h('span', { className: 'hot' }, '流入'),
-        h('span', { className: 'cold' }, '流出')
-      )
+  return el('section', { className: 'stack' },
+    el('div', { className: 'toolbar panel' },
+      el('div', { className: 'segmented event-tabs' }, tabs.map(([key, label, count]) => el('button', { key, className: tab === key ? 'on' : '', onClick: () => setTab(key) }, `${label}${count != null ? ` ${count}` : ''}`))),
+      el('input', { value: query, onChange: (event) => setQuery(event.target.value), placeholder: '搜尋股票、事件或公告文字' })
     ),
-    h('div', { className: 'flow-map-toolbar' },
-      h('div', { className: 'flow-map-condition' },
-        h('span', null, `面積：${metric.label}`),
-        h('span', null, `顏色：${metric.label}流向`)
-      ),
-      h('div', { className: 'heatmap-tools' },
-        treemapMetricOptions.map((option) => h('button', {
-          key: option.key,
-          className: metric.key === option.key ? 'active' : '',
-          onClick: () => setMetricKey(option.key),
-        }, option.label))
-      )
-    ),
-    h('div', { className: 'treemap-canvas', role: 'list', 'aria-label': '每日資金流向熱力圖' },
-      layouts.map((tile) => {
-        const { sector, value, x, y, width, height } = tile;
-        const sizeClass = treemapSizeClass(width, height);
-        return h('button', {
-          key: sector.name,
-          className: `flow-tile ${sizeClass}`,
-          role: 'listitem',
-          onClick: () => onSelect(sector),
-          title: `${sector.name} ${metric.label} ${fmtYi(value, 1)}，1日漲跌 ${fmtPct(sector.chg_1d, 1)}`,
-          style: {
-            left: `${x}%`,
-            top: `${y}%`,
-            width: `${width}%`,
-            height: `${height}%`,
-            ...treemapTileStyle(value, maxAbs),
-          },
-        },
-          h('span', { className: 'flow-tile-name' }, sector.name),
-        );
-      })
-    ),
-    h('div', { className: 'treemap-footer' },
-      h('div', { className: 'treemap-scale', 'aria-hidden': true },
-        h('div', { className: 'treemap-gradient' }),
-        h('div', { className: 'treemap-scale-labels' },
-          h('span', null, '強流入'),
-          h('span', null, '中性'),
-          h('span', null, '強流出')
-        )
-      ),
-      h('div', { className: 'flow-summary' },
-        h('span', null, `流入 ${fmtYi(flowIn, 0)}`),
-        h('span', null, `流出 ${fmtYi(flowOut, 0)}`),
-        h('span', null, `${tiles.length} / ${sectors.length} 族群`)
-      )
-    )
+    el('div', { className: 'panel table-wrap' }, renderEventTable(tab, query, dts.data || DEMO_DTS, ev, zijie.data || DEMO_ZIJIE))
   );
 }
 
-function HeatmapPanel({ sectors, activeCats, onSelect }) {
-  const [sortParam, setSortParam] = useState({ key: 'net_5d_yi', dir: 'desc' });
-  const visible = useMemo(() => {
-    return sectors
-      .filter((sector) => activeCats.has(classifySector(sector)))
-      .sort((a, b) => {
-        const valA = a[sortParam.key] ?? 0;
-        const valB = b[sortParam.key] ?? 0;
-        return sortParam.dir === 'desc' ? valB - valA : valA - valB;
-      });
-  }, [activeCats, sectors, sortParam]);
-  const maxByMetric = useMemo(() => {
-    const out = {};
-    for (const metric of heatmapMetrics) {
-      out[metric.key] = Math.max(...sectors.map((sector) => Math.abs(sector[metric.key] ?? 0)), 1);
-    }
-    return out;
-  }, [sectors]);
-  const leaders = useMemo(() => {
-    const by = (key, direction = 'desc') => [...sectors].sort((a, b) => direction === 'desc' ? b[key] - a[key] : a[key] - b[key])[0];
-    return [
-      { label: '5日流入最多', metric: heatmapMetrics[1], sector: by('net_5d_yi') },
-      { label: '資金加速最快', metric: heatmapMetrics[3], sector: by('accel') },
-      { label: '5日流出最多', metric: heatmapMetrics[1], sector: by('net_5d_yi', 'asc') },
-    ].filter((item) => item.sector);
-  }, [sectors]);
+function renderEventTable(tab, query, dts, ev, zijie) {
+  const q = query.trim().toLowerCase();
+  const has = (row) => !q || JSON.stringify(row).toLowerCase().includes(q);
+  if (tab === 'dts') {
+    const rows = (dts.rows || []).filter(has).sort((a, b) => ((b.lots || 0) * (b.price || 0)) - ((a.lots || 0) * (a.price || 0))).slice(0, 80);
+    return el(React.Fragment, null,
+      el('div', { className: 'panel-title' }, el('h2', null, '當沖券差借券'), el('p', null, `資料狀態：${dts.src || '—'} · 潛在買盤為標借張數乘收盤價估算`)),
+      el(SimpleTable, { columns: ['#', '股票', '收盤/漲跌', '標借張數', '潛在買盤(萬)', '筆數', '最高費率', '券資比'], rows: rows.map((row, index) => [index + 1, `${row.n} (${row.c})`, el('span', null, fmtNum(row.price, 2), el('small', { className: tone(row.chg) }, fmtPct(row.chg))), fmtNum(row.lots), fmtNum((row.lots || 0) * (row.price || 0) / 10), fmtNum(row.cnt), fmtPct(row.mx), fmtPct(row.sr)]) })
+    );
+  }
+  if (tab === 'bb') return eventSimple('庫藏股', ev.buyback, ['股票', '期間', '預定張數', '狀態', '原因'], (row) => [`${row.n} (${row.c})`, `${row.f} → ${row.t}`, fmtNum(row.lots), row.st, row.why], has);
+  if (tab === 'dp') return eventSimple('處置股', ev.dispose, ['股票', '分盤', '處置起訖', '位階', '狀態'], (row) => [`${row.n} (${row.c})`, `${row.iv} 分`, `${row.f} → ${row.t}`, row.pos ?? '—', row.st], has);
+  if (tab === 'tr') return eventSimple('申報轉讓', ev.transfer, ['股票', '身分', '原因', '張數', '狀態'], (row) => [`${row.n} (${row.c})`, row.role, row.way, fmtNum(row.lots), row.st], has);
+  if (tab === 'acq') return eventSimple('43-1 大量取得', ev.acquire, ['標的', '取得人', '持股比例', '持股張數', '公告'], (row) => [`${row.n || row.tgt} (${row.tcode})`, row.who_short || row.who, fmtPct(row.pct), fmtNum(row.lots), row.url ? el('a', { href: row.url, target: '_blank', rel: 'noreferrer' }, '看公告') : '—'], has);
+  if (tab === 'zj') return eventSimple('自結損益', zijie.rows, ['股票', '公告時間', '主旨', '月 EPS', '近四季 EPS'], (row) => [`${row.name} (${row.code})`, `${row.date_ce || row.date} ${row.time || ''}`, row.subject, row.eps_m ?? '—', row.eps_4q ?? '—'], has);
+  return eventSimple('除權息', ev.xd, ['股票', '日期', '類型', '現金股利', '殖利率', '發放日'], (row) => [`${row.n} (${row.c})`, row.d, row.kind, row.cash ?? '—', fmtPct(row.yld), row.pay || '—'], has);
+}
 
-  return h('section', { className: 'heatmap-card glass' },
-    h('div', { className: 'view-head' },
-      h('div', null,
-        h('strong', null, '族群資金總覽'),
-        h('span', null, `${visible.length} / ${sectors.length} 族群 · 點列可看成分股`)
-      )
-    ),
-    h('div', { className: 'signal-strip' },
-      leaders.map(({ label, metric, sector }) => {
-        const cat = classifySector(sector);
-        const value = sector[metric.key] ?? 0;
-        return h('button', { key: label, className: 'signal-card', onClick: () => onSelect(sector), style: { '--accent': CATEGORY_META[cat].color } },
-          h('span', null, label),
-          h('strong', null, sector.name),
-          h('small', { style: { color: flowColor(value) } }, metricText(value, metric))
-        );
-      })
-    ),
-    h('div', { className: 'heatmap-tools' },
-      h('span', null, '排序'),
-      sortOptions.map((opt) => h('button', {
-        key: opt.label,
-        className: sortParam.key === opt.key && sortParam.dir === opt.dir ? 'active' : '',
-        onClick: () => setSortParam({ key: opt.key, dir: opt.dir }),
-      }, opt.label))
-    ),
-    h('div', { className: 'heatmap-grid', role: 'table' },
-      h('div', { className: 'heatmap-row heatmap-header', role: 'row' },
-        h('span', null, '族群'),
-        heatmapMetrics.map((metric) => h('span', { key: metric.key }, metric.label)),
-        h('span', null, '狀態')
+function eventSimple(title, sourceRows = [], columns, mapRow, predicate) {
+  const rows = sourceRows.filter(predicate).slice(0, 100);
+  return el(React.Fragment, null,
+    el('div', { className: 'panel-title' }, el('h2', null, title)),
+    el(SimpleTable, { columns: ['#', ...columns], rows: rows.map((row, index) => [index + 1, ...mapRow(row)]) })
+  );
+}
+
+function EtfDrawer({ code, data, onClose, onStock, addPerf }) {
+  const etf = data.etfs.find((item) => item.code === code);
+  if (!etf) return null;
+  const holdings = [...(etf.holdings || [])].sort((a, b) => (b.value || 0) - (a.value || 0));
+  return el('div', { className: 'drawer-backdrop', onClick: onClose },
+    el('aside', { className: 'drawer', onClick: (event) => event.stopPropagation() },
+      el('div', { className: 'drawer-head' },
+        el('div', null, el('span', { className: 'hint-pill' }, isActiveEtf(etf) ? '主動式 ETF' : 'ETF'), el('h2', null, `${etf.code} ${etf.name}`), el('p', null, `${etf.info?.co || '投信'} · ${etf.info?.etype || 'ETF'} · ${ymdSlash(etf.date)}`)),
+        el('button', { className: 'icon-action', onClick: onClose }, '×')
       ),
-      visible.map((sector) => {
-        const cat = classifySector(sector);
-        return h('button', { key: sector.name, className: 'heatmap-row', role: 'row', onClick: () => onSelect(sector) },
-          h('span', { className: 'heatmap-name' },
-            h('i', { style: { background: CATEGORY_META[cat].color } }),
-            h('strong', null, sector.name)
-          ),
-          heatmapMetrics.map((metric) => {
-            const value = sector[metric.key] ?? 0;
-            return h('span', {
-              key: metric.key,
-              className: 'heat-cell',
-              style: metricHeatStyle(value, maxByMetric[metric.key]),
-            }, metricText(value, metric));
-          }),
-          h('span', { className: 'heat-status', style: { color: CATEGORY_META[cat].color, borderColor: CATEGORY_META[cat].color } }, CATEGORY_META[cat].label)
-        );
+      el('div', { className: 'kpi-grid drawer-kpis' },
+        kpi('規模', `${fmtNum(etf.scale, 1)} 億`),
+        kpi('持股淨買賣', fmtMoney(etf.net), null, tone(etf.net)),
+        kpi('殖利率', fmtPct(etf.yld)),
+        kpi('年化報酬', fmtPct(etf.ret?.ann), etf.ret?.since ? `上市 ${ymdSlash(etf.ret.since)}` : null)
+      ),
+      el('div', { className: 'drawer-actions' },
+        el('button', { className: 'primary-btn', onClick: () => addPerf(etf.code) }, '加入績效比較'),
+        etf.info?.idx ? el('span', null, `追蹤指數：${etf.info.idx}`) : el('span', null, '主動式策略：持股調整需觀察換股與資金方向')
+      ),
+      el(SimpleTable, {
+        columns: ['持股', '權重', '庫存張數', '今日增減', '估值', '漲跌'],
+        rows: holdings.map((holding) => [
+          el('button', { className: 'linklike', onClick: () => onStock(holding.code) }, `${holding.name} (${holding.code})`),
+          fmtPct(holding.weight),
+          fmtNum(holding.lots),
+          el('span', { className: tone(holding.d1) }, `${Number(holding.d1) > 0 ? '+' : ''}${fmtNum(holding.d1)} 張`),
+          fmtMoney(holding.money),
+          el('span', { className: tone(holding.chg) }, fmtPct(holding.chg)),
+        ]),
       })
     )
   );
 }
 
-function RankingPanel({ data, onSelect }) {
-  const [mode, setMode] = useState('cp');
-  const sectors = data.sectors;
-  const bottomCount = sectors.filter((sector) => sector.is_bottom_fishing).length;
-  const rows = useMemo(() => {
-    if (mode === 'bottom') {
-      return sectors
-        .filter((sector) => sector.is_bottom_fishing)
-        .sort((a, b) => b.bottom_score - a.bottom_score)
-        .slice(0, 10);
-    }
-    return sectors
-      .filter((sector) => classifySector(sector) === 'green')
-      .map((sector) => ({ ...sector, cp: sector.net_5d_yi * (1 - sector.chg_5d / 100) }))
-      .sort((a, b) => b.cp - a.cp)
-      .slice(0, 10);
-  }, [mode, sectors]);
-  return h('aside', { className: 'ranking glass' },
-    h('div', { className: 'panel-headline' },
-      h('div', null, h('strong', null, '資金排行'), h('span', null, mode === 'cp' ? '流入強勢' : '逆勢轉強')),
-      h('div', { className: 'segmented' },
-        h('button', { className: mode === 'cp' ? 'active' : '', onClick: () => setMode('cp') }, '流入'),
-        h('button', { className: mode === 'bottom' ? 'active' : '', onClick: () => setMode('bottom') }, `逆勢 ${bottomCount || ''}`)
-      )
-    ),
-    rows.length ? h('div', { className: 'ranking-list' },
-      rows.map((sector, index) => {
-        const value = mode === 'bottom' ? sector.net_1d_yi : sector.net_5d_yi;
-        return h('button', { key: sector.name, className: 'ranking-row', onClick: () => onSelect(sector) },
-          h('span', { className: 'rank-num' }, index + 1),
-          h('span', { className: 'rank-name' }, sector.name),
-          h('span', { className: 'rank-pct', style: { color: pctColor(mode === 'bottom' ? sector.chg_1d : sector.chg_5d) } }, fmtPct(mode === 'bottom' ? sector.chg_1d : sector.chg_5d, 1)),
-          h('span', { className: 'rank-flow', style: { color: flowColor(value) } }, fmtYi(value, 1))
-        );
-      })
-    ) : h('div', { className: 'empty-panel' }, mode === 'bottom' ? '目前沒有逆勢轉強族群' : '目前沒有資金流入族群')
-  );
-}
-
-function SectorDrawer({ sector, data, onClose }) {
-  if (!sector) return null;
-  const cat = classifySector(sector);
-  const meta = CATEGORY_META[cat];
-  const stockData = data.stockData || {};
-  const hasPublicQuote = (code) => stockData[code]?.quoteStatus === 'realtime' || stockData[code]?.quoteStatus === 'ok' || stockData[code]?.price != null;
-  const displayStocks = sector.stocks.filter(hasPublicQuote);
-  const quotedCount = displayStocks.length;
-  const unavailableCount = sector.stocks.length - quotedCount;
-  const realtimeCount = displayStocks.filter((code) => stockData[code]?.quoteStatus === 'realtime').length;
-  const fallbackCount = displayStocks.filter((code) => stockData[code]?.quoteStatus === 'fallback').length;
-  const quoteLabel = realtimeCount ? '即時股價' : fallbackCount ? '補齊股價' : '官方股價';
-  return h('div', { className: 'drawer-backdrop', onClick: onClose },
-    h('aside', { className: 'drawer glass', onClick: (event) => event.stopPropagation() },
-      h('div', { className: 'drawer-head' },
-        h('div', null,
-          h('span', { className: 'drawer-badge', style: { color: meta.color, borderColor: meta.color } }, meta.label),
-          h('h2', null, sector.name),
-          h('p', { className: 'quote-coverage' },
-            `${quoteLabel} ${quotedCount} / ${sector.stocks.length}`,
-            unavailableCount ? `，已排除 ${unavailableCount} 檔無公開報價` : ''
-          )
-        ),
-        h('button', { className: 'icon-btn', onClick: onClose, title: '關閉' }, '×')
-      ),
-      h('div', { className: 'metric-grid' },
-        h('div', null, h('small', null, '當日資金'), h('strong', { style: { color: flowColor(sector.net_1d_yi) } }, fmtYi(sector.net_1d_yi, 2))),
-        h('div', null, h('small', null, '5 日資金'), h('strong', { style: { color: flowColor(sector.net_5d_yi) } }, fmtYi(sector.net_5d_yi, 2))),
-        h('div', null, h('small', null, '20 日資金'), h('strong', { style: { color: flowColor(sector.net_20d_yi) } }, fmtYi(sector.net_20d_yi, 2))),
-        h('div', null, h('small', null, '資金加速度'), h('strong', { style: { color: flowColor(sector.accel) } }, `${sector.accel > 0 ? '+' : ''}${sector.accel.toFixed(2)}`)),
-        h('div', null, h('small', null, '1 日漲跌'), h('strong', { style: { color: pctColor(sector.chg_1d) } }, fmtPct(sector.chg_1d, 2))),
-        h('div', null, h('small', null, '5 日漲跌'), h('strong', { style: { color: pctColor(sector.chg_5d) } }, fmtPct(sector.chg_5d, 2)))
-      ),
-      h('div', { className: 'stock-table' },
-        h('div', { className: 'stock-row head' }, h('span', null, '代碼'), h('span', null, '名稱'), h('span', null, '股價'), h('span', null, '漲跌'), h('span', null, '資金')),
-        displayStocks.length ? displayStocks.map((code) => {
-          const item = stockData[code];
-          const hasQuote = item?.quoteStatus === 'realtime' || item?.quoteStatus === 'ok' || item?.price != null;
-          const isRealtime = item?.quoteStatus === 'realtime';
-          return h('div', { className: 'stock-row', key: code },
-            h('span', null, code),
-            h('span', null, item?.name || STOCK_NAMES[code] || '—'),
-            h('span', { className: hasQuote ? (isRealtime ? 'live-price' : '') : 'quote-missing' },
-              hasQuote ? fmtPrice(item.price) : '無公開報價'
-            ),
-            h('span', { style: { color: hasQuote ? pctColor(item.chg_1d) : undefined } }, hasQuote ? fmtPct(item.chg_1d, 2) : '—'),
-            h('span', { style: { color: hasQuote ? flowColor(item.net_1d_yi) : undefined } }, hasQuote ? fmtYi(item.net_1d_yi, 2) : '—')
-          );
-        }) : h('div', { className: 'empty-panel' }, '此族群目前沒有可公開報價的成分股')
-      )
+function SimpleTable({ columns, rows }) {
+  return el('table', { className: 'data-table' },
+    el('thead', null, el('tr', null, columns.map((column) => el('th', { key: String(column) }, column)))),
+    el('tbody', null,
+      rows.length ? rows.map((row, index) => el('tr', { key: index }, row.map((cell, cellIndex) => el('td', { key: cellIndex, className: cellIndex === 0 || cellIndex === 1 ? 'left' : undefined }, cell))))
+        : el('tr', null, el('td', { colSpan: columns.length, className: 'empty' }, '查無資料'))
     )
   );
 }
 
-function SourceStrip({ data, realtime }) {
-  const statuses = data.sourceStatus.filter((item) => !(realtime?.status && item.source === realtime.status.source));
-  const sourceLabel = (item) => SOURCE_LABELS[item.source] || item.source;
-  return h('div', { className: 'source-strip glass' },
-    realtime?.status ? h('span', { key: 'twse-mis', className: realtime.status.ok ? 'ok' : 'bad' },
-      `${sourceLabel(realtime.status)} ${realtime.status.ok ? `${realtime.status.rows} 檔` : 'failed'}`
-    ) : null,
-    statuses.map((item) => h('span', { key: item.source, className: item.ok ? 'ok' : 'bad' },
-      `${sourceLabel(item)} ${item.ok ? item.lastOkDate || item.okCount : 'failed'}`
-    ))
+function InteractiveLineChart({ series, height = 240, valueSuffix = '', baseline = null }) {
+  const width = 860;
+  const pad = 38;
+  const [hoverRatio, setHoverRatio] = useState(null);
+  const all = series.flatMap((item) => item.points || []);
+  if (!all.length) return null;
+  const values = baseline == null ? all.map((item) => item.value) : [...all.map((item) => item.value), baseline];
+  const min = Math.min(...values);
+  const max = Math.max(...values);
+  const yMin = min === max ? min - 1 : min;
+  const yMax = min === max ? max + 1 : max;
+  const ratio = hoverRatio == null ? 1 : hoverRatio;
+  const xForRatio = (nextRatio) => pad + nextRatio * (width - pad * 2);
+  const xFor = (points, index) => xForRatio(index / Math.max(points.length - 1, 1));
+  const yFor = (value) => height - pad - ((value - yMin) / Math.max(yMax - yMin, 1)) * (height - pad * 2);
+  const hoverX = xForRatio(ratio);
+  const readout = series.map((item) => {
+    const points = item.points || [];
+    const index = Math.max(0, Math.min(points.length - 1, Math.round(ratio * Math.max(points.length - 1, 0))));
+    return { ...item, point: points[index], index };
+  }).filter((item) => item.point);
+  const activeDate = readout[0]?.point?.date;
+  const handlePointerMove = (event) => {
+    const rect = event.currentTarget.getBoundingClientRect();
+    const next = Math.max(0, Math.min(1, (event.clientX - rect.left) / Math.max(rect.width, 1)));
+    setHoverRatio(next);
+  };
+
+  return el('div', { className: 'chart-wrap interactive-chart' },
+    el('svg', {
+      viewBox: `0 0 ${width} ${height}`,
+      role: 'img',
+      tabIndex: 0,
+      onPointerMove: handlePointerMove,
+      onPointerLeave: () => setHoverRatio(null),
+      onFocus: () => setHoverRatio(1),
+      onKeyDown: (event) => {
+        if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
+        event.preventDefault();
+        setHoverRatio((current) => Math.max(0, Math.min(1, (current ?? 1) + (event.key === 'ArrowLeft' ? -0.025 : 0.025))));
+      },
+    },
+      el('line', { x1: pad, x2: width - pad, y1: height - pad, y2: height - pad, className: 'axis' }),
+      el('line', { x1: pad, x2: pad, y1: pad, y2: height - pad, className: 'axis' }),
+      baseline == null ? null : el('line', { x1: pad, x2: width - pad, y1: yFor(baseline), y2: yFor(baseline), className: 'baseline' }),
+      series.map((item) => {
+        const points = item.points || [];
+        const d = points.map((point, index) => `${index ? 'L' : 'M'}${xFor(points, index).toFixed(1)},${yFor(point.value).toFixed(1)}`).join(' ');
+        return el('path', { key: item.name, d, fill: 'none', stroke: item.color, strokeWidth: 3, strokeLinejoin: 'round', strokeLinecap: 'round' });
+      }),
+      el('line', { x1: hoverX, x2: hoverX, y1: pad, y2: height - pad, className: 'crosshair' }),
+      readout.map((item) => el('circle', {
+        key: `${item.name}-${item.index}`,
+        cx: xFor(item.points || [], item.index),
+        cy: yFor(item.point.value),
+        r: 4.5,
+        fill: item.color,
+        stroke: '#fff',
+        strokeWidth: 2,
+      }))
+    ),
+    el('div', { className: 'chart-readout' },
+      el('strong', null, activeDate ? ymdSlash(activeDate) : '最新'),
+      readout.map((item) => el('span', { key: item.name },
+        el('i', { style: { background: item.color } }),
+        `${item.name} ${fmtNum(item.point.value, 2)}${valueSuffix}`
+      ))
+    ),
+    el('div', { className: 'legend' }, series.map((item) => el('span', { key: item.name }, el('i', { style: { background: item.color } }), item.name)))
   );
 }
 
 function App() {
-  const { data, loading, error, refresh } = useSectorData();
-  const glossary = useGlossaryPrompt();
-  const realtime = useRealtimeQuotes(data);
-  const staticRealtime = useMemo(() => realtimeFromStaticData(data), [data]);
-  const effectiveRealtime = realtime.status ? realtime : staticRealtime || realtime;
-  const displayData = useMemo(() => mergeRealtimeData(data, effectiveRealtime), [data, effectiveRealtime]);
-  const [activeCats, setActiveCats] = useState(new Set(cats));
-  const [selected, setSelected] = useState(null);
-  const sectors = displayData?.sectors || [];
-  const toggleCat = (cat) => {
-    setActiveCats((current) => {
-      if (current.size === 1 && current.has(cat)) return new Set(cats);
-      return new Set([cat]);
-    });
+  const dataState = usePrimaryData();
+  const data = dataState.data;
+  const [tab, setTab] = useState('flow');
+  const [selectedEtf, setSelectedEtf] = useState(null);
+  const [stockCode, setStockCode] = useState('');
+  const [perfCodes, setPerfCodes] = useState(['0050', '00878', '00919', '00981A']);
+  const openEtf = (code) => setSelectedEtf(code);
+  const openStock = (code) => {
+    setStockCode(code);
+    setTab('stock');
+  };
+  const addPerf = (code) => {
+    setPerfCodes((current) => current.includes(code) ? current : [...current, code].slice(0, 8));
+    setTab('perf');
   };
 
-  useEffect(() => {
-    if ('serviceWorker' in navigator) navigator.serviceWorker.register(`${base}sw.js`).catch(() => {});
-  }, []);
-
-  return h(React.Fragment, null,
-    h('main', { className: 'app-shell' },
-      h(Header, { data: displayData, loading, onRefresh: refresh, realtime: effectiveRealtime, onOpenGlossary: glossary.openAgain }),
-      error ? h('div', { className: 'error glass' }, error) : null,
-      !displayData ? h('div', { className: 'loading glass' }, loading ? '正在載入官方資料…' : '沒有資料') : h(React.Fragment, null,
-        h('section', { className: 'utility-row' },
-          h(SearchBox, { sectors, onSelect: setSelected }),
-          h(SourceStrip, { data: displayData, realtime: effectiveRealtime })
-        ),
-        h(StatusCards, { sectors, activeCats, onToggle: toggleCat }),
-        h(DailyFlowHeatmap, { sectors, activeCats, date: displayData.date, onSelect: setSelected }),
-        h('section', { className: 'bento-layout' },
-          h(HeatmapPanel, { sectors, activeCats, onSelect: setSelected }),
-          h(RankingPanel, { data: displayData, onSelect: setSelected })
-        ),
-        h('footer', { className: 'disclaimer' }, '本網站僅彙整公開法人資金資料，僅供參考，不構成任何投資建議；投資人應自行判斷並自負盈虧。')
-      )
+  return el(React.Fragment, null,
+    el('main', { className: 'app-shell' },
+      el(Header, { dataState, activeTab: tab, onTab: setTab }),
+      tab === 'flow' ? el(FlowOverview, { data, onEtf: openEtf, onStock: openStock }) : null,
+      tab === 'active' ? el(ActiveMoves, { data, onEtf: openEtf }) : null,
+      tab === 'etf' ? el(EtfOverview, { data, onEtf: openEtf }) : null,
+      tab === 'rank' ? el(RankView, { data, onStock: openStock }) : null,
+      tab === 'inst' ? el(InstView, { active: tab === 'inst' }) : null,
+      tab === 'stock' ? el(StockLookup, { data, initialCode: stockCode, onEtf: openEtf }) : null,
+      tab === 'perf' ? el(PerformanceView, { data, perfCodes, setPerfCodes }) : null,
+      tab === 'focus' ? el(FocusView, { data, onStock: openStock, onEtf: openEtf }) : null,
+      tab === 'events' ? el(EventsView, { active: tab === 'events' }) : null,
+      el('footer', null, '本工具整合 ETF 持股、法人籌碼與市場事件，資料僅供研究與流程展示，不構成投資建議。')
     ),
-    h(GlossaryModal, { open: glossary.open, onClose: glossary.close }),
-    h(SectorDrawer, { sector: selected, data: displayData || {}, onClose: () => setSelected(null) })
+    el(EtfDrawer, { code: selectedEtf, data, onClose: () => setSelectedEtf(null), onStock: openStock, addPerf })
   );
 }
 
-createRoot(document.getElementById('root')).render(h(App));
+createRoot(document.getElementById('root')).render(el(App));

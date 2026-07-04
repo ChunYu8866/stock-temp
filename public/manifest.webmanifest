@@ -1,17 +1,29 @@
 {
-  "name": "台股熱區溫度計",
-  "short_name": "熱區溫度",
-  "description": "TWSE/TPEX official-data sector temperature dashboard.",
+  "name": "資金流向 Super Dashboard",
+  "short_name": "資金流向",
+  "description": "ETF 持股、主動式 ETF 進出、法人籌碼與市場事件整合的資金流向儀表板。",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
-  "background_color": "#f5f5f7",
-  "theme_color": "#f5f5f7",
+  "background_color": "#f4f6f8",
+  "theme_color": "#f4f6f8",
   "icons": [
     {
       "src": "/assets/icon.svg",
       "sizes": "any",
       "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/assets/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/assets/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
       "purpose": "any maskable"
     }
   ]
