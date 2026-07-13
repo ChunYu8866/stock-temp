@@ -188,7 +188,7 @@ async function fetchJson(url, { fetchImpl = fetch, timeoutMs = 16000 } = {}) {
       signal: controller.signal,
       headers: {
         accept: 'application/json,text/plain,*/*',
-        'user-agent': 'sector-rotation-light/1.0',
+        'user-agent': 'stock-temp/1.0',
       },
     });
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
@@ -484,7 +484,7 @@ export async function fetchYahooFallbackQuotes(codes, {
           signal: controller.signal,
           headers: {
             accept: 'application/json,text/plain,*/*',
-            'user-agent': 'sector-rotation-light/1.0',
+            'user-agent': 'stock-temp/1.0',
           },
         });
         if (!response.ok) throw new Error(`${symbol} HTTP ${response.status}`);
@@ -542,7 +542,7 @@ export async function fetchRealtimeQuotes(codes, {
       signal: controller.signal,
       headers: {
         accept: 'text/html,*/*',
-        'user-agent': 'sector-rotation-light/1.0',
+        'user-agent': 'stock-temp/1.0',
       },
     });
     cookie = cookieHeaderFromSetCookie(getSetCookies(sessionResponse.headers));
@@ -560,7 +560,7 @@ export async function fetchRealtimeQuotes(codes, {
           headers: {
             accept: 'application/json,text/plain,*/*',
             referer: MIS_HOME_URL,
-            'user-agent': 'sector-rotation-light/1.0',
+            'user-agent': 'stock-temp/1.0',
             ...(cookie ? { cookie } : {}),
           },
         });

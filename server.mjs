@@ -88,7 +88,7 @@ async function fetchMarketResource(path) {
       signal: controller.signal,
       headers: {
         accept: safePath === 'data.js' ? 'application/javascript,text/plain,*/*' : 'application/json,*/*',
-        'user-agent': 'sector-rotation-light/1.0',
+        'user-agent': 'stock-temp/1.0',
       },
     });
     if (!response.ok) {

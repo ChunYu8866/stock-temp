@@ -1,33 +1,52 @@
-name: Update sector data
+name: Update market data
 
 on:
   workflow_dispatch:
   schedule:
     # Every 30 minutes from 18:30 to 22:30 Asia/Taipei, Monday-Friday.
-    # GitHub Actions cron uses UTC.
     - cron: "30 10-14 * * 1-5"
     - cron: "0 11-14 * * 1-5"
 
 permissions:
   contents: write
 
+concurrency:
+  group: market-data-writer
+  cancel-in-progress: false
+
 jobs:
   update-data:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout latest main
+        uses: actions/checkout@v7
+        with:
+          ref: main
+          fetch-depth: 0
 
-      - uses: actions/setup-node@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
         with:
           node-version: "22"
 
       - name: Generate latest official-data snapshot
         run: node scripts/generate-latest.mjs
 
-      - name: Commit updated data
+      - name: Commit and push updated data
+        shell: bash
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add public/data/latest.json
-          git diff --cached --quiet || git commit -m "Update sector data"
-          git push
+          git diff --cached --quiet && exit 0
+          git commit -m "Update market data"
+
+          for attempt in 1 2 3; do
+            git pull --rebase origin main && git push origin HEAD:main && exit 0
+            git rebase --abort 2>/dev/null || true
+            sleep $((attempt * 5))
+          done
+
+          echo "Unable to publish market data after 3 attempts."
+          exit 1

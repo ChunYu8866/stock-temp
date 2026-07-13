@@ -1,27 +1,28 @@
 {
-  "name": "資金流向 Super Dashboard",
-  "short_name": "資金流向",
-  "description": "ETF 持股、主動式 ETF 進出、法人籌碼與市場事件整合的資金流向儀表板。",
-  "start_url": "/",
-  "scope": "/",
+  "name": "stock-temp.",
+  "short_name": "stock-temp",
+  "description": "台股資金溫度、ETF 持股進出、法人籌碼與績效比較工具。",
+  "start_url": "./",
+  "scope": "./",
   "display": "standalone",
-  "background_color": "#f4f6f8",
-  "theme_color": "#f4f6f8",
+  "background_color": "#eef1f4",
+  "theme_color": "#eef1f4",
+  "lang": "zh-Hant",
   "icons": [
     {
-      "src": "/assets/icon.svg",
+      "src": "assets/icon.svg",
       "sizes": "any",
       "type": "image/svg+xml",
       "purpose": "any maskable"
     },
     {
-      "src": "/assets/icon-192.png",
+      "src": "assets/icon-192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "/assets/icon-512.png",
+      "src": "assets/icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"

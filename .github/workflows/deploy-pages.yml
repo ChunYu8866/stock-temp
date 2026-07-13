@@ -1,11 +1,13 @@
-name: Deploy to GitHub Pages
+name: Deploy stock-temp to GitHub Pages
 
 on:
   push:
     branches:
       - main
   workflow_run:
-    workflows: ["Update sector data"]
+    workflows:
+      - "Update market data"
+      - "Update realtime quotes"
     types:
       - completed
   workflow_dispatch:
@@ -16,41 +18,61 @@ permissions:
   id-token: write
 
 concurrency:
-  group: "pages"
-  cancel-in-progress: true
+  group: pages
+  cancel-in-progress: false
 
 jobs:
   build:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - name: Checkout latest main
+        uses: actions/checkout@v7
+        with:
+          ref: main
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v6
+        with:
+          version: "11.7.0"
+          run_install: false
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: "22"
+          cache: pnpm
 
       - name: Install dependencies
-        run: npm install
+        run: pnpm install --frozen-lockfile
 
-      # 如果你部署在 `<username>.github.io/<repo-name>`，Vite 需要知道正確的基底路徑
-      # 這裡我們使用指令動態注入 base path 為 repo 名稱 (如果不是自訂網域的話)
       - name: Build
-        run: npx vite build --base=/${{ github.event.repository.name }}/
+        run: pnpm exec vite build --base=/${{ github.event.repository.name }}/
 
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v5
         with:
           path: ./dist
 
   deploy:
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      url: ${{ steps.deployment.outputs.page_url || steps.deployment_retry.outputs.page_url }}
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     needs: build
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        continue-on-error: true
+        uses: actions/deploy-pages@v5
+
+      - name: Wait before deployment retry
+        if: steps.deployment.outcome == 'failure'
+        run: sleep 20
+
+      - name: Retry GitHub Pages deployment
+        id: deployment_retry
+        if: steps.deployment.outcome == 'failure'
+        uses: actions/deploy-pages@v5

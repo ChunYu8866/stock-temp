@@ -9,11 +9,14 @@ export default defineConfig({
       registerType: 'autoUpdate',
       includeAssets: ['assets/icon.svg', 'assets/icon-192.png', 'assets/icon-512.png'],
       manifest: {
-        name: '資金流向 Super Dashboard',
-        short_name: '資金流向',
+        name: 'stock-temp.',
+        short_name: 'stock-temp',
+        description: '台股資金溫度、ETF 持股進出、法人籌碼與績效比較工具。',
+        start_url: './',
+        scope: './',
         display: 'standalone',
-        background_color: '#f4f6f8',
-        theme_color: '#f4f6f8',
+        background_color: '#eef1f4',
+        theme_color: '#eef1f4',
         icons: [
           {
             src: 'assets/icon.svg',

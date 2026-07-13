@@ -176,11 +176,16 @@ function kpi(label, value, detail, toneName) {
   );
 }
 
-function DataBadge({ source, loading, error }) {
-  const text = loading ? '資料載入中' : source === 'live' ? '資料已更新' : '備援資料';
-  return el('span', { className: cx('data-badge', source === 'demo' ? 'demo' : 'live') },
-    text,
-    error ? el('small', null, ` · 已切換備援`) : null
+function DataBadge({ source, loading, error, date }) {
+  const state = loading ? 'loading' : error || source === 'demo' ? 'fallback' : 'live';
+  const label = loading ? '資料載入中' : state === 'fallback' ? '備援資料' : '資料正常';
+  return el('span', {
+    className: cx('data-badge', state),
+    title: label,
+    'aria-label': `${label}，資料日期 ${date || '未知'}`,
+  },
+    el('span', { className: 'status-dot', 'aria-hidden': 'true' }),
+    el('span', null, date || '資料更新中')
   );
 }
 
@@ -188,36 +193,49 @@ function Header({ dataState, activeTab, onTab }) {
   const { data, source, loading, error } = dataState;
   const meta = data.meta || {};
   const tabs = [
-    ['heat', '台股熱區'],
-    ['flow', 'ETF 資金總覽'],
-    ['active', '主動式 ETF 進出'],
-    ['etf', 'ETF 總覽'],
-    ['rank', '投信買賣超'],
-    ['inst', '三大法人'],
-    ['stock', '用股票查 ETF'],
-    ['perf', '績效圖'],
-    ['focus', '每日焦點'],
-    ['events', '事件'],
+    ['heat', '市場溫度'],
+    ['flow', 'ETF 資金'],
+    ['active', '主動 ETF'],
+    ['etf', 'ETF 清單'],
+    ['inst', '法人籌碼'],
+    ['stock', '個股反查'],
+    ['perf', '績效比較'],
+    ['focus', '市場焦點'],
   ];
+  const dataDate = meta.latest_slash || ymdSlash(meta.latest);
 
   return el('header', { className: 'site-menu' },
     el('div', { className: 'menu-brand' },
-      el('div', { className: 'brand-mark' }, 'F'),
+      el('div', { className: 'brand-mark' },
+        el('img', { src: `${base}assets/icon.svg`, alt: '', 'aria-hidden': 'true' })
+      ),
       el('div', { className: 'menu-title' },
-        el('h1', null, '資金流向 Super Dashboard'),
-        el('p', null, `資料日 ${meta.latest_slash || ymdSlash(meta.latest)} · 台股熱區與 ETF 資金流整合`)
+        el('h1', null, 'stock-temp.'),
+        el('p', null, '台股資金溫度與 ETF 籌碼')
       )
     ),
     el('nav', { className: 'tabs menu-tabs', 'aria-label': '功能分頁' },
       tabs.map(([key, label]) => el('button', {
         key,
         className: activeTab === key ? 'on' : '',
+        'aria-current': activeTab === key ? 'page' : undefined,
         onClick: () => onTab(key),
       }, label))
     ),
     el('div', { className: 'menu-status' },
-      el(DataBadge, { source, loading, error })
+      el(DataBadge, { source, loading, error, date: dataDate })
     )
+  );
+}
+
+function SubTabs({ label, value, onChange, options }) {
+  return el('nav', { className: 'sub-tabs', 'aria-label': label },
+    options.map(([key, text]) => el('button', {
+      key,
+      className: value === key ? 'on' : '',
+      'aria-pressed': value === key,
+      onClick: () => onChange(key),
+    }, text))
   );
 }
 
@@ -1054,21 +1072,36 @@ function InteractiveLineChart({ series, height = 240, valueSuffix = '', baseline
 }
 
 function SectorHeatEmbed() {
+  const [frameHeight, setFrameHeight] = useState(1800);
+
+  useEffect(() => {
+    const onMessage = (event) => {
+      if (event.origin !== window.location.origin || event.data?.type !== 'stock-temp:height') return;
+      const nextHeight = Math.max(900, Math.min(7000, Math.ceil(Number(event.data.height) || 0)));
+      setFrameHeight(nextHeight);
+    };
+    window.addEventListener('message', onMessage);
+    return () => window.removeEventListener('message', onMessage);
+  }, []);
+
   return el('section', { className: 'embedded-heat-wrap' },
     el('iframe', {
       className: 'embedded-heat-frame',
-      title: '台股資金溫度計',
-      src: `${base}sector-heat/`,
+      title: '台股市場溫度',
+      src: `${base}sector-heat/?embed=1`,
       loading: 'eager',
+      scrolling: 'no',
+      style: { height: `${frameHeight}px` },
     })
   );
 }
 
 function App() {
   const dataState = usePrimaryData();
-  const sectorState = useSectorData();
   const data = dataState.data;
   const [tab, setTab] = useState('heat');
+  const [institutionView, setInstitutionView] = useState('rank');
+  const [focusView, setFocusView] = useState('focus');
   const [selectedEtf, setSelectedEtf] = useState(null);
   const [stockCode, setStockCode] = useState('');
   const [perfCodes, setPerfCodes] = useState(['0050', '00878', '00919', '00981A']);
@@ -1086,19 +1119,34 @@ function App() {
     el('main', { className: 'app-shell' },
       el(Header, { dataState, activeTab: tab, onTab: setTab }),
       tab === 'heat' ? el(SectorHeatEmbed) : null,
-      tab === 'flow' ? el(React.Fragment, null,
-        el(MarketHeatPanel, { sectorState }),
-        el(FlowOverview, { data, onEtf: openEtf, onStock: openStock })
-      ) : null,
+      tab === 'flow' ? el(FlowOverview, { data, onEtf: openEtf, onStock: openStock }) : null,
       tab === 'active' ? el(ActiveMoves, { data, onEtf: openEtf }) : null,
       tab === 'etf' ? el(EtfOverview, { data, onEtf: openEtf }) : null,
-      tab === 'rank' ? el(RankView, { data, onStock: openStock }) : null,
-      tab === 'inst' ? el(InstView, { active: tab === 'inst' }) : null,
+      tab === 'inst' ? el(React.Fragment, null,
+        el(SubTabs, {
+          label: '法人籌碼檢視',
+          value: institutionView,
+          onChange: setInstitutionView,
+          options: [['rank', '投信買賣超'], ['inst', '三大法人']],
+        }),
+        institutionView === 'rank'
+          ? el(RankView, { data, onStock: openStock })
+          : el(InstView, { active: tab === 'inst' && institutionView === 'inst' })
+      ) : null,
       tab === 'stock' ? el(StockLookup, { data, initialCode: stockCode, onEtf: openEtf }) : null,
       tab === 'perf' ? el(PerformanceView, { data, perfCodes, setPerfCodes }) : null,
-      tab === 'focus' ? el(FocusView, { data, onStock: openStock, onEtf: openEtf }) : null,
-      tab === 'events' ? el(EventsView, { active: tab === 'events' }) : null,
-      el('footer', null, '本工具整合 ETF 持股、法人籌碼與市場事件，資料僅供研究與流程展示，不構成投資建議。')
+      tab === 'focus' ? el(React.Fragment, null,
+        el(SubTabs, {
+          label: '市場焦點檢視',
+          value: focusView,
+          onChange: setFocusView,
+          options: [['focus', '每日焦點'], ['events', '市場事件']],
+        }),
+        focusView === 'focus'
+          ? el(FocusView, { data, onStock: openStock, onEtf: openEtf })
+          : el(EventsView, { active: tab === 'focus' && focusView === 'events' })
+      ) : null,
+      el('footer', null, '資料僅供資訊整理，不構成投資建議。')
     ),
     el(EtfDrawer, { code: selectedEtf, data, onClose: () => setSelectedEtf(null), onStock: openStock, addPerf })
   );

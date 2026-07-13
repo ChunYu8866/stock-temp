@@ -3,11 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <meta name="theme-color" content="#f5f5f7" />
-    <title>台股資金溫度計</title>
-    <link rel="manifest" href="/sector-rotation/sector-heat/manifest.webmanifest" />
-    <link rel="icon" href="/sector-rotation/sector-heat/assets/icon.svg" type="image/svg+xml" />
-
+    <meta name="theme-color" content="#eef1f4" />
+    <title>stock-temp. 市場溫度</title>
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="icon" href="./assets/icon.svg" type="image/svg+xml" />
     <script type="importmap">
       {
         "imports": {
@@ -16,10 +15,106 @@
         }
       }
     </script>
-    <script type="module" crossorigin src="/sector-rotation/sector-heat/assets/index-CsIHkk1-.js"></script>
-    <link rel="stylesheet" crossorigin href="/sector-rotation/sector-heat/assets/index-DuYKV_eN.css">
-  <link rel="manifest" href="/sector-rotation/sector-heat/manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="/sector-rotation/sector-heat/registerSW.js"></script></head>
+    <script>
+      (() => {
+        if (new URLSearchParams(window.location.search).get('embed') !== '1') return;
+        document.documentElement.classList.add('stock-temp-embed');
+
+        const startHeightSync = () => {
+          let frame = 0;
+          let lastHeight = 0;
+          const reportHeight = () => {
+            cancelAnimationFrame(frame);
+            frame = requestAnimationFrame(() => {
+              const height = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
+              if (Math.abs(height - lastHeight) < 2) return;
+              lastHeight = height;
+              window.parent.postMessage({ type: 'stock-temp:height', height }, window.location.origin);
+            });
+          };
+
+          new ResizeObserver(reportHeight).observe(document.body);
+          new MutationObserver(reportHeight).observe(document.body, { childList: true, subtree: true, attributes: true });
+          reportHeight();
+          window.addEventListener('resize', reportHeight);
+        };
+
+        window.addEventListener('DOMContentLoaded', startHeightSync, { once: true });
+      })();
+    </script>
+    <script type="module" crossorigin src="./assets/index-CsIHkk1-.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-DuYKV_eN.css" />
+    <style>
+      html.stock-temp-embed {
+        --apple-bg: #eef1f4;
+        --apple-surface: #ffffff;
+        --apple-surface-strong: #ffffff;
+        --apple-border: #dfe4e9;
+        --apple-text: #172033;
+        --apple-muted: #667085;
+        --apple-soft: #f6f8fa;
+        --apple-blue: #172033;
+        --apple-shadow: rgba(23, 32, 51, 0.06);
+        background: transparent;
+      }
+
+      html.stock-temp-embed body {
+        min-height: 0;
+        overflow: hidden;
+        background: transparent;
+      }
+
+      html.stock-temp-embed .app-shell {
+        min-height: 0;
+        padding: 0;
+        gap: 12px;
+      }
+
+      html.stock-temp-embed .top-shell,
+      html.stock-temp-embed .source-strip,
+      html.stock-temp-embed .disclaimer,
+      html.stock-temp-embed .glossary-backdrop {
+        display: none !important;
+      }
+
+      html.stock-temp-embed .utility-row {
+        grid-template-columns: minmax(0, 1fr) !important;
+      }
+
+      html.stock-temp-embed .glass {
+        background: #ffffff;
+        border-color: #dfe4e9;
+        box-shadow: 0 8px 24px rgba(23, 32, 51, 0.07);
+        -webkit-backdrop-filter: none;
+        backdrop-filter: none;
+      }
+
+      html.stock-temp-embed .heatmap-tools button.active,
+      html.stock-temp-embed .segmented button.active {
+        color: #ffffff;
+        background: #172033;
+        border-color: #172033;
+        box-shadow: none;
+      }
+
+      html.stock-temp-embed .heatmap-header {
+        background: rgba(255, 255, 255, 0.96);
+      }
+
+      @media (max-width: 760px) {
+        html.stock-temp-embed .app-shell {
+          gap: 9px;
+        }
+
+        html.stock-temp-embed .heatmap-card,
+        html.stock-temp-embed .flow-map-card {
+          padding: 12px;
+        }
+      }
+    </style>
+    <script id="vite-plugin-pwa:register-sw" src="./registerSW.js"></script>
+  </head>
   <body>
-    <div id="root"></div>
+    <div id="root"></div>
   </body>
 </html>
