@@ -1712,7 +1712,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 65.1,
       "volume": 41120
     },
@@ -1726,7 +1726,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 249,
       "volume": 105756
     },
@@ -1740,7 +1740,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 11.35,
       "volume": 4550
     },
@@ -1754,7 +1754,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 11.1,
       "volume": 2769
     },
@@ -1768,7 +1768,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 11.75,
       "volume": 2785
     },
@@ -1782,7 +1782,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 11.65,
       "volume": 5928
     },
@@ -1796,7 +1796,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 21.65,
       "volume": 105
     },
@@ -1810,7 +1810,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 25.4,
       "volume": 639
     },
@@ -1824,7 +1824,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 65,
       "volume": 29525
     },
@@ -1838,7 +1838,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 7.96,
       "volume": 374
     },
@@ -1852,7 +1852,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 168.5,
       "volume": 1781
     },
@@ -1874,7 +1874,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 143.5,
       "volume": 4050
     },
@@ -1888,7 +1888,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 493.5,
       "volume": 2246
     },
@@ -1902,7 +1902,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 16.65,
       "volume": 288
     },
@@ -1916,23 +1916,23 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 13.5,
       "volume": 913
     },
     "1530": {
       "name": "亞崴",
-      "price": 26.7,
-      "chg_1d": -0.56,
+      "price": 26.4,
+      "chg_1d": -1.12,
       "net_1d_yi": 0,
       "market": "TWSE",
       "quoteStatus": "fallback",
-      "quoteSource": "twse-stock-day-all",
-      "quoteDate": "2026-11-05",
-      "quoteTime": null,
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
-      "previousClose": 26.85,
-      "volume": 31576
+      "quoteSource": "yahoo-chart",
+      "quoteDate": "2026-11-06",
+      "quoteTime": "12:52:00",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
+      "previousClose": 26.7,
+      "volume": 96422
     },
     "1532": {
       "name": "勤美",
@@ -1944,7 +1944,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 21.45,
       "volume": 1137
     },
@@ -1958,7 +1958,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 25.75,
       "volume": 230
     },
@@ -1972,7 +1972,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 45.55,
       "volume": 173
     },
@@ -1986,7 +1986,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 111,
       "volume": 168
     },
@@ -2000,7 +2000,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 710,
       "volume": 3447
     },
@@ -2014,7 +2014,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 70.5,
       "volume": 1568
     },
@@ -2028,23 +2028,23 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 93.8,
       "volume": 226
     },
     "1583": {
       "name": "程泰",
-      "price": 47.5,
-      "chg_1d": 1.93,
+      "price": 47.15,
+      "chg_1d": -0.74,
       "net_1d_yi": 0,
       "market": "TWSE",
       "quoteStatus": "fallback",
-      "quoteSource": "twse-stock-day-all",
-      "quoteDate": "2026-11-05",
-      "quoteTime": null,
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
-      "previousClose": 46.6,
-      "volume": 18253
+      "quoteSource": "yahoo-chart",
+      "quoteDate": "2026-11-06",
+      "quoteTime": "13:17:01",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
+      "previousClose": 47.5,
+      "volume": 26402
     },
     "1585": {
       "name": "鎧鉅",
@@ -2064,7 +2064,7 @@
       "quoteSource": "yahoo-chart",
       "quoteDate": "2026-11-05",
       "quoteTime": "13:30:08",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 5.54,
       "volume": 0
     },
@@ -2078,7 +2078,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 1050,
       "volume": 1745
     },
@@ -2092,7 +2092,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 115,
       "volume": 1645
     },
@@ -2114,7 +2114,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 28.95,
       "volume": 649
     },
@@ -2128,7 +2128,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 23.2,
       "volume": 925
     },
@@ -2142,7 +2142,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 32.6,
       "volume": 31003
     },
@@ -2164,7 +2164,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 31.05,
       "volume": 3011
     },
@@ -2178,7 +2178,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 31.35,
       "volume": 5659
     },
@@ -2192,7 +2192,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 11.25,
       "volume": 1981
     },
@@ -2206,7 +2206,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 31.6,
       "volume": 1084
     },
@@ -2228,7 +2228,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 31.7,
       "volume": 92
     },
@@ -2242,7 +2242,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 9.74,
       "volume": 207
     },
@@ -2256,7 +2256,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 15.85,
       "volume": 7293
     },
@@ -2270,7 +2270,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 33.9,
       "volume": 11118
     },
@@ -2284,7 +2284,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 16.15,
       "volume": 16236
     },
@@ -2306,7 +2306,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 59.8,
       "volume": 7626
     },
@@ -2320,7 +2320,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 9.78,
       "volume": 16223
     },
@@ -2334,7 +2334,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 20.25,
       "volume": 1174
     },
@@ -2348,7 +2348,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 40.55,
       "volume": 6149
     },
@@ -2362,7 +2362,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 147.5,
       "volume": 1084
     },
@@ -2376,7 +2376,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 8.87,
       "volume": 123
     },
@@ -2390,7 +2390,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 60.1,
       "volume": 85870
     },
@@ -2404,7 +2404,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 284.5,
       "volume": 5800
     },
@@ -2418,7 +2418,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 7995,
       "volume": 988
     },
@@ -2432,7 +2432,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 111.5,
       "volume": 1160
     },
@@ -2446,7 +2446,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 63.6,
       "volume": 1084
     },
@@ -2460,7 +2460,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 17,
       "volume": 3824
     },
@@ -2474,7 +2474,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 34.9,
       "volume": 3338
     },
@@ -2488,7 +2488,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 109,
       "volume": 3758
     },
@@ -2502,7 +2502,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 29,
       "volume": 640
     },
@@ -2516,7 +2516,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 211.5,
       "volume": 22191
     },
@@ -2530,7 +2530,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 98.4,
       "volume": 201200
     },
@@ -2544,7 +2544,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 1130,
       "volume": 31332
     },
@@ -2566,7 +2566,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 165.5,
       "volume": 29220
     },
@@ -2588,7 +2588,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 107,
       "volume": 3876
     },
@@ -2602,7 +2602,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 235,
       "volume": 87029
     },
@@ -2616,7 +2616,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 10.3,
       "volume": 8976
     },
@@ -2630,7 +2630,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 32.45,
       "volume": 64670
     },
@@ -2652,7 +2652,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 404.5,
       "volume": 54141
     },
@@ -2666,7 +2666,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 35.95,
       "volume": 4472
     },
@@ -2680,7 +2680,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 2240,
       "volume": 96959
     },
@@ -2694,7 +2694,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 17.1,
       "volume": 7674
     },
@@ -2716,7 +2716,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 79.7,
       "volume": 59849
     },
@@ -2730,7 +2730,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 35.85,
       "volume": 12228
     },
@@ -2752,7 +2752,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 33.6,
       "volume": 2767
     },
@@ -2766,7 +2766,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 127.5,
       "volume": 82786
     },
@@ -2780,7 +2780,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 1380,
       "volume": 5701
     },
@@ -2794,7 +2794,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 87.2,
       "volume": 3255
     },
@@ -2816,7 +2816,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 28,
       "volume": 12989
     },
@@ -2830,7 +2830,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 29.2,
       "volume": 31647
     },
@@ -2844,7 +2844,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 55.1,
       "volume": 7969
     },
@@ -2858,7 +2858,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 55,
       "volume": 26394
     },
@@ -2872,7 +2872,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 867,
       "volume": 5118
     },
@@ -2886,7 +2886,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 1335,
       "volume": 1555
     },
@@ -2908,7 +2908,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 44.05,
       "volume": 5996
     },
@@ -2922,7 +2922,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 52.4,
       "volume": 340
     },
@@ -2936,7 +2936,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 23.7,
       "volume": 1922
     },
@@ -2950,7 +2950,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 34.95,
       "volume": 8195
     },
@@ -2964,7 +2964,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 868,
       "volume": 11167
     },
@@ -2978,7 +2978,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 24.5,
       "volume": 4919
     },
@@ -2992,7 +2992,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 57,
       "volume": 4025
     },
@@ -3006,7 +3006,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 93.9,
       "volume": 2592
     },
@@ -3020,7 +3020,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 313,
       "volume": 9011
     },
@@ -3034,7 +3034,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 142.5,
       "volume": 7036
     },
@@ -3048,7 +3048,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 720,
       "volume": 4121
     },
@@ -3062,7 +3062,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 300,
       "volume": 36780
     },
@@ -3076,7 +3076,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 4100,
       "volume": 5809
     },
@@ -3106,7 +3106,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 35.05,
       "volume": 2220
     },
@@ -3120,7 +3120,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 596,
       "volume": 6453
     },
@@ -3150,7 +3150,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 956,
       "volume": 2592
     },
@@ -3164,7 +3164,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 29.3,
       "volume": 21122
     },
@@ -3178,7 +3178,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 360,
       "volume": 63199
     },
@@ -3192,7 +3192,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 27.25,
       "volume": 279868
     },
@@ -3206,7 +3206,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 31.85,
       "volume": 853
     },
@@ -3228,7 +3228,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 24.45,
       "volume": 1273
     },
@@ -3242,7 +3242,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 131,
       "volume": 3199
     },
@@ -3256,7 +3256,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 64.5,
       "volume": 230
     },
@@ -3270,7 +3270,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 28.65,
       "volume": 1327
     },
@@ -3284,7 +3284,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 72.6,
       "volume": 8453
     },
@@ -3298,7 +3298,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 28.75,
       "volume": 304
     },
@@ -3320,7 +3320,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 17.85,
       "volume": 109
     },
@@ -3334,7 +3334,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 103,
       "volume": 5669
     },
@@ -3348,7 +3348,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 14.45,
       "volume": 1187
     },
@@ -3386,7 +3386,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 228.5,
       "volume": 26379
     },
@@ -3400,7 +3400,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 254.5,
       "volume": 4882
     },
@@ -3422,7 +3422,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 3460,
       "volume": 21292
     },
@@ -3436,7 +3436,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 346,
       "volume": 8417
     },
@@ -3458,7 +3458,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 61.8,
       "volume": 273
     },
@@ -3472,7 +3472,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 27.3,
       "volume": 565
     },
@@ -3486,7 +3486,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 17.7,
       "volume": 777
     },
@@ -3500,7 +3500,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 145,
       "volume": 5276
     },
@@ -3514,7 +3514,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 338,
       "volume": 1064
     },
@@ -3528,7 +3528,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 160.5,
       "volume": 3289
     },
@@ -3542,7 +3542,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 186.5,
       "volume": 3633
     },
@@ -3572,7 +3572,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 30.25,
       "volume": 4898
     },
@@ -3586,7 +3586,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 35.3,
       "volume": 1502
     },
@@ -3600,7 +3600,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 281.5,
       "volume": 18478
     },
@@ -3638,7 +3638,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 5.37,
       "volume": 2913
     },
@@ -3652,7 +3652,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 259,
       "volume": 17011
     },
@@ -3666,7 +3666,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 32.65,
       "volume": 5291
     },
@@ -3680,7 +3680,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 69.4,
       "volume": 5062
     },
@@ -3694,7 +3694,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 57.8,
       "volume": 1097
     },
@@ -3708,7 +3708,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 28,
       "volume": 585
     },
@@ -3722,7 +3722,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 60,
       "volume": 23842
     },
@@ -3736,7 +3736,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 21.65,
       "volume": 50799
     },
@@ -3750,7 +3750,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 15.4,
       "volume": 586
     },
@@ -3764,7 +3764,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 58,
       "volume": 442
     },
@@ -3778,7 +3778,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 20.65,
       "volume": 598
     },
@@ -3792,7 +3792,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 113,
       "volume": 16866
     },
@@ -3806,7 +3806,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 30.1,
       "volume": 1372
     },
@@ -3820,7 +3820,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 45.1,
       "volume": 27822
     },
@@ -3834,7 +3834,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 34.5,
       "volume": 2420
     },
@@ -3848,7 +3848,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 53.9,
       "volume": 10287
     },
@@ -3862,7 +3862,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 68.6,
       "volume": 950
     },
@@ -3876,7 +3876,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 98.6,
       "volume": 2641
     },
@@ -3890,7 +3890,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 133,
       "volume": 88
     },
@@ -3904,7 +3904,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 15.8,
       "volume": 2180
     },
@@ -3918,7 +3918,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 19.3,
       "volume": 258
     },
@@ -3932,7 +3932,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 65,
       "volume": 164
     },
@@ -3946,7 +3946,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 154,
       "volume": 2057
     },
@@ -3960,7 +3960,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 19.7,
       "volume": 7885
     },
@@ -3974,7 +3974,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:33:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 19.85,
       "volume": 142
     },
@@ -3988,7 +3988,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 80.6,
       "volume": 638
     },
@@ -4002,7 +4002,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 243,
       "volume": 1322
     },
@@ -4016,7 +4016,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 28.7,
       "volume": 39278
     },
@@ -4038,7 +4038,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 18.05,
       "volume": 33768
     },
@@ -4060,7 +4060,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 49.6,
       "volume": 28609
     },
@@ -4074,7 +4074,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 155.5,
       "volume": 47763
     },
@@ -4088,7 +4088,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 112,
       "volume": 48241
     },
@@ -4102,7 +4102,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 34.35,
       "volume": 62573
     },
@@ -4116,7 +4116,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 47.95,
       "volume": 50815
     },
@@ -4130,7 +4130,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 69.1,
       "volume": 56975
     },
@@ -4144,7 +4144,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 54,
       "volume": 35527
     },
@@ -4158,7 +4158,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 40.1,
       "volume": 136530
     },
@@ -4180,7 +4180,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 16.4,
       "volume": 14431
     },
@@ -4194,7 +4194,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 42.9,
       "volume": 43417
     },
@@ -4208,7 +4208,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 74.9,
       "volume": 58221
     },
@@ -4222,7 +4222,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 42.25,
       "volume": 47306
     },
@@ -4236,7 +4236,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 214.5,
       "volume": 2737
     },
@@ -4250,7 +4250,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 5.67,
       "volume": 152
     },
@@ -4264,7 +4264,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 214,
       "volume": 15173
     },
@@ -4278,7 +4278,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 4525,
       "volume": 3796
     },
@@ -4300,7 +4300,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 126.5,
       "volume": 1456
     },
@@ -4314,7 +4314,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 45,
       "volume": 1225
     },
@@ -4328,7 +4328,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 107,
       "volume": 5726
     },
@@ -4342,7 +4342,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 2565,
       "volume": 1919
     },
@@ -4356,7 +4356,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 21.3,
       "volume": 416
     },
@@ -4370,7 +4370,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 257,
       "volume": 2950
     },
@@ -4384,7 +4384,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 48.55,
       "volume": 477
     },
@@ -4398,7 +4398,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 528,
       "volume": 7738
     },
@@ -4412,7 +4412,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 16.2,
       "volume": 656
     },
@@ -4426,7 +4426,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 218,
       "volume": 1876
     },
@@ -4440,7 +4440,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 510,
       "volume": 5930
     },
@@ -4454,7 +4454,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 171.5,
       "volume": 7069
     },
@@ -4468,7 +4468,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 195,
       "volume": 16481
     },
@@ -4482,7 +4482,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 800,
       "volume": 35956
     },
@@ -4496,7 +4496,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 132,
       "volume": 7255
     },
@@ -4510,7 +4510,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 18.1,
       "volume": 678
     },
@@ -4524,7 +4524,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 438.5,
       "volume": 3753
     },
@@ -4538,7 +4538,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 132.5,
       "volume": 13648
     },
@@ -4552,7 +4552,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 12.5,
       "volume": 1655
     },
@@ -4574,7 +4574,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 34,
       "volume": 2373
     },
@@ -4620,7 +4620,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 1890,
       "volume": 3703
     },
@@ -4634,7 +4634,7 @@
       "quoteSource": "yahoo-chart",
       "quoteDate": "2026-11-05",
       "quoteTime": "13:30:22",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 15.25,
       "volume": 2000
     },
@@ -4648,7 +4648,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 104.5,
       "volume": 829
     },
@@ -4670,7 +4670,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 42.8,
       "volume": 2281
     },
@@ -4684,7 +4684,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 451,
       "volume": 14439
     },
@@ -4698,7 +4698,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 17.7,
       "volume": 333
     },
@@ -4712,7 +4712,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 204,
       "volume": 159
     },
@@ -4726,7 +4726,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 1555,
       "volume": 432
     },
@@ -4740,7 +4740,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 78,
       "volume": 518
     },
@@ -4762,7 +4762,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 59.3,
       "volume": 5094
     },
@@ -4776,7 +4776,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 14.25,
       "volume": 16
     },
@@ -4790,7 +4790,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 71.3,
       "volume": 1349
     },
@@ -4804,7 +4804,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 777,
       "volume": 3513
     },
@@ -4818,7 +4818,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 740,
       "volume": 15102
     },
@@ -4829,12 +4829,12 @@
       "net_1d_yi": null,
       "market": "TPEX",
       "quoteStatus": "fallback",
-      "quoteSource": "yahoo-chart",
+      "quoteSource": "tpex-daily-close",
       "quoteDate": "2026-11-06",
-      "quoteTime": "13:10:20",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteTime": null,
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 16.15,
-      "volume": 106750
+      "volume": 107250
     },
     "3211": {
       "name": "順達",
@@ -4846,7 +4846,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 250,
       "volume": 5182
     },
@@ -4868,7 +4868,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 38.65,
       "volume": 1485
     },
@@ -4882,7 +4882,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 174,
       "volume": 2147
     },
@@ -4896,7 +4896,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 168.5,
       "volume": 47444
     },
@@ -4910,7 +4910,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 123,
       "volume": 1551
     },
@@ -4924,7 +4924,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 41.55,
       "volume": 906
     },
@@ -4935,12 +4935,12 @@
       "net_1d_yi": 0,
       "market": "TPEX",
       "quoteStatus": "fallback",
-      "quoteSource": "yahoo-chart",
+      "quoteSource": "tpex-daily-close",
       "quoteDate": "2026-11-06",
-      "quoteTime": "13:20:58",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteTime": null,
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 9.95,
-      "volume": 30674
+      "volume": 31267
     },
     "3260": {
       "name": "威剛",
@@ -4952,7 +4952,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 299.5,
       "volume": 9168
     },
@@ -4966,7 +4966,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 179.5,
       "volume": 14942
     },
@@ -4980,7 +4980,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 159.5,
       "volume": 1702
     },
@@ -4994,7 +4994,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 13.4,
       "volume": 42
     },
@@ -5008,7 +5008,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 114,
       "volume": 1119
     },
@@ -5022,7 +5022,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 25,
       "volume": 707
     },
@@ -5036,7 +5036,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 21.25,
       "volume": 188
     },
@@ -5050,7 +5050,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 49.05,
       "volume": 241
     },
@@ -5072,7 +5072,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 49.05,
       "volume": 1023
     },
@@ -5086,7 +5086,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 9.15,
       "volume": 869
     },
@@ -5100,7 +5100,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 1170,
       "volume": 2872
     },
@@ -5114,7 +5114,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 55.5,
       "volume": 750
     },
@@ -5128,7 +5128,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 18.55,
       "volume": 805
     },
@@ -5150,7 +5150,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 13.05,
       "volume": 442
     },
@@ -5164,7 +5164,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 402.5,
       "volume": 2967
     },
@@ -5178,7 +5178,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 27.75,
       "volume": 2711
     },
@@ -5200,7 +5200,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 19.05,
       "volume": 249
     },
@@ -5214,7 +5214,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 846,
       "volume": 6957
     },
@@ -5228,7 +5228,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 247,
       "volume": 1422
     },
@@ -5242,7 +5242,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 6405,
       "volume": 4177
     },
@@ -5256,7 +5256,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 67,
       "volume": 303
     },
@@ -5270,7 +5270,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 23.45,
       "volume": 347
     },
@@ -5284,7 +5284,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 342,
       "volume": 6089
     },
@@ -5298,7 +5298,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 184.5,
       "volume": 1785
     },
@@ -5312,7 +5312,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 26.45,
       "volume": 5
     },
@@ -5326,7 +5326,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 56.6,
       "volume": 314
     },
@@ -5348,7 +5348,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 38,
       "volume": 241815
     },
@@ -5362,7 +5362,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 42.85,
       "volume": 270
     },
@@ -5376,7 +5376,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 1180,
       "volume": 1162
     },
@@ -5390,7 +5390,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 54.1,
       "volume": 1587
     },
@@ -5420,7 +5420,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 216,
       "volume": 754
     },
@@ -5434,7 +5434,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 74,
       "volume": 647
     },
@@ -5448,7 +5448,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 2025,
       "volume": 993
     },
@@ -5462,7 +5462,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 281.5,
       "volume": 3423
     },
@@ -5476,7 +5476,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 1660,
       "volume": 1981
     },
@@ -5490,7 +5490,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 70,
       "volume": 1043
     },
@@ -5504,7 +5504,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 21.2,
       "volume": 265
     },
@@ -5526,7 +5526,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 584,
       "volume": 1286
     },
@@ -5540,7 +5540,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 16.4,
       "volume": 48363
     },
@@ -5554,7 +5554,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 465,
       "volume": 1091
     },
@@ -5568,7 +5568,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 187.5,
       "volume": 870
     },
@@ -5582,7 +5582,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:33:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 9.8,
       "volume": 8
     },
@@ -5596,7 +5596,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 40.15,
       "volume": 342
     },
@@ -5610,7 +5610,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 140,
       "volume": 1826
     },
@@ -5632,7 +5632,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 179,
       "volume": 93
     },
@@ -5646,7 +5646,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 33.8,
       "volume": 794
     },
@@ -5657,12 +5657,12 @@
       "net_1d_yi": 0,
       "market": "TPEX",
       "quoteStatus": "fallback",
-      "quoteSource": "yahoo-chart",
+      "quoteSource": "tpex-daily-close",
       "quoteDate": "2026-11-06",
-      "quoteTime": "13:24:32",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteTime": null,
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 15.4,
-      "volume": 31196
+      "volume": 32357
     },
     "3627": {
       "name": "華信科",
@@ -5682,7 +5682,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 66,
       "volume": 90
     },
@@ -5696,7 +5696,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 24.15,
       "volume": 1050
     },
@@ -5710,7 +5710,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 43.05,
       "volume": 396
     },
@@ -5724,7 +5724,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 12,
       "volume": 5
     },
@@ -5738,7 +5738,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 25,
       "volume": 19
     },
@@ -5752,7 +5752,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 5805,
       "volume": 1561
     },
@@ -5766,7 +5766,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 2960,
       "volume": 2960
     },
@@ -5780,7 +5780,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 60.6,
       "volume": 10044
     },
@@ -5794,7 +5794,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 408.5,
       "volume": 1444
     },
@@ -5816,7 +5816,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 54.1,
       "volume": 234
     },
@@ -5830,7 +5830,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 139,
       "volume": 3702
     },
@@ -5844,7 +5844,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 543,
       "volume": 1332
     },
@@ -5866,7 +5866,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 92.1,
       "volume": 26762
     },
@@ -5880,7 +5880,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 59.6,
       "volume": 414
     },
@@ -5894,7 +5894,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 70.7,
       "volume": 9698
     },
@@ -5908,7 +5908,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 55,
       "volume": 5439
     },
@@ -5922,7 +5922,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 91,
       "volume": 796
     },
@@ -5936,7 +5936,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 57.9,
       "volume": 829
     },
@@ -5950,7 +5950,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 572,
       "volume": 41251
     },
@@ -5964,7 +5964,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 16.9,
       "volume": 638
     },
@@ -5978,7 +5978,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 103.5,
       "volume": 7470
     },
@@ -5992,7 +5992,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 54.5,
       "volume": 9776
     },
@@ -6006,7 +6006,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 23.55,
       "volume": 2549
     },
@@ -6020,7 +6020,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 26,
       "volume": 206
     },
@@ -6034,7 +6034,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 54.4,
       "volume": 465
     },
@@ -6056,23 +6056,23 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 80.5,
       "volume": 113
     },
     "4581": {
       "name": "光隆精密-KY",
-      "price": 46.05,
-      "chg_1d": -0.75,
+      "price": 45.05,
+      "chg_1d": -2.17,
       "net_1d_yi": 0,
       "market": "TWSE",
       "quoteStatus": "fallback",
-      "quoteSource": "twse-stock-day-all",
-      "quoteDate": "2026-11-05",
-      "quoteTime": null,
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
-      "previousClose": 46.4,
-      "volume": 17087
+      "quoteSource": "yahoo-chart",
+      "quoteDate": "2026-11-06",
+      "quoteTime": "11:35:28",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
+      "previousClose": 46.05,
+      "volume": 19683
     },
     "4587": {
       "name": "寶元數控",
@@ -6084,23 +6084,23 @@
       "quoteSource": "yahoo-chart",
       "quoteDate": "2026-11-06",
       "quoteTime": "14:55:38",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 33.2,
       "volume": 22503
     },
     "4588": {
       "name": "玖鼎電力",
-      "price": 55,
-      "chg_1d": -0.36,
+      "price": 53.2,
+      "chg_1d": -3.27,
       "net_1d_yi": 0,
       "market": "TWSE",
       "quoteStatus": "fallback",
-      "quoteSource": "twse-stock-day-all",
-      "quoteDate": "2026-11-05",
-      "quoteTime": null,
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
-      "previousClose": 55.2,
-      "volume": 65742
+      "quoteSource": "yahoo-chart",
+      "quoteDate": "2026-11-06",
+      "quoteTime": "13:19:44",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
+      "previousClose": 55,
+      "volume": 90907
     },
     "4721": {
       "name": "美琪瑪",
@@ -6112,7 +6112,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 67.6,
       "volume": 474
     },
@@ -6126,7 +6126,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 142,
       "volume": 639
     },
@@ -6140,7 +6140,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 605,
       "volume": 997
     },
@@ -6154,7 +6154,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 42.55,
       "volume": 7089
     },
@@ -6168,7 +6168,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 34.2,
       "volume": 8086
     },
@@ -6182,7 +6182,7 @@
       "quoteSource": "yahoo-chart",
       "quoteDate": "2026-11-06",
       "quoteTime": "14:57:28",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 100.5,
       "volume": 290981
     },
@@ -6196,7 +6196,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 45.75,
       "volume": 10970
     },
@@ -6210,7 +6210,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 169.5,
       "volume": 2768
     },
@@ -6224,7 +6224,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 97.2,
       "volume": 13750
     },
@@ -6238,7 +6238,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 29.6,
       "volume": 443
     },
@@ -6252,7 +6252,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 6.33,
       "volume": 18
     },
@@ -6266,7 +6266,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 69.7,
       "volume": 1108
     },
@@ -6280,7 +6280,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:33:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 76.3,
       "volume": 362
     },
@@ -6294,7 +6294,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 111.5,
       "volume": 736
     },
@@ -6308,7 +6308,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 394,
       "volume": 27272
     },
@@ -6322,7 +6322,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 29.65,
       "volume": 17490
     },
@@ -6336,7 +6336,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 167,
       "volume": 1054
     },
@@ -6350,7 +6350,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 420.5,
       "volume": 1722
     },
@@ -6364,7 +6364,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 261.5,
       "volume": 11706
     },
@@ -6378,7 +6378,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 78,
       "volume": 1075
     },
@@ -6392,7 +6392,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 357.5,
       "volume": 1082
     },
@@ -6406,7 +6406,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 116,
       "volume": 1318
     },
@@ -6420,7 +6420,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 175.5,
       "volume": 22548
     },
@@ -6434,7 +6434,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 346.5,
       "volume": 4841
     },
@@ -6448,7 +6448,7 @@
       "quoteSource": "yahoo-chart",
       "quoteDate": "2026-11-06",
       "quoteTime": "14:58:28",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 29.85,
       "volume": 67516
     },
@@ -6462,7 +6462,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 80.1,
       "volume": 28
     },
@@ -6476,7 +6476,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 41.7,
       "volume": 6
     },
@@ -6490,7 +6490,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 16.05,
       "volume": 217
     },
@@ -6504,7 +6504,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 25.5,
       "volume": 137
     },
@@ -6518,7 +6518,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 16.65,
       "volume": 8475
     },
@@ -6529,10 +6529,10 @@
       "net_1d_yi": 0,
       "market": "TPEX",
       "quoteStatus": "fallback",
-      "quoteSource": "yahoo-chart",
+      "quoteSource": "tpex-daily-close",
       "quoteDate": "2026-11-06",
-      "quoteTime": "12:35:09",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteTime": null,
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 20.95,
       "volume": 35081
     },
@@ -6546,7 +6546,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 29.5,
       "volume": 348
     },
@@ -6560,7 +6560,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 19.55,
       "volume": 113
     },
@@ -6574,7 +6574,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 47.75,
       "volume": 73
     },
@@ -6588,7 +6588,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 19.65,
       "volume": 14
     },
@@ -6602,7 +6602,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 85.9,
       "volume": 777
     },
@@ -6616,7 +6616,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 23.6,
       "volume": 189
     },
@@ -6630,7 +6630,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 44.6,
       "volume": 727
     },
@@ -6644,7 +6644,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 25.45,
       "volume": 1669
     },
@@ -6658,7 +6658,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 259,
       "volume": 447
     },
@@ -6672,7 +6672,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 113.5,
       "volume": 297
     },
@@ -6686,7 +6686,7 @@
       "quoteSource": "yahoo-chart",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:37:35",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 15.1,
       "volume": 11003
     },
@@ -6700,7 +6700,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 79.5,
       "volume": 2489
     },
@@ -6714,7 +6714,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 34.4,
       "volume": 499
     },
@@ -6728,7 +6728,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 17.65,
       "volume": 183
     },
@@ -6742,7 +6742,7 @@
       "quoteSource": "yahoo-chart",
       "quoteDate": "2026-11-06",
       "quoteTime": "14:57:41",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 22.5,
       "volume": 40952
     },
@@ -6756,7 +6756,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 24.5,
       "volume": 179
     },
@@ -6770,7 +6770,7 @@
       "quoteSource": "yahoo-chart",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:12:14",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 33.8,
       "volume": 28342
     },
@@ -6792,7 +6792,7 @@
       "quoteSource": "yahoo-chart",
       "quoteDate": "2026-11-06",
       "quoteTime": "14:33:42",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 41.2,
       "volume": 184528
     },
@@ -6806,7 +6806,7 @@
       "quoteSource": "yahoo-chart",
       "quoteDate": "2026-11-06",
       "quoteTime": "14:12:36",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 37.2,
       "volume": 57983
     },
@@ -6820,7 +6820,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 1220,
       "volume": 808
     },
@@ -6834,7 +6834,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 15.1,
       "volume": 75
     },
@@ -6848,7 +6848,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 12635,
       "volume": 219
     },
@@ -6870,7 +6870,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 23.85,
       "volume": 433
     },
@@ -6900,7 +6900,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 50,
       "volume": 137
     },
@@ -6914,7 +6914,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 70.6,
       "volume": 1264
     },
@@ -6928,7 +6928,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 128.5,
       "volume": 276
     },
@@ -6942,7 +6942,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 945,
       "volume": 2453
     },
@@ -6956,7 +6956,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 50.1,
       "volume": 804
     },
@@ -6970,7 +6970,7 @@
       "quoteSource": "yahoo-chart",
       "quoteDate": "2026-11-06",
       "quoteTime": "14:59:37",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 59.7,
       "volume": 638792
     },
@@ -6984,7 +6984,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 80,
       "volume": 186
     },
@@ -6998,7 +6998,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 8.51,
       "volume": 270
     },
@@ -7012,7 +7012,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 86.5,
       "volume": 299
     },
@@ -7026,7 +7026,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 56.9,
       "volume": 5599
     },
@@ -7040,7 +7040,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:33:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 53,
       "volume": 387
     },
@@ -7054,7 +7054,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 40.6,
       "volume": 2701
     },
@@ -7076,7 +7076,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 126,
       "volume": 22416
     },
@@ -7098,7 +7098,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 88.1,
       "volume": 10535
     },
@@ -7128,7 +7128,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 65.7,
       "volume": 3457
     },
@@ -7142,7 +7142,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 32.05,
       "volume": 1425
     },
@@ -7156,7 +7156,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 73.5,
       "volume": 5209
     },
@@ -7170,7 +7170,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 171.5,
       "volume": 200
     },
@@ -7184,7 +7184,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 484,
       "volume": 1936
     },
@@ -7198,7 +7198,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 175,
       "volume": 1637
     },
@@ -7212,7 +7212,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 81.4,
       "volume": 1679
     },
@@ -7226,7 +7226,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 20.35,
       "volume": 1148
     },
@@ -7240,7 +7240,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 62.2,
       "volume": 6242
     },
@@ -7254,7 +7254,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 41.65,
       "volume": 1381
     },
@@ -7268,7 +7268,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 95,
       "volume": 229
     },
@@ -7282,7 +7282,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 148,
       "volume": 10402
     },
@@ -7296,7 +7296,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 31.85,
       "volume": 241
     },
@@ -7310,7 +7310,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 29.05,
       "volume": 79
     },
@@ -7324,7 +7324,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 11.6,
       "volume": 240
     },
@@ -7335,10 +7335,10 @@
       "net_1d_yi": 0,
       "market": "TPEX",
       "quoteStatus": "fallback",
-      "quoteSource": "yahoo-chart",
+      "quoteSource": "tpex-daily-close",
       "quoteDate": "2026-11-06",
-      "quoteTime": "13:00:26",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteTime": null,
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 39.2,
       "volume": 97379
     },
@@ -7352,7 +7352,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 78.1,
       "volume": 159
     },
@@ -7366,7 +7366,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 688,
       "volume": 1448
     },
@@ -7380,7 +7380,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 31.65,
       "volume": 2
     },
@@ -7394,7 +7394,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 13.2,
       "volume": 77
     },
@@ -7408,7 +7408,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 49.2,
       "volume": 751
     },
@@ -7422,7 +7422,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 15.2,
       "volume": 3020
     },
@@ -7436,7 +7436,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 77.5,
       "volume": 364
     },
@@ -7450,7 +7450,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 51.7,
       "volume": 7600
     },
@@ -7464,7 +7464,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 28.5,
       "volume": 31907
     },
@@ -7478,7 +7478,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 184.5,
       "volume": 47
     },
@@ -7492,7 +7492,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 73.7,
       "volume": 7453
     },
@@ -7503,12 +7503,12 @@
       "net_1d_yi": 0,
       "market": "TPEX",
       "quoteStatus": "fallback",
-      "quoteSource": "yahoo-chart",
+      "quoteSource": "tpex-daily-close",
       "quoteDate": "2026-11-06",
-      "quoteTime": "12:59:36",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteTime": null,
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 32.1,
-      "volume": 98025
+      "volume": 99025
     },
     "6104": {
       "name": "創惟",
@@ -7520,7 +7520,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 78.3,
       "volume": 1010
     },
@@ -7534,7 +7534,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 28.55,
       "volume": 602
     },
@@ -7548,7 +7548,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 47.7,
       "volume": 12946
     },
@@ -7562,7 +7562,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 21.6,
       "volume": 60
     },
@@ -7576,7 +7576,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 43.6,
       "volume": 397
     },
@@ -7590,7 +7590,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 12.1,
       "volume": 43428
     },
@@ -7604,7 +7604,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 59,
       "volume": 551
     },
@@ -7618,7 +7618,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 11.1,
       "volume": 5301
     },
@@ -7632,7 +7632,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 356,
       "volume": 885
     },
@@ -7643,12 +7643,12 @@
       "net_1d_yi": 0,
       "market": "TPEX",
       "quoteStatus": "fallback",
-      "quoteSource": "yahoo-chart",
+      "quoteSource": "tpex-daily-close",
       "quoteDate": "2026-11-06",
-      "quoteTime": "13:19:53",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteTime": null,
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 41.25,
-      "volume": 84029
+      "volume": 84529
     },
     "6124": {
       "name": "業強",
@@ -7660,7 +7660,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 24.8,
       "volume": 78
     },
@@ -7674,7 +7674,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 39.7,
       "volume": 1708
     },
@@ -7688,7 +7688,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 26.15,
       "volume": 454
     },
@@ -7702,7 +7702,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 18.4,
       "volume": 442
     },
@@ -7724,7 +7724,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 22,
       "volume": 1225
     },
@@ -7738,7 +7738,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 21.4,
       "volume": 398
     },
@@ -7752,7 +7752,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 25.8,
       "volume": 404
     },
@@ -7766,7 +7766,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 216,
       "volume": 899
     },
@@ -7780,7 +7780,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 567,
       "volume": 3795
     },
@@ -7794,7 +7794,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 23.5,
       "volume": 1729
     },
@@ -7808,7 +7808,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 40.5,
       "volume": 1250
     },
@@ -7830,7 +7830,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 181,
       "volume": 735
     },
@@ -7844,7 +7844,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 157.5,
       "volume": 23171
     },
@@ -7858,7 +7858,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 32.3,
       "volume": 100
     },
@@ -7872,7 +7872,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 17,
       "volume": 7724
     },
@@ -7886,7 +7886,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 14.55,
       "volume": 6867
     },
@@ -7897,12 +7897,12 @@
       "net_1d_yi": 0,
       "market": "TPEX",
       "quoteStatus": "fallback",
-      "quoteSource": "yahoo-chart",
+      "quoteSource": "tpex-daily-close",
       "quoteDate": "2026-11-06",
-      "quoteTime": "13:10:03",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteTime": null,
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 13.8,
-      "volume": 30565
+      "volume": 31030
     },
     "6155": {
       "name": "鈞寶",
@@ -7914,7 +7914,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 57.9,
       "volume": 1819
     },
@@ -7928,7 +7928,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 20.35,
       "volume": 1037
     },
@@ -7942,7 +7942,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 16.3,
       "volume": 41
     },
@@ -7956,7 +7956,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 45.5,
       "volume": 115
     },
@@ -7970,7 +7970,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 36.3,
       "volume": 3576
     },
@@ -7984,7 +7984,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 37.35,
       "volume": 918
     },
@@ -7998,7 +7998,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 211.5,
       "volume": 7891
     },
@@ -8012,7 +8012,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 38,
       "volume": 560
     },
@@ -8026,7 +8026,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 56.4,
       "volume": 1162
     },
@@ -8040,7 +8040,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 82.6,
       "volume": 3947
     },
@@ -8054,7 +8054,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 43.3,
       "volume": 1959
     },
@@ -8068,7 +8068,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 74.7,
       "volume": 29669
     },
@@ -8082,7 +8082,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 90,
       "volume": 75
     },
@@ -8096,7 +8096,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 38.85,
       "volume": 129
     },
@@ -8110,7 +8110,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 11.8,
       "volume": 372
     },
@@ -8124,7 +8124,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 45.3,
       "volume": 701
     },
@@ -8138,7 +8138,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 54.3,
       "volume": 2150
     },
@@ -8152,7 +8152,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 71.7,
       "volume": 5776
     },
@@ -8166,7 +8166,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 109,
       "volume": 251
     },
@@ -8180,7 +8180,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 31.65,
       "volume": 35
     },
@@ -8194,7 +8194,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 437,
       "volume": 2015
     },
@@ -8208,7 +8208,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 242,
       "volume": 3687
     },
@@ -8222,7 +8222,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 47.25,
       "volume": 91
     },
@@ -8236,7 +8236,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 44.95,
       "volume": 2391
     },
@@ -8250,7 +8250,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 89.3,
       "volume": 222
     },
@@ -8264,7 +8264,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 57.6,
       "volume": 983
     },
@@ -8278,7 +8278,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 101,
       "volume": 2928
     },
@@ -8292,7 +8292,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 69.8,
       "volume": 10438
     },
@@ -8303,12 +8303,12 @@
       "net_1d_yi": 0,
       "market": "TPEX",
       "quoteStatus": "fallback",
-      "quoteSource": "yahoo-chart",
+      "quoteSource": "tpex-daily-close",
       "quoteDate": "2026-11-06",
-      "quoteTime": "12:49:40",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteTime": null,
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 18.35,
-      "volume": 24000
+      "volume": 24053
     },
     "6213": {
       "name": "聯茂",
@@ -8320,7 +8320,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 551,
       "volume": 4235
     },
@@ -8334,7 +8334,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 176.5,
       "volume": 3557
     },
@@ -8348,7 +8348,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 75.2,
       "volume": 1261
     },
@@ -8362,7 +8362,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 118,
       "volume": 4057
     },
@@ -8376,7 +8376,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 3725,
       "volume": 1243
     },
@@ -8390,7 +8390,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 60.1,
       "volume": 461
     },
@@ -8404,7 +8404,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 80.6,
       "volume": 293
     },
@@ -8418,7 +8418,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 21.15,
       "volume": 251
     },
@@ -8432,7 +8432,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 95.1,
       "volume": 132
     },
@@ -8446,7 +8446,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 197,
       "volume": 503
     },
@@ -8460,7 +8460,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 30.2,
       "volume": 3744
     },
@@ -8474,7 +8474,7 @@
       "quoteSource": "yahoo-chart",
       "quoteDate": "2026-11-05",
       "quoteTime": "13:00:46",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 16.65,
       "volume": 14000
     },
@@ -8488,7 +8488,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 27.5,
       "volume": 466
     },
@@ -8502,7 +8502,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 220,
       "volume": 17163
     },
@@ -8516,7 +8516,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 31.8,
       "volume": 672
     },
@@ -8530,7 +8530,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 19.4,
       "volume": 17412
     },
@@ -8560,7 +8560,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 173,
       "volume": 7044
     },
@@ -8574,7 +8574,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 23.6,
       "volume": 211
     },
@@ -8588,7 +8588,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 65,
       "volume": 910
     },
@@ -8602,7 +8602,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 22.85,
       "volume": 477
     },
@@ -8616,7 +8616,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 64.9,
       "volume": 36252
     },
@@ -8630,7 +8630,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 182,
       "volume": 3651
     },
@@ -8644,7 +8644,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 20.85,
       "volume": 224
     },
@@ -8658,7 +8658,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 1005,
       "volume": 10228
     },
@@ -8672,7 +8672,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 14.45,
       "volume": 57
     },
@@ -8686,7 +8686,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 80.7,
       "volume": 902
     },
@@ -8700,7 +8700,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 199.5,
       "volume": 7181
     },
@@ -8714,7 +8714,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 103.5,
       "volume": 678
     },
@@ -8736,7 +8736,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 18.25,
       "volume": 375
     },
@@ -8750,7 +8750,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 61,
       "volume": 1146
     },
@@ -8764,7 +8764,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 182.5,
       "volume": 12258
     },
@@ -8802,7 +8802,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 184,
       "volume": 4164
     },
@@ -8816,7 +8816,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 295.5,
       "volume": 615
     },
@@ -8830,7 +8830,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:33:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 56.6,
       "volume": 256
     },
@@ -8860,7 +8860,7 @@
       "quoteSource": "yahoo-chart",
       "quoteDate": "2026-11-06",
       "quoteTime": "14:52:41",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 14.65,
       "volume": 381832
     },
@@ -8874,7 +8874,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 829,
       "volume": 289
     },
@@ -8888,7 +8888,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 67.6,
       "volume": 782
     },
@@ -8902,7 +8902,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 58.4,
       "volume": 2566
     },
@@ -8916,7 +8916,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 341.5,
       "volume": 1091
     },
@@ -8930,7 +8930,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 96.8,
       "volume": 188
     },
@@ -8944,7 +8944,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 36.8,
       "volume": 899
     },
@@ -8958,7 +8958,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 121.5,
       "volume": 294
     },
@@ -8980,7 +8980,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 237.5,
       "volume": 974
     },
@@ -8994,7 +8994,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 14.6,
       "volume": 50
     },
@@ -9008,7 +9008,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 45.8,
       "volume": 519
     },
@@ -9022,7 +9022,7 @@
       "quoteSource": "yahoo-chart",
       "quoteDate": "2026-11-06",
       "quoteTime": "14:58:55",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 12.95,
       "volume": 735070
     },
@@ -9036,7 +9036,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 186,
       "volume": 474
     },
@@ -9050,7 +9050,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 23.6,
       "volume": 40585
     },
@@ -9064,7 +9064,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 269,
       "volume": 2364
     },
@@ -9078,7 +9078,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 84.3,
       "volume": 892
     },
@@ -9092,7 +9092,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 43,
       "volume": 86
     },
@@ -9106,7 +9106,7 @@
       "quoteSource": "yahoo-chart",
       "quoteDate": "2026-11-06",
       "quoteTime": "14:56:27",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 6.68,
       "volume": 325868
     },
@@ -9120,7 +9120,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 27.85,
       "volume": 1702
     },
@@ -9134,7 +9134,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 61,
       "volume": 370
     },
@@ -9148,7 +9148,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 564,
       "volume": 13629
     },
@@ -9170,7 +9170,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 53.8,
       "volume": 242
     },
@@ -9184,7 +9184,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 87.9,
       "volume": 42634
     },
@@ -9198,7 +9198,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 2495,
       "volume": 411
     },
@@ -9209,10 +9209,10 @@
       "net_1d_yi": 0,
       "market": "TPEX",
       "quoteStatus": "fallback",
-      "quoteSource": "yahoo-chart",
+      "quoteSource": "tpex-daily-close",
       "quoteDate": "2026-11-06",
-      "quoteTime": "13:11:50",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteTime": null,
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 19.8,
       "volume": 1895
     },
@@ -9234,7 +9234,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 3620,
       "volume": 573
     },
@@ -9248,7 +9248,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 57.3,
       "volume": 489
     },
@@ -9262,7 +9262,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 71.1,
       "volume": 596
     },
@@ -9276,7 +9276,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 97.5,
       "volume": 1136
     },
@@ -9290,7 +9290,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 220,
       "volume": 1710
     },
@@ -9304,7 +9304,7 @@
       "quoteSource": "yahoo-chart",
       "quoteDate": "2026-11-05",
       "quoteTime": "12:26:48",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 31.7,
       "volume": 6100
     },
@@ -9318,7 +9318,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 272.5,
       "volume": 7303
     },
@@ -9332,7 +9332,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 60,
       "volume": 3891
     },
@@ -9346,7 +9346,7 @@
       "quoteSource": "yahoo-chart",
       "quoteDate": "2026-11-06",
       "quoteTime": "14:34:30",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 11.25,
       "volume": 162235
     },
@@ -9360,7 +9360,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 64.3,
       "volume": 22
     },
@@ -9374,7 +9374,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 19.4,
       "volume": 882
     },
@@ -9388,7 +9388,7 @@
       "quoteSource": "yahoo-chart",
       "quoteDate": "2026-11-06",
       "quoteTime": "14:59:24",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 15.25,
       "volume": 23604
     },
@@ -9399,12 +9399,12 @@
       "net_1d_yi": -0.01,
       "market": "TPEX",
       "quoteStatus": "fallback",
-      "quoteSource": "yahoo-chart",
+      "quoteSource": "tpex-daily-close",
       "quoteDate": "2026-11-06",
-      "quoteTime": "13:24:54",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteTime": null,
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 29.5,
-      "volume": 71068
+      "volume": 71368
     },
     "6563": {
       "name": "映智",
@@ -9416,7 +9416,7 @@
       "quoteSource": "yahoo-chart",
       "quoteDate": "2026-11-06",
       "quoteTime": "14:52:45",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 18.3,
       "volume": 73963
     },
@@ -9430,7 +9430,7 @@
       "quoteSource": "yahoo-chart",
       "quoteDate": "2026-11-06",
       "quoteTime": "14:17:19",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 14.9,
       "volume": 45401
     },
@@ -9444,7 +9444,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 107,
       "volume": 164
     },
@@ -9458,7 +9458,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 12.8,
       "volume": 130
     },
@@ -9472,7 +9472,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 128.5,
       "volume": 375
     },
@@ -9486,7 +9486,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 108.5,
       "volume": 172
     },
@@ -9500,7 +9500,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 327,
       "volume": 375
     },
@@ -9514,7 +9514,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 72.4,
       "volume": 758
     },
@@ -9528,7 +9528,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 89.3,
       "volume": 245
     },
@@ -9542,7 +9542,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 23.9,
       "volume": 1427
     },
@@ -9556,7 +9556,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 24.05,
       "volume": 105
     },
@@ -9570,7 +9570,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 23.85,
       "volume": 170
     },
@@ -9584,7 +9584,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 44.6,
       "volume": 3559
     },
@@ -9598,7 +9598,7 @@
       "quoteSource": "yahoo-chart",
       "quoteDate": "2026-11-05",
       "quoteTime": "13:30:32",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 33.5,
       "volume": 10000
     },
@@ -9612,7 +9612,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 762,
       "volume": 300
     },
@@ -9626,7 +9626,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 16.6,
       "volume": 84
     },
@@ -9640,7 +9640,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 378,
       "volume": 571
     },
@@ -9654,23 +9654,23 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 1650,
       "volume": 7128
     },
     "6671": {
       "name": "三能-KY",
-      "price": 23.25,
-      "chg_1d": -0.43,
+      "price": 22.2,
+      "chg_1d": -4.52,
       "net_1d_yi": 0,
       "market": "TWSE",
       "quoteStatus": "fallback",
-      "quoteSource": "twse-stock-day-all",
-      "quoteDate": "2026-11-05",
-      "quoteTime": null,
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
-      "previousClose": 23.35,
-      "volume": 4000
+      "quoteSource": "yahoo-chart",
+      "quoteDate": "2026-11-06",
+      "quoteTime": "13:24:47",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
+      "previousClose": 23.25,
+      "volume": 130399
     },
     "6682": {
       "name": "華旭先進",
@@ -9682,7 +9682,7 @@
       "quoteSource": "yahoo-chart",
       "quoteDate": "2026-11-06",
       "quoteTime": "14:52:25",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 23.85,
       "volume": 671273
     },
@@ -9696,7 +9696,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 71,
       "volume": 2833
     },
@@ -9710,7 +9710,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 182,
       "volume": 429
     },
@@ -9724,7 +9724,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 21.5,
       "volume": 19
     },
@@ -9738,7 +9738,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 30.55,
       "volume": 775
     },
@@ -9752,7 +9752,7 @@
       "quoteSource": "yahoo-chart",
       "quoteDate": "2026-11-06",
       "quoteTime": "11:43:09",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 93.5,
       "volume": 32748
     },
@@ -9766,7 +9766,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 357,
       "volume": 965
     },
@@ -9780,7 +9780,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 45,
       "volume": 242
     },
@@ -9794,7 +9794,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 107.5,
       "volume": 2025
     },
@@ -9808,7 +9808,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 37.05,
       "volume": 683
     },
@@ -9822,7 +9822,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 54.8,
       "volume": 148457
     },
@@ -9836,7 +9836,7 @@
       "quoteSource": "yahoo-chart",
       "quoteDate": "2026-11-06",
       "quoteTime": "14:57:08",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 28.7,
       "volume": 263732
     },
@@ -9850,7 +9850,7 @@
       "quoteSource": "yahoo-chart",
       "quoteDate": "2026-11-06",
       "quoteTime": "14:56:50",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 51,
       "volume": 358146
     },
@@ -9864,7 +9864,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 301,
       "volume": 919
     },
@@ -9878,7 +9878,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 360,
       "volume": 1681
     },
@@ -9892,7 +9892,7 @@
       "quoteSource": "yahoo-chart",
       "quoteDate": "2026-11-06",
       "quoteTime": "14:05:37",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 5.3,
       "volume": 161200
     },
@@ -9906,7 +9906,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 254,
       "volume": 296
     },
@@ -9928,7 +9928,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 227,
       "volume": 406
     },
@@ -9942,7 +9942,7 @@
       "quoteSource": "yahoo-chart",
       "quoteDate": "2026-11-06",
       "quoteTime": "14:23:46",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 18.3,
       "volume": 55062
     },
@@ -9956,7 +9956,7 @@
       "quoteSource": "yahoo-chart",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:16:22",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 11.65,
       "volume": 89000
     },
@@ -9970,7 +9970,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 75.7,
       "volume": 546
     },
@@ -9984,7 +9984,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 116,
       "volume": 383
     },
@@ -9998,7 +9998,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 36.3,
       "volume": 597
     },
@@ -10012,7 +10012,7 @@
       "quoteSource": "yahoo-chart",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:38:30",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 24.2,
       "volume": 3000
     },
@@ -10034,7 +10034,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 27.2,
       "volume": 301
     },
@@ -10048,7 +10048,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 131.5,
       "volume": 660
     },
@@ -10062,7 +10062,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 264.5,
       "volume": 454
     },
@@ -10076,7 +10076,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 24.2,
       "volume": 23
     },
@@ -10090,7 +10090,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 128,
       "volume": 459
     },
@@ -10104,7 +10104,7 @@
       "quoteSource": "yahoo-chart",
       "quoteDate": "2026-11-06",
       "quoteTime": "14:59:49",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 73.8,
       "volume": 1281273
     },
@@ -10118,7 +10118,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 109.5,
       "volume": 8325
     },
@@ -10132,7 +10132,7 @@
       "quoteSource": "yahoo-chart",
       "quoteDate": "2026-11-06",
       "quoteTime": "14:59:04",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 54.5,
       "volume": 100343
     },
@@ -10146,7 +10146,7 @@
       "quoteSource": "yahoo-chart",
       "quoteDate": "2026-11-06",
       "quoteTime": "14:59:27",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 14.75,
       "volume": 718269
     },
@@ -10160,7 +10160,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 670,
       "volume": 857
     },
@@ -10174,7 +10174,7 @@
       "quoteSource": "yahoo-chart",
       "quoteDate": "2026-11-06",
       "quoteTime": "14:16:38",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 7.56,
       "volume": 76872
     },
@@ -10188,7 +10188,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 56.6,
       "volume": 653
     },
@@ -10202,7 +10202,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 29.3,
       "volume": 3691
     },
@@ -10216,7 +10216,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 64.5,
       "volume": 116
     },
@@ -10230,7 +10230,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 25.15,
       "volume": 102
     },
@@ -10244,7 +10244,7 @@
       "quoteSource": "yahoo-chart",
       "quoteDate": "2026-11-06",
       "quoteTime": "14:57:36",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 170,
       "volume": 169428
     },
@@ -10258,7 +10258,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 257.5,
       "volume": 67
     },
@@ -10272,7 +10272,7 @@
       "quoteSource": "yahoo-chart",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:11:06",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 19.3,
       "volume": 20114
     },
@@ -10286,7 +10286,7 @@
       "quoteSource": "yahoo-chart",
       "quoteDate": "2026-11-06",
       "quoteTime": "14:59:59",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 104,
       "volume": 344094
     },
@@ -10300,7 +10300,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 21.6,
       "volume": 800
     },
@@ -10314,7 +10314,7 @@
       "quoteSource": "yahoo-chart",
       "quoteDate": "2026-11-05",
       "quoteTime": "13:18:45",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 69.8,
       "volume": 4000
     },
@@ -10328,7 +10328,7 @@
       "quoteSource": "yahoo-chart",
       "quoteDate": "2026-11-06",
       "quoteTime": "14:48:14",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 46,
       "volume": 5000
     },
@@ -10342,7 +10342,7 @@
       "quoteSource": "yahoo-chart",
       "quoteDate": "2026-11-05",
       "quoteTime": "11:34:20",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 22.8,
       "volume": 0
     },
@@ -10356,7 +10356,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 1155,
       "volume": 697
     },
@@ -10370,7 +10370,7 @@
       "quoteSource": "yahoo-chart",
       "quoteDate": "2026-11-06",
       "quoteTime": "12:28:22",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 22.3,
       "volume": 5001
     },
@@ -10384,7 +10384,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 74.9,
       "volume": 1203
     },
@@ -10398,7 +10398,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 627,
       "volume": 2978
     },
@@ -10412,7 +10412,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 136,
       "volume": 150
     },
@@ -10426,7 +10426,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 24,
       "volume": 11
     },
@@ -10440,23 +10440,23 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 349.5,
       "volume": 310
     },
     "7732": {
       "name": "金興精密",
-      "price": 30.9,
-      "chg_1d": -3.89,
+      "price": 30.7,
+      "chg_1d": -0.65,
       "net_1d_yi": 0,
       "market": "TWSE",
       "quoteStatus": "fallback",
-      "quoteSource": "twse-stock-day-all",
-      "quoteDate": "2026-11-05",
-      "quoteTime": null,
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
-      "previousClose": 32.15,
-      "volume": 14003
+      "quoteSource": "yahoo-chart",
+      "quoteDate": "2026-11-06",
+      "quoteTime": "13:07:07",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
+      "previousClose": 30.9,
+      "volume": 4004
     },
     "7738": {
       "name": "東聯互動",
@@ -10465,12 +10465,12 @@
       "net_1d_yi": -0.02,
       "market": "TPEX",
       "quoteStatus": "fallback",
-      "quoteSource": "yahoo-chart",
+      "quoteSource": "tpex-daily-close",
       "quoteDate": "2026-11-06",
-      "quoteTime": "13:20:14",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteTime": null,
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 160.5,
-      "volume": 40125
+      "volume": 40222
     },
     "7758": {
       "name": "睿騰能源",
@@ -10482,7 +10482,7 @@
       "quoteSource": "yahoo-chart",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:09:19",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 25.5,
       "volume": 41222
     },
@@ -10496,7 +10496,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 234,
       "volume": 293
     },
@@ -10507,10 +10507,10 @@
       "net_1d_yi": 0,
       "market": "TPEX",
       "quoteStatus": "fallback",
-      "quoteSource": "yahoo-chart",
+      "quoteSource": "tpex-daily-close",
       "quoteDate": "2026-11-06",
-      "quoteTime": "13:07:48",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteTime": null,
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 37.55,
       "volume": 4342
     },
@@ -10524,7 +10524,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 109.5,
       "volume": 430
     },
@@ -10538,7 +10538,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 77.9,
       "volume": 86
     },
@@ -10552,7 +10552,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 1125,
       "volume": 160
     },
@@ -10566,7 +10566,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 2520,
       "volume": 691
     },
@@ -10580,7 +10580,7 @@
       "quoteSource": "yahoo-chart",
       "quoteDate": "2026-11-06",
       "quoteTime": "14:11:49",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 54.5,
       "volume": 606
     },
@@ -10594,7 +10594,7 @@
       "quoteSource": "yahoo-chart",
       "quoteDate": "2026-11-06",
       "quoteTime": "14:59:36",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 112,
       "volume": 415989
     },
@@ -10608,7 +10608,7 @@
       "quoteSource": "yahoo-chart",
       "quoteDate": "2026-11-06",
       "quoteTime": "14:59:57",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 508,
       "volume": 64627
     },
@@ -10622,7 +10622,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 14.45,
       "volume": 476
     },
@@ -10636,7 +10636,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 254,
       "volume": 755
     },
@@ -10650,7 +10650,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 340.5,
       "volume": 4702
     },
@@ -10664,7 +10664,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 136,
       "volume": 2211
     },
@@ -10678,7 +10678,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 194,
       "volume": 5302
     },
@@ -10692,7 +10692,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 137,
       "volume": 4282
     },
@@ -10706,7 +10706,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 28.6,
       "volume": 140
     },
@@ -10720,7 +10720,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 201.5,
       "volume": 11463
     },
@@ -10734,7 +10734,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 22.2,
       "volume": 1089
     },
@@ -10748,7 +10748,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 972,
       "volume": 11510
     },
@@ -10762,7 +10762,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 55.7,
       "volume": 1806
     },
@@ -10776,7 +10776,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 64.2,
       "volume": 1017
     },
@@ -10790,7 +10790,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 11.7,
       "volume": 79
     },
@@ -10804,7 +10804,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 15.15,
       "volume": 187
     },
@@ -10818,7 +10818,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 141,
       "volume": 10473
     },
@@ -10832,7 +10832,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 45.8,
       "volume": 3830
     },
@@ -10846,7 +10846,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 17.65,
       "volume": 471
     },
@@ -10868,7 +10868,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 246.5,
       "volume": 754
     },
@@ -10882,7 +10882,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 96.4,
       "volume": 6383
     },
@@ -10896,7 +10896,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 26.1,
       "volume": 1507
     },
@@ -10910,7 +10910,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 11.05,
       "volume": 124
     },
@@ -10924,7 +10924,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 120.5,
       "volume": 332
     },
@@ -10938,7 +10938,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 74,
       "volume": 5456
     },
@@ -10952,7 +10952,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 24.8,
       "volume": 658
     },
@@ -10966,7 +10966,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 51.9,
       "volume": 2631
     },
@@ -10980,7 +10980,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 76,
       "volume": 19671
     },
@@ -10994,7 +10994,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 241,
       "volume": 1083
     },
@@ -11008,7 +11008,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 53.9,
       "volume": 381
     },
@@ -11030,7 +11030,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 37.85,
       "volume": 3091
     },
@@ -11044,7 +11044,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 24.8,
       "volume": 1495
     },
@@ -11058,7 +11058,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 51.8,
       "volume": 769
     },
@@ -11072,7 +11072,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 115.5,
       "volume": 2753
     },
@@ -11086,7 +11086,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 159.5,
       "volume": 3792
     },
@@ -11100,7 +11100,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 1560,
       "volume": 5779
     },
@@ -11114,23 +11114,23 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 72.6,
       "volume": 641
     },
     "8367": {
       "name": "建新國際",
-      "price": 40.8,
-      "chg_1d": 1.62,
+      "price": 39.95,
+      "chg_1d": -2.08,
       "net_1d_yi": 0,
       "market": "TWSE",
       "quoteStatus": "fallback",
-      "quoteSource": "twse-stock-day-all",
-      "quoteDate": "2026-11-05",
-      "quoteTime": null,
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
-      "previousClose": 40.15,
-      "volume": 36425
+      "quoteSource": "yahoo-chart",
+      "quoteDate": "2026-11-06",
+      "quoteTime": "13:16:23",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
+      "previousClose": 40.8,
+      "volume": 103823
     },
     "8422": {
       "name": "可寧衛*",
@@ -11142,7 +11142,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 23.35,
       "volume": 9832
     },
@@ -11153,10 +11153,10 @@
       "net_1d_yi": 0,
       "market": "TPEX",
       "quoteStatus": "fallback",
-      "quoteSource": "yahoo-chart",
+      "quoteSource": "tpex-daily-close",
       "quoteDate": "2026-11-06",
-      "quoteTime": "10:46:05",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteTime": null,
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 17.7,
       "volume": 22524
     },
@@ -11170,7 +11170,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 10.8,
       "volume": 66
     },
@@ -11184,23 +11184,23 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 228.5,
       "volume": 650
     },
     "8472": {
-      "name": "夠麻吉",
+      "name": "納維康",
       "price": 49,
       "chg_1d": -9.93,
       "net_1d_yi": 0,
       "market": "TPEX",
       "quoteStatus": "fallback",
-      "quoteSource": "yahoo-chart",
+      "quoteSource": "tpex-daily-close",
       "quoteDate": "2026-11-06",
-      "quoteTime": "12:56:19",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteTime": null,
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 54.4,
-      "volume": 26084
+      "volume": 26165
     },
     "8473": {
       "name": "山林水",
@@ -11212,7 +11212,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 35.1,
       "volume": 730
     },
@@ -11226,7 +11226,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 17.85,
       "volume": 600
     },
@@ -11240,7 +11240,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 12.35,
       "volume": 7
     },
@@ -11270,7 +11270,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 58.4,
       "volume": 204
     },
@@ -11284,7 +11284,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 20.1,
       "volume": 684
     },
@@ -11298,7 +11298,7 @@
       "quoteSource": "twse-mis",
       "quoteDate": "2026-11-06",
       "quoteTime": "13:30:00",
-      "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+      "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
       "previousClose": 79.5,
       "volume": 2241
     }
@@ -11311,7 +11311,7 @@
       "requested": 720,
       "failCount": 161,
       "lastOkDate": "2026-11-06",
-      "lastError": "8199.TWO HTTP 404"
+      "lastError": "9106.TWO HTTP 404"
     },
     {
       "source": "twse-mis",
@@ -11325,20 +11325,20 @@
     {
       "source": "official-daily-quotes",
       "ok": true,
-      "rows": 7,
+      "rows": 15,
       "requested": 146,
       "failCount": 1,
-      "lastOkDate": "2026-11-05",
-      "lastError": "This operation was aborted"
+      "lastOkDate": "2026-11-06",
+      "lastError": "Unexpected token '<', \"<html><hea\"... is not valid JSON"
     },
     {
       "source": "yahoo-chart",
       "ok": true,
-      "rows": 59,
-      "requested": 139,
+      "rows": 51,
+      "requested": 131,
       "failCount": 160,
-      "lastOkDate": "2026-11-05",
-      "lastError": "8199.TWO HTTP 404"
+      "lastOkDate": "2026-11-06",
+      "lastError": "9106.TWO HTTP 404"
     },
     {
       "source": "twse-price",
@@ -11386,7 +11386,7 @@
       "lastError": null
     }
   ],
-  "quoteUpdatedAt": "2026-11-06T12:49:54.264Z",
+  "quoteUpdatedAt": "2026-11-06T13:03:36.201Z",
   "realtimeStatus": {
     "source": "merged-quotes",
     "ok": true,
@@ -11394,6 +11394,6 @@
     "requested": 720,
     "failCount": 161,
     "lastOkDate": "2026-11-06",
-    "lastError": "8199.TWO HTTP 404"
+    "lastError": "9106.TWO HTTP 404"
   }
 }
